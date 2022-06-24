@@ -1,8 +1,8 @@
 import React from 'react'
 
-import TituloGrande from '../../components/titulo-grande/tituloGrande'
-import InputGrande from '../../components/input-grande/inputGrande'
-import BotaoGrande from '../../components/botao-grande/botaoGrande'
+import TituloGrande from '../../components/titulo/titulo-grande/tituloGrande'
+import InputGrande from '../../components/input/input-grande/inputGrande'
+import BotaoGrande from '../../components/botao/botao-grande/botaoGrande'
 
 import './login.css';
 
