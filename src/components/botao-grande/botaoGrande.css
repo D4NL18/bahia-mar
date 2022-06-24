@@ -30,9 +30,6 @@
     .botao-grande {
         width: 17.5rem;
     }
-
-    .texto-botao-grande {
-    }
 }
 
 @media only screen and (max-width: 425px) {
@@ -40,6 +37,5 @@
         width: 60vw;
     }
 
-    .texto-botao-grande {
-    }
+
 }
