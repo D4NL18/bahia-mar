@@ -1,0 +1,36 @@
+.entire-input-grande {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.label-input-grande {
+    margin-bottom: 5px;
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.input-grande {
+    width: 35rem;
+    height: 3.5rem;
+    border: 2px solid #000000;
+    border-radius: 11px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .input-grande {
+        width: 30rem;
+    }
+}
+
+@media only screen and (min-width: 425px) and (max-width: 767px) {
+    .input-grande {
+        width: 22.5rem;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .input-grande {
+        width: 80vw;
+    }
+}
