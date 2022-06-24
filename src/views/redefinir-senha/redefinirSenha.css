@@ -1,4 +1,4 @@
-.entire-page-login {
+.entire-page-redefinirSenha {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -7,17 +7,16 @@
     min-height: 100vh;
 }
 
-.title-section-login {
+.title-section-redefinirSenha {
     width: 100%;
     height: 35vh;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-
 }
 
-.caixa-central-section-login {
+.caixa-central-section-redefinirSenha {
     width: 100%;
     min-height: 65vh;
     display: flex;
@@ -26,8 +25,7 @@
     align-items: center;
 }
 
-
-.texto-redefinir-senha-login {
+.texto-alerta-redefinirSenha {
     outline: none;
     text-decoration: none;
     color: black;
@@ -35,7 +33,7 @@
     font-size: 1rem;
     font-weight: 700;
     padding-bottom: 10vh;
-    width: 90vw;
+    width: 70vw;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
@@ -47,11 +45,13 @@
 }
 
 @media only screen and (max-width: 425px) {
-
+    .texto-alerta-redefinirSenha {
+        font-size: 0.7rem;
+    }
 }
 
 @media only screen and (max-height: 425px) {
-    .entire-page-login {
+    .entire-page-redefinirSenha {
         padding-top: 3rem;
     }
 

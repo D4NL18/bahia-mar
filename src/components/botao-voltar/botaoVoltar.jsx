@@ -1,10 +1,11 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 
-import './botaoGrande.css';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+import './botaoVoltar.css';
 
 function BotaoGrande(props) {
-
     const navigate = useNavigate();
 
     function handleClick() {
@@ -12,8 +13,8 @@ function BotaoGrande(props) {
     }
 
     return (
-        <button className="botao-grande" onClick={handleClick}>
-            <p className="texto-botao-grande">{props.text}</p>
+        <button className="botao-voltar" onClick={handleClick}>
+            <ArrowBackIcon className='seta-bota-voltar' />
         </button>
     );
 }
