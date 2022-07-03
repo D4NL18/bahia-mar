@@ -1,14 +1,9 @@
+import React from "react";
 
-import React from 'react'
-
-import './tituloGrande.css';
+import "./tituloGrande.css";
 
 function TituloGrande(props) {
-    return (
-        <h1 className="tituloGrande">
-            {props.title}
-        </h1>
-    );
+  return <h1 className="tituloGrande">{props.title}</h1>;
 }
 
 export default TituloGrande;

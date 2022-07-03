@@ -1,41 +1,37 @@
 .botao-grande {
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    margin: 2rem 0;
-    box-sizing: border-box;
-    background: linear-gradient(180deg, #214F6E 0%, rgba(33, 79, 110, 0.8) 100%);
-    border: 1px solid #000000;
-    border-radius: 11px;
-    width: 20rem;
-    height: 3.5rem;
-    
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #214f6e 0%, rgba(33, 79, 110, 0.8) 100%);
+  border: 1px solid #000000;
+  border-radius: 11px;
+  width: 20rem;
+  height: 3.5rem;
 }
 
 .texto-botao-grande {
-    color: white;
-    font-size: 1.3rem;
-    font-weight: 500;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 500;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
-    .botao-grande {
-        width: 17.5rem;
-    }
-
+  .botao-grande {
+    width: 17.5rem;
+  }
 }
 
 @media only screen and (min-width: 425px) and (max-width: 767px) {
-    .botao-grande {
-        width: 17.5rem;
-    }
+  .botao-grande {
+    width: 17.5rem;
+  }
 }
 
 @media only screen and (max-width: 425px) {
-    .botao-grande {
-        width: 60vw;
-    }
-
-
+  .botao-grande {
+    width: 60vw;
+  }
 }

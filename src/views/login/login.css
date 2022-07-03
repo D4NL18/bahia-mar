@@ -1,58 +1,52 @@
 .entire-page-login {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 100vw;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
 }
 
 .title-section-login {
-    width: 100%;
-    height: 35vh;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-
+  width: 100%;
+  height: 35vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .caixa-central-section-login {
-    width: 100%;
-    min-height: 65vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  width: 100%;
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-
 .texto-redefinir-senha-login {
-    outline: none;
-    text-decoration: none;
-    color: black;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 700;
-    padding-bottom: 10vh;
-    width: 90vw;
+  outline: none;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  padding-bottom: 10vh;
+  width: 90vw;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
-
 }
 
 @media only screen and (min-width: 425px) and (max-width: 767px) {
-
 }
 
 @media only screen and (max-width: 425px) {
-
 }
 
 @media only screen and (max-height: 425px) {
-    .entire-page-login {
-        padding-top: 3rem;
-    }
-
+  .entire-page-login {
+    padding-top: 3rem;
+  }
 }

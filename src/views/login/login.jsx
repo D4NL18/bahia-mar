@@ -1,15 +1,15 @@
-import React from 'react'
+import React from "react";
 
-import TituloGrande from '../../components/titulo/titulo-grande/tituloGrande'
-import InputGrande from '../../components/input/input-grande/inputGrande'
-import BotaoGrande from '../../components/botao/botao-grande/botaoGrande'
+import TituloGrande from "../../components/titulo/titulo-grande/tituloGrande";
+import InputGrande from "../../components/input/input-grande/inputGrande";
+import BotaoGrande from "../../components/botao/botao-grande/botaoGrande";
 
-import './login.css';
+import "./login.css";
 
 function App() {
   return (
-    <div className='entire-page-login'>
-      <section className='title-section-login'>
+    <div className="entire-page-login">
+      <section className="title-section-login">
         <TituloGrande title="Bahia Mar" />
       </section>
       <section className="caixa-central-section-login">

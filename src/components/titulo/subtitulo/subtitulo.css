@@ -1,26 +1,26 @@
 .subtitulo {
-    font-size: 2rem;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem 1rem;
-    padding: 0;
-    font-weight: 500;
+  font-size: 2rem;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  /*margin: 1rem 1rem;*/
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
-    
 }
 
 @media only screen and (min-width: 425px) and (max-width: 767px) {
-    .subtitulo {
-        font-size: 1.7rem;
-    }
+  .subtitulo {
+    font-size: 1.7rem;
+  }
 }
 
 @media only screen and (max-width: 425px) {
-    .subtitulo {
-        font-size: 1.2rem;
-    }
+  .subtitulo {
+    font-size: 1.2rem;
+  }
 }
