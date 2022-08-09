@@ -32,6 +32,10 @@ function Cadastros() {
               path="/menu/cadastros/motorista"
               style={{ marginBottom: "0" }}
             />
+            <BotaoGrande 
+              text="Cliente" 
+              path="/menu/cadastros/cliente"
+            />
           </div>
           <div style={{ margin: "0 2rem" }}>
             <BotaoGrande text="Produto" path="/menu/cadastros/produto" />
@@ -40,9 +44,14 @@ function Cadastros() {
               path="/menu/cadastros/veiculo"
               style={{ marginBottom: "0" }}
             />
+            <BotaoGrande 
+              text="Venda" 
+              path="/menu/cadastros/venda"
+            />
           </div>
+          
         </section>
-        <BotaoGrande text="Venda" path="/menu/cadastros/venda" />
+        
       </section>
       <BotaoVoltar path="/menu" />
     </div>

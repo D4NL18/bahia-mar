@@ -1,4 +1,4 @@
-import "./estatisticas.css";
+import "./gerenciamento.css";
 
 import TituloMedio from "../../components/titulo/titulo-medio/tituloMedio";
 import Subtitulo from "../../components/titulo/subtitulo/subtitulo";
@@ -31,6 +31,17 @@ function Estatisticas() {
             path="/menu/estatisticas/venda-produtos-dia"
             style={{ marginBottom: "0" }}
           />
+          <BotaoGrande
+            text="Tabela de Preços"
+            path="/menu/estatisticas/venda-produtos-mes"
+            style={{ marginBottom: "0" }}
+          />
+          <BotaoGrande
+            text="Lista de Clientes"
+            path="/menu/estatisticas/clientes"
+            style={{ marginBottom: "0" }}
+          />
+          
         </section>
         <section>
           <BotaoGrande
@@ -50,8 +61,20 @@ function Estatisticas() {
             path="/menu/estatisticas/venda-produtos-mes"
             style={{ marginBottom: "0" }}
           />
+          <BotaoGrande
+            text="Controle de Fiado"
+            path="/menu/estatisticas/fiado"
+            style={{ marginBottom: "0" }}
+          />
+          <BotaoGrande
+            text="Controle de Estoque"
+            path="/menu/estatisticas/estoque"
+            style={{ marginBottom: "0" }}
+          />
         </section>
+        
       </section>
+      
       <BotaoVoltar path="/menu" />
     </div>
   );
