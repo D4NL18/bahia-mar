@@ -16,29 +16,29 @@ function Estatisticas() {
         <section>
           <BotaoMedio
             text="Todas as Vendas do Dia"
-            path="/menu/estatisticas/vendas-dia"
+            path="/menu/gerenciamento/vendas-dia"
           />
           <BotaoMedio
             text="Faturamento por Funcionário / Dia"
-            path="/menu/estatisticas/faturamento-funcionario-dia"
+            path="/menu/gerenciamento/faturamento-funcionario-dia"
           />
           <BotaoMedio
             text="Faturamento do Dia"
-            path="/menu/estatisticas/faturamento-dia"
+            path="/menu/gerenciamento/faturamento-dia"
           />
           <BotaoMedio
             text="Venda de Produtos / Dia"
-            path="/menu/estatisticas/venda-produtos-dia"
+            path="/menu/gerenciamento/venda-produtos-dia"
             style={{ marginBottom: "0" }}
           />
           <BotaoMedio
             text="Tabela de Preços"
-            path="/menu/estatisticas/venda-produtos-mes"
+            path="/menu/gerenciamento/venda-produtos-mes"
             style={{ marginBottom: "0" }}
           />
           <BotaoMedio
             text="Lista de Clientes"
-            path="/menu/estatisticas/clientes"
+            path="/menu/gerenciamento/clientes"
             style={{ marginBottom: "0" }}
           />
           
@@ -46,29 +46,29 @@ function Estatisticas() {
         <section>
           <BotaoMedio
             text="Todas as Vendas do Mês"
-            path="/menu/estatisticas/venda-mes"
+            path="/menu/gerenciamento/venda-mes"
           />
           <BotaoMedio
             text="Faturamento por Funcionário / Mês"
-            path="/menu/estatisticas/faturamento-funcionario-mes"
+            path="/menu/gerenciamento/faturamento-funcionario-mes"
           />
           <BotaoMedio
             text="Faturamento do Mês"
-            path="/menu/estatisticas/faturamento-mes"
+            path="/menu/gerenciamento/faturamento-mes"
           />
           <BotaoMedio
             text="Venda de Produtos / Mês"
-            path="/menu/estatisticas/venda-produtos-mes"
+            path="/menu/gerenciamento/venda-produtos-mes"
             style={{ marginBottom: "0" }}
           />
           <BotaoMedio
-            text="Controle de Fiado"
-            path="/menu/estatisticas/fiado"
+            text="Controle de Débito"
+            path="/menu/gerenciamento/debito"
             style={{ marginBottom: "0" }}
           />
           <BotaoMedio
             text="Controle de Estoque"
-            path="/menu/estatisticas/estoque"
+            path="/menu/gerenciamento/estoque"
             style={{ marginBottom: "0" }}
           />
         </section>

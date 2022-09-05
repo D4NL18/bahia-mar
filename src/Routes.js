@@ -4,7 +4,7 @@ import Login from "./views/login/login";
 import RedefinirSenha from "./views/redefinir-senha/redefinirSenha";
 import RedefinirSenha2 from "./views/redefinir-senha/redefinirSenha2";
 import Menu from "./views/menu/menu";
-import Gerenciamento from "./views/menu-estatisticas/gerenciamento";
+import Gerenciamento from "./views/menu-gerenciamento/gerenciamento";
 import Cadastros from "./views/menu-cadastros/cadastros";
 import MenuCrud from './views/menus-CRUD/menuCrud'
 import VendasDia from './views/vendas-dia/vendasDia'
