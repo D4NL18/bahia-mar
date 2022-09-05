@@ -15,7 +15,7 @@ function App() {
       <section className="caixa-central-section-login">
         <InputGrande label="E-mail" type="text" />
         <InputGrande label="Senha" type="password" />
-        <BotaoGrande text="Entrar" path="" />
+        <BotaoGrande text="Entrar" path="/menu" />
         <a className="texto-redefinir-senha-login" href="/redefinir-senha">
           Esqueceu sua senha? Clique aqui para recuperá-la
         </a>

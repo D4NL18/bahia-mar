@@ -15,7 +15,7 @@ function App() {
       </section>
       <section className="caixa-central-section-redefinirSenha">
         <InputGrande label="E-mail" type="text" />
-        <BotaoGrande text="Enviar E-mail" path="" />
+        <BotaoGrande text="Enviar E-mail" path="/redefinir-senha/nova-senha" />
         <p className="texto-alerta-redefinirSenha">
           Atenção! Entre no endereço de email informado para prosseguir com a
           redefinição de senha

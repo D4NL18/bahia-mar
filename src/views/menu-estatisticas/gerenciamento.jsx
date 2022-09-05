@@ -2,7 +2,7 @@ import "./gerenciamento.css";
 
 import TituloMedio from "../../components/titulo/titulo-medio/tituloMedio";
 import Subtitulo from "../../components/titulo/subtitulo/subtitulo";
-import BotaoGrande from "../../components/botao/botao-grande/botaoGrande";
+import BotaoMedio from "../../components/botao/botao-medio/botaoMedio";
 import BotaoVoltar from "../../components/botao/botao-voltar/botaoVoltar";
 
 function Estatisticas() {
@@ -10,33 +10,33 @@ function Estatisticas() {
     <div className="entire-page-estatisticas">
       <section className="title-section-estatisticas">
         <TituloMedio title="Estatísticas" />
-        <Subtitulo subtitle="Selecione o que deseja vizualizar" />
+        <Subtitulo subtitle="Selecione o que deseja visualizar" />
       </section>
       <section className="caixa-central-section-estatisticas">
         <section>
-          <BotaoGrande
+          <BotaoMedio
             text="Todas as Vendas do Dia"
             path="/menu/estatisticas/vendas-dia"
           />
-          <BotaoGrande
+          <BotaoMedio
             text="Faturamento por Funcionário / Dia"
             path="/menu/estatisticas/faturamento-funcionario-dia"
           />
-          <BotaoGrande
+          <BotaoMedio
             text="Faturamento do Dia"
             path="/menu/estatisticas/faturamento-dia"
           />
-          <BotaoGrande
+          <BotaoMedio
             text="Venda de Produtos / Dia"
             path="/menu/estatisticas/venda-produtos-dia"
             style={{ marginBottom: "0" }}
           />
-          <BotaoGrande
+          <BotaoMedio
             text="Tabela de Preços"
             path="/menu/estatisticas/venda-produtos-mes"
             style={{ marginBottom: "0" }}
           />
-          <BotaoGrande
+          <BotaoMedio
             text="Lista de Clientes"
             path="/menu/estatisticas/clientes"
             style={{ marginBottom: "0" }}
@@ -44,29 +44,29 @@ function Estatisticas() {
           
         </section>
         <section>
-          <BotaoGrande
+          <BotaoMedio
             text="Todas as Vendas do Mês"
             path="/menu/estatisticas/venda-mes"
           />
-          <BotaoGrande
+          <BotaoMedio
             text="Faturamento por Funcionário / Mês"
             path="/menu/estatisticas/faturamento-funcionario-mes"
           />
-          <BotaoGrande
+          <BotaoMedio
             text="Faturamento do Mês"
             path="/menu/estatisticas/faturamento-mes"
           />
-          <BotaoGrande
+          <BotaoMedio
             text="Venda de Produtos / Mês"
             path="/menu/estatisticas/venda-produtos-mes"
             style={{ marginBottom: "0" }}
           />
-          <BotaoGrande
+          <BotaoMedio
             text="Controle de Fiado"
             path="/menu/estatisticas/fiado"
             style={{ marginBottom: "0" }}
           />
-          <BotaoGrande
+          <BotaoMedio
             text="Controle de Estoque"
             path="/menu/estatisticas/estoque"
             style={{ marginBottom: "0" }}

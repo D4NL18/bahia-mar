@@ -16,6 +16,7 @@
     color: white;
     font-size: 1.2rem;
     font-weight: 500;
+    margin: 0;
   }
   
   @media only screen and (min-width: 768px) and (max-width: 1023px) {
@@ -26,13 +27,13 @@
   
   @media only screen and (min-width: 425px) and (max-width: 767px) {
     .botao-medio {
-      width: 15rem;
+      width: 12.5rem;
     }
   }
   
   @media only screen and (max-width: 425px) {
     .botao-medio {
-      width: 60vw;
+      width: 12rem;
     }
   }
   

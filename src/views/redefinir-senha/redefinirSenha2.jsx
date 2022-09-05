@@ -16,7 +16,7 @@ function App() {
       <section className="caixa-central-section-redefinirSenha2">
         <InputGrande label="Nova Senha" type="password" />
         <InputGrande label="Confirmar nova senha" type="password" />
-        <BotaoGrande text="Redefinir Senha" path="" />
+        <BotaoGrande text="Redefinir Senha" path="/" />
       </section>
       <BotaoVoltar path="/" />
     </div>

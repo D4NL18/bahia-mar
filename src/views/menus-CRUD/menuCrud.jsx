@@ -19,6 +19,10 @@ function App(props) {
         <BotaoMedio text={`Editar ${props.tipo}`} />
         <BotaoMedio text={`Cadastrar ${props.tipo}`} />
       </section>
+      <section className="title-section-menuCrud" style={{visibility: 'hidden'}} >
+        <TituloMedio title={props.tipo} />
+        <Subtitulo subtitle="Selecione o que deseja fazer" />
+      </section>
       <BotaoVoltar path="/menu" />
     </div>
   );

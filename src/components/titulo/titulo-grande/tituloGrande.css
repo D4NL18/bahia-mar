@@ -14,11 +14,13 @@
 @media only screen and (min-width: 425px) and (max-width: 767px) {
   .tituloGrande {
     font-size: 4rem;
+    margin: 2rem 1rem;
   }
 }
 
 @media only screen and (max-width: 425px) {
   .tituloGrande {
     font-size: 3rem;
+    margin: 1rem 1rem;
   }
 }

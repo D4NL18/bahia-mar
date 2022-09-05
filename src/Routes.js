@@ -14,12 +14,10 @@ function Router() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Login />} />
+          <Route 
+          exact path="/" element={<Login />} />
           <Route exact path="/redefinir-senha" element={<RedefinirSenha />} />
-          <Route
-            exact
-            path="/redefinir-senha/nova-senha"
-            element={<RedefinirSenha2 />}
+          <Route exact path="/redefinir-senha/nova-senha" element={<RedefinirSenha2 />}
           />
           <Route exact path="/menu" element={<Menu />} />
 
