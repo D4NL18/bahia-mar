@@ -12,7 +12,7 @@ export default function App() {
     const [tableFilter, setTableFilter] = useState([])
 
     const filterData = (e) => {
-        if(e.target.value != "") {
+        if(e.target.value !== "") {
             setValue(e.target.value)
             const filterTable = dataSource.filter(o=>Object.keys(o).some(k=> String(o[k]).toLowerCase().includes(e.target.value.toLowerCase())))
             setTableFilter([...filterTable])

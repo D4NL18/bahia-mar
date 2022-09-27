@@ -9,14 +9,16 @@ function BotaoMedio(props) {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate(`${props.path}`);
+    if (props.tipo === "Veiculo" || props.tipo === "Administrador" || props.tipo === "Motorista") {
+      navigate(`${props.path}`);
+    }
   }
 
   return (
     <button
       className="botao-medio"
       onClick={handleClick}
-      style={!!style ? style : null}
+      style={style ? style : null}
     >
       <p className="texto-botao-medio">{props.text}</p>
     </button>
