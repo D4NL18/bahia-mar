@@ -1,9 +1,9 @@
 import "./gerenciamento.css";
 
-import TituloMedio from "../../components/titulo/titulo-medio/tituloMedio";
-import Subtitulo from "../../components/titulo/subtitulo/subtitulo";
-import BotaoMedio from "../../components/botao/botao-medio/botaoMedio";
-import BotaoVoltar from "../../components/botao/botao-voltar/botaoVoltar";
+import TituloMedio from "../../../components/titulo/titulo-medio/tituloMedio";
+import Subtitulo from "../../../components/titulo/subtitulo/subtitulo";
+import BotaoMedio from "../../../components/botao/botao-medio/botaoMedio";
+import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
 
 function Estatisticas() {
   return (

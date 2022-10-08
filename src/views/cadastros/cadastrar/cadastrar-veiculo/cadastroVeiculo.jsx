@@ -1,9 +1,9 @@
 import React from "react";
 
-import InputGrande from '../../../components/input/input-grande/inputGrande'
-import BotaoGrande from '../../../components/botao/botao-grande/botaoGrande'
-import BotaoVoltar from '../../../components/botao/botao-voltar/botaoVoltar'
-import TituloMedio from '../../../components/titulo/titulo-medio/tituloMedio'
+import InputGrande from '../../../../components/input/input-grande/inputGrande'
+import BotaoGrande from '../../../../components/botao/botao-grande/botaoGrande'
+import BotaoVoltar from '../../../../components/botao/botao-voltar/botaoVoltar'
+import TituloMedio from '../../../../components/titulo/titulo-medio/tituloMedio'
 
 import "./cadastroVeiculo.css";
 

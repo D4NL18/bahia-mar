@@ -1,9 +1,9 @@
 import React from "react";
 
-import TituloGrande from "../../components/titulo/titulo-grande/tituloGrande";
-import InputGrande from "../../components/input/input-grande/inputGrande";
-import BotaoGrande from "../../components/botao/botao-grande/botaoGrande";
-import BotaoVoltar from "../../components/botao/botao-voltar/botaoVoltar";
+import TituloGrande from "../../../components/titulo/titulo-grande/tituloGrande";
+import InputGrande from "../../../components/input/input-grande/inputGrande";
+import BotaoGrande from "../../../components/botao/botao-grande/botaoGrande";
+import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
 
 import "./redefinirSenha.css";
 

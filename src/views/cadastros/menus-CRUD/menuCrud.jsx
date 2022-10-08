@@ -1,10 +1,10 @@
 import React from "react";
 
-import TituloMedio from "../../components/titulo/titulo-medio/tituloMedio";
-import Subtitulo from "../../components/titulo/subtitulo/subtitulo";
-import BotaoMedio from '../../components/botao/botao-medio/botaoMedio'
-import BotaoVoltar from '../../components/botao/botao-voltar/botaoVoltar'
-import ModalProduto from '../../components/modais/modal-produto/modalProduto'
+import TituloMedio from "../../../components/titulo/titulo-medio/tituloMedio";
+import Subtitulo from "../../../components/titulo/subtitulo/subtitulo";
+import BotaoMedio from '../../../components/botao/botao-medio/botaoMedio'
+import BotaoVoltar from '../../../components/botao/botao-voltar/botaoVoltar'
+import ModalProduto from '../../../components/modais/modal-produto/modalProduto'
 
 import "./menuCrud.css";
 
@@ -19,9 +19,9 @@ function App(props) {
         <BotaoMedio text={`Apagar ${props.tipo}`} />
         <BotaoMedio text={`Editar ${props.tipo}`} />
         {
-        props.tipo === "Administrador" || props.tipo === "Motorista" || props.tipo === "Veiculo"
+        props.tipo === "Administrador" || props.tipo === "Motorista" || props.tipo === "Veiculo" || props.tipo === "Cliente"
         ? 
-        <BotaoMedio text={`Cadastrar ${props.tipo}`} path={`cadastrar`} />
+        <BotaoMedio text={`Cadastrar ${props.tipo}`} path={`cadastrar`} tipo={props.tipo} />
         :
         <ModalProduto tipo={props.tipo} />
         }
@@ -31,7 +31,7 @@ function App(props) {
         <TituloMedio title={props.tipo} />
         <Subtitulo subtitle="Selecione o que deseja fazer" />
       </section>
-      <BotaoVoltar path="/menu" />
+      <BotaoVoltar path="/menu/cadastros" />
     </div>
   );
 }

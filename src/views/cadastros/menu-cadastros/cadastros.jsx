@@ -1,9 +1,9 @@
 import React from "react";
 
-import TituloMedio from "../../components/titulo/titulo-medio/tituloMedio";
-import Subtitulo from "../../components/titulo/subtitulo/subtitulo";
-import BotaoGrande from "../../components/botao/botao-grande/botaoGrande";
-import BotaoVoltar from "../../components/botao/botao-voltar/botaoVoltar";
+import TituloMedio from "../../../components/titulo/titulo-medio/tituloMedio";
+import Subtitulo from "../../../components/titulo/subtitulo/subtitulo";
+import BotaoGrande from "../../../components/botao/botao-grande/botaoGrande";
+import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
 
 import "./cadastros.css";
 
@@ -17,8 +17,8 @@ function Cadastros() {
       <section className="caixa-central-section-cadastros">
         <div className="div-botoes-cadastros">
           <BotaoGrande
-            text="Administrador"
-            path="/menu/cadastros/administrador"
+            text="Funcionário"
+            path="/menu/cadastros/funcionario"
             style={{marginTop: 0}}
           />
           <BotaoGrande
