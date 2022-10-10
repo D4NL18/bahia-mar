@@ -1,0 +1,33 @@
+.entire-page-registrarVenda3 {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header-registrarVenda3 {
+    margin: 2% 0;
+}
+
+.body-registrarVenda3 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.caixa-central-registrarVenda3 {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-registrarVenda3 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

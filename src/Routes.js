@@ -11,7 +11,9 @@ import MenuFuncionarios from './views/cadastros/menu-funcionarios/menuFuncionari
 import CadastroAdm from './views/cadastros/cadastrar/cadastrar-adm/cadastroAdm'
 import CadastroMotorista from './views/cadastros/cadastrar/cadastrar-motorista/cadastroMotorista'
 import CadastroVeiculo from './views/cadastros/cadastrar/cadastrar-veiculo/cadastroVeiculo'
-import CadastroVenda from './views/cadastros/cadastrar/registrar-venda/registrarVenda'
+import CadastroVenda from './views/cadastros/cadastrar/registrar-venda/registrarVenda1/registrarVenda'
+import CadastroVenda2 from './views/cadastros/cadastrar/registrar-venda/registrarVenda2/registrarVenda2'
+import CadastroVenda3 from './views/cadastros/cadastrar/registrar-venda/registrarVenda3/registrarVenda3'
 
 function Router() {
   return (
@@ -45,6 +47,8 @@ function Router() {
           <Route exact path="/menu/cadastros/cliente" element={<MenuCrud tipo="Cliente" />} />
 
           <Route exact path="/menu/cadastros/venda" element={<CadastroVenda/>} />
+          <Route exact path="/menu/cadastros/venda2" element={<CadastroVenda2/>} />
+          <Route exact path="/menu/cadastros/venda3" element={<CadastroVenda3/>} />
           
 
           

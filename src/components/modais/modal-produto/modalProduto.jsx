@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 
-import InputPequeno from '../../input/input pequeno/inputPequeno';
+import InputPequeno from '../../input/input-pequeno/inputPequeno';
 import BotaoMedio from '../../botao/botao-medio/botaoMedio';
 import TituloPequeno from '../../titulo/titulo-pequeno/tituloPequeno';
 
