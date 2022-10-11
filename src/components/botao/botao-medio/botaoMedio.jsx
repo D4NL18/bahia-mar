@@ -11,7 +11,8 @@ function BotaoMedio(props) {
   function handleClick() {
     if (props.tipo === "Veiculo" || props.tipo === "Administrador" || props.tipo === "Motorista") {
       navigate(`${props.path}`);
-      console.log("a")
+    }else if(props.tipo === "Gerenciamento") {
+      navigate(`${props.path}`);
     }
     
   }

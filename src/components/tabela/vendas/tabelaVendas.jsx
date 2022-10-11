@@ -1,14 +1,11 @@
 import { useState } from "react"
 
-export default function App() {
+export default function App(props) {
 
-    const tableData = [
-        { id: 1, firstName: 'Daniel', lastName: 'Marinho', email: 'danielmarinho8@hotmail.com' },
-        { id: 2, firstName: 'André', lastName: 'Marinho', email: 'andremarinho8@hotmail.com' },
-    ]
+
 
     const [value, setValue] = useState('')
-    const [dataSource, setDataSource] = useState(tableData)
+    const [dataSource, setDataSource] = useState(props.tableData)
     const [tableFilter, setTableFilter] = useState([])
 
     const filterData = (e) => {
@@ -32,9 +29,9 @@ export default function App() {
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Vendedor</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Faturamento</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,9 +39,9 @@ export default function App() {
                         return (
                             <tr>
                                 <td>{data.id}</td>
-                                <td>{data.firstName}</td>
-                                <td>{data.lastName}</td>
-                                <td>{data.email}</td>
+                                <td>{data.vendedor}</td>
+                                <td>{data.cliente}</td>
+                                <td>{data.faturamento}</td>
                             </tr>
                         )
                     })
@@ -53,9 +50,9 @@ export default function App() {
                         return (
                             <tr>
                                 <td>{data.id}</td>
-                                <td>{data.firstName}</td>
-                                <td>{data.lastName}</td>
-                                <td>{data.email}</td>
+                                <td>{data.vendedor}</td>
+                                <td>{data.cliente}</td>
+                                <td>{data.faturamento}</td>
                             </tr>
                         )
                     })

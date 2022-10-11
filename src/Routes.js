@@ -5,6 +5,7 @@ import RedefinirSenha from "./views/login/redefinir-senha/redefinirSenha";
 import RedefinirSenha2 from "./views/login/redefinir-senha/redefinirSenha2";
 import Menu from "./views/menu/menu";
 import Gerenciamento from "./views/gerenciamento/menu-gerenciamento/gerenciamento";
+import Vendas from './views/gerenciamento/vendas/vendas'
 import Cadastros from "./views/cadastros/menu-cadastros/cadastros";
 import MenuCrud from './views/cadastros/menus-CRUD/menuCrud'
 import MenuFuncionarios from './views/cadastros/menu-funcionarios/menuFuncionarios'
@@ -28,6 +29,7 @@ function Router() {
           <Route exact path="/menu" element={<Menu />} />
 
           <Route exact path="/menu/gerenciamento" element={<Gerenciamento />} />
+          <Route exact path="/menu/gerenciamento/vendas" element={<Vendas />} />
 
           <Route exact path="/menu/cadastros" element={<Cadastros />} />
 
@@ -37,10 +39,10 @@ function Router() {
           <Route exact path="/menu/cadastros/funcionario/administrador/cadastrar" element={<CadastroAdm/>} />
 
           <Route exact path="/menu/cadastros/funcionario/motorista" element={<MenuCrud tipo="Motorista" />} />
-          <Route exact path="/menu/cadastros/funcionario/motorista/cadastrar" element={<CadastroMotorista/>} />
+          <Route exact path="/menu/cadastros/funcionario/motorista/cadastrar" element={<CadastroMotorista />} />
 
           <Route exact path="/menu/cadastros/veiculo" element={<MenuCrud tipo="Veiculo" />} />
-          <Route exact path="/menu/cadastros/veiculo/cadastrar" element={<CadastroVeiculo/>} />
+          <Route exact path="/menu/cadastros/veiculo/cadastrar" element={<CadastroVeiculo />} />
  
           <Route exact path="/menu/cadastros/produto" element={<MenuCrud tipo="Produto" />} />
 

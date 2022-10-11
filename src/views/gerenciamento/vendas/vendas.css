@@ -1,0 +1,53 @@
+.entire-page-vendas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100%;
+    background: linear-gradient(180deg, #003355 0%, rgba(0, 51, 85, 0.7) 100%);
+    padding: 2%;
+}
+
+.painel-vendas {
+    background-color: #eee;
+    border-radius: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.filtros-vendas {
+    width: 45%;
+    height: 400px;
+    /* background-color: blueviolet; */
+}
+
+.faturamento-venda {
+    width: 45%;
+    height: 400px;
+    /* background-color: aqua; */
+}
+
+.faturamento-funcionarios-vendas {
+    width: 45%;
+    height: 400px;
+    /* background-color: chocolate; */
+}
+
+.produtos-faturamento-venda {
+    width: 45%;
+    height: 400px;
+    /* background-color: crimson; */
+}
+
+.produtos-quantidade-venda {
+    width: 45%;
+    height: 400px;
+    /* background-color: darkcyan; */
+}
+
+.tabela-vendas {
+    width: 45%;
+    height: 400px;
+    /* background-color: yellow; */
+}
