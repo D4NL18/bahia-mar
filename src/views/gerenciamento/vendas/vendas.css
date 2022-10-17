@@ -5,7 +5,7 @@
     width: 100%;
     min-height: 100%;
     background: linear-gradient(180deg, #003355 0%, rgba(0, 51, 85, 0.7) 100%);
-    padding: 2%;
+    padding: 2% 0;
 }
 
 .painel-vendas {
@@ -14,6 +14,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    max-width: 96%;
+    
 }
 
 .filtros-vendas {

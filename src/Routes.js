@@ -6,6 +6,8 @@ import RedefinirSenha2 from "./views/login/redefinir-senha/redefinirSenha2";
 import Menu from "./views/menu/menu";
 import Gerenciamento from "./views/gerenciamento/menu-gerenciamento/gerenciamento";
 import Vendas from './views/gerenciamento/vendas/vendas'
+import Clientes from "./views/gerenciamento/clientes/clientes";
+import Estoque from "./views/gerenciamento/estoque/estoque";
 import Cadastros from "./views/cadastros/menu-cadastros/cadastros";
 import MenuCrud from './views/cadastros/menus-CRUD/menuCrud'
 import MenuFuncionarios from './views/cadastros/menu-funcionarios/menuFuncionarios'
@@ -30,6 +32,8 @@ function Router() {
 
           <Route exact path="/menu/gerenciamento" element={<Gerenciamento />} />
           <Route exact path="/menu/gerenciamento/vendas" element={<Vendas />} />
+          <Route exact path="/menu/gerenciamento/clientes" element={<Clientes />} />
+          <Route exact path="/menu/gerenciamento/estoque" element={<Estoque />} />
 
           <Route exact path="/menu/cadastros" element={<Cadastros />} />
 

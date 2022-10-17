@@ -4,7 +4,9 @@ import TabelaVendas from '../../../components/tabela/vendas/tabelaVendas'
 import Barras from '../../../components/grafico/barras/barras'
 import Linha from '../../../components/grafico/linha/linha'
 import InputPequeno from '../../../components/input/input-pequeno/inputPequeno'
-import Select from '../../../components/input/select/select'
+import Select from '../../../components/input/select-pequeno/selectPequeno'
+import BotaoVoltar from '../../../components/botao/botao-voltar/botaoVoltar'
+
 
 import './vendas.css'
 
@@ -65,13 +67,15 @@ function Vendas() {
         }]
     })
 
+    const colunas = ["ID", "Vendedor", "Cliente", "Faturamento"]
+
     const tipoTempo = ["Dia", "Mês", "Ano"]
     return (
         <div className="entire-page-vendas">
             <body className="painel-vendas" >
                 <section className="filtros-vendas">
                     <Select options={tipoTempo} />
-                    <InputPequeno></InputPequeno>
+                    <InputPequeno type="date" />
                 </section>
                 <section className="faturamento-venda">
                 <Linha chartData={faturamento} />
@@ -86,9 +90,10 @@ function Vendas() {
                     <Barras chartData={quantProduto} />
                 </section>
                 <section className="tabela-vendas">
-                    <TabelaVendas tableData={tableData} />
+                    <TabelaVendas tableData={tableData} colunas={colunas} tipo="vendas" />
                 </section>
             </body>
+            <BotaoVoltar path="/menu/gerenciamento" />
         </div>
     )
 }

@@ -1,0 +1,40 @@
+.entire-select-pequeno {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+  }
+  
+  .label-select-pequeno {
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+  
+  .select-pequeno {
+    width: 25.5rem;
+    height: 3.375rem;
+    border: 2px solid #000000;
+    border-radius: 11px;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .select-pequeno {
+      width: 30rem;
+    }
+  }
+  
+  @media only screen and (min-width: 425px) and (max-width: 767px) {
+    .select-pequeno {
+      width: 22.5rem;
+    }
+  }
+  
+  @media only screen and (max-width: 425px) {
+    .select-pequeno {
+      width: 80vw;
+    }
+  }
+  
