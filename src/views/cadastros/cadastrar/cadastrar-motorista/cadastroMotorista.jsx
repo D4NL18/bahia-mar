@@ -9,6 +9,7 @@ import "./cadastroMotorista.css";
 import { useState } from "react";
 
 function CadastroMotorista() {
+
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");

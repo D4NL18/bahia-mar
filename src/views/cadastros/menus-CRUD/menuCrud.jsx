@@ -5,10 +5,14 @@ import Subtitulo from "../../../components/titulo/subtitulo/subtitulo";
 import BotaoMedio from '../../../components/botao/botao-medio/botaoMedio'
 import BotaoVoltar from '../../../components/botao/botao-voltar/botaoVoltar'
 import ModalProduto from '../../../components/modais/modal-produto/modalProduto'
+import ModalSelect from '../../../components/modais/modal-select/modalSelect'
 
 import "./menuCrud.css";
 
 function App(props) {
+
+  const options = ["a", "b", "c", "d"]
+
   return (
     <div className="entire-page-menuCrud">
       <section className="title-section-menuCrud" >
@@ -16,8 +20,10 @@ function App(props) {
         <Subtitulo subtitle="Selecione o que deseja fazer" />
       </section>
       <section className="botoes-section-menuCrud">
-        <BotaoMedio text={`Apagar ${props.tipo}`} />
-        <BotaoMedio text={`Editar ${props.tipo}`} />
+        <ModalSelect acao="Apagar" tipo={props.tipo} options={options} />
+        <ModalSelect acao="Editar" tipo={props.tipo} options={options} />
+        {/* <BotaoMedio text={`Apagar ${props.tipo}`} />
+        <BotaoMedio text={`Editar ${props.tipo}`} /> */}
         {
         props.tipo === "Administrador" || props.tipo === "Motorista" || props.tipo === "Veiculo" || props.tipo === "Cliente"
         ? 
@@ -31,7 +37,7 @@ function App(props) {
         <TituloMedio title={props.tipo} />
         <Subtitulo subtitle="Selecione o que deseja fazer" />
       </section>
-      <BotaoVoltar path="/menu/cadastros" />
+      <BotaoVoltar path={(props.tipo !== "Administrador" && props.tipo !== "Motorista") ? "/menu/cadastros" : "/menu/cadastros/funcionario"} />
     </div>
   );
 }

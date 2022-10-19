@@ -27,7 +27,7 @@ function RegistrarVenda() {
           </form>
         </section>
       </body>
-      <BotaoVoltar />
+      <BotaoVoltar path="/menu/cadastros" />
     </div>
   );
 }

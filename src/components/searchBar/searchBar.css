@@ -12,6 +12,11 @@
     
 }
 
-.icon-searchBar {
+.icon-div-searchBar {
     border: 1px solid black;
+    width: 5%;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
