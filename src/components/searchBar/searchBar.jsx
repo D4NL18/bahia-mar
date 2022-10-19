@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import SearchIcon from '@mui/icons-material/Search';
 
 import './searchBar.css'
 
@@ -9,7 +10,9 @@ function SearchBar(props) {
             <input
                 type="text"
                 className='searchBar' />
-            <div className='icon-searchBar' />
+                <div className='icon-div-searchBar'>
+                <SearchIcon fontSize='large' />
+                </div>
         </div>
     )
 }

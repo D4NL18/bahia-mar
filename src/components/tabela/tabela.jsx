@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import SearchIcon from '@mui/icons-material/Search';
+
 export default function App(props) {
 
     const [value, setValue] = useState('')
@@ -70,12 +72,43 @@ export default function App(props) {
                     })
             )
         }
+        else if (tipo === "precos") {
+            return (
+                value.length > 0 ? tableFilter.map((data) => {
+                    return (
+                        <tr>
+                            <td>{data.id}</td>
+                            <td>{data.produto}</td>
+                            <td>{data.preco.toFixed(2)}</td>
+                            <td>{((data.preco) * 0.95).toFixed(2)}</td>
+                            <td>{((data.preco) * 0.9).toFixed(2)}</td>
+                            <td>{((data.preco) * 0.85).toFixed(2)}</td>
+                            <td>{((data.preco) * 0.8).toFixed(2)}</td>
+                        </tr>
+                    )
+                })
+                    :
+                    dataSource.map((data) => {
+                        return (
+                            <tr>
+                                <td>{data.id}</td>
+                                <td>{data.produto}</td>
+                                <td>{data.preco.toFixed(2)}</td>
+                                <td>{((data.preco) * 0.95).toFixed(2)}</td>
+                                <td>{((data.preco) * 0.9).toFixed(2)}</td>
+                                <td>{((data.preco) * 0.85).toFixed(2)}</td>
+                                <td>{((data.preco) * 0.8).toFixed(2)}</td>
+                            </tr>
+                        )
+                    })
+            )
+        }
     }
 
     return (
-        <div style={{width: '100%'}}>
+        <div style={{ width: '100%' }}>
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">@</span>
+                <span class="input-group-text" id="basic-addon1"><SearchIcon></SearchIcon></span>
                 <input type="text" class="form-control" placeholder="Pesquisar" aria-label="Username" aria-describedby="basic-addon1" value={value} onChange={filterData} />
             </div>
             <table class="table table-striped">

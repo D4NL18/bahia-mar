@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import TabelaVendas from '../../../components/tabela/vendas/tabelaVendas'
+import Tabela from '../../../components/tabela/tabela'
 import Barras from '../../../components/grafico/barras/barras'
 import Linha from '../../../components/grafico/linha/linha'
 import InputPequeno from '../../../components/input/input-pequeno/inputPequeno'
@@ -90,7 +90,7 @@ function Vendas() {
                     <Barras chartData={quantProduto} />
                 </section>
                 <section className="tabela-vendas">
-                    <TabelaVendas tableData={tableData} colunas={colunas} tipo="vendas" />
+                    <Tabela tableData={tableData} colunas={colunas} tipo="vendas" />
                 </section>
             </body>
             <BotaoVoltar path="/menu/gerenciamento" />

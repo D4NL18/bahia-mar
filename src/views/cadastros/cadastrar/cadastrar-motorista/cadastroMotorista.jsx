@@ -24,7 +24,7 @@ function CadastroMotorista() {
                     <BotaoGrande text="Cadastrar" />
                 </section>
             </body>
-            <BotaoVoltar />
+            <BotaoVoltar path="/menu/cadastros/funcionario/motorista" />
         </div>
     );
 }

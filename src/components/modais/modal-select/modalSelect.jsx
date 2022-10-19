@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 
-import InputPequeno from '../../input/input pequeno/inputPequeno';
+import SelectPequeno from '../../input/select-pequeno/selectPequeno'
 import BotaoMedio from '../../botao/botao-medio/botaoMedio';
 import TituloPequeno from '../../titulo/titulo-pequeno/tituloPequeno';
 
@@ -36,7 +36,7 @@ function App(props) {
                 className="botao-medio"
                 onClick={() => {setModalOpen(true)}}
             >
-                <p className="texto-botao-medio">{`Cadastrar ${props.tipo}`}</p>
+                <p className="texto-botao-medio">{`${props.acao} ${props.tipo}`}</p>
             </button>
             <Modal
                 isOpen={isModalOpen}
@@ -44,9 +44,9 @@ function App(props) {
                 onRequestClose={closeModal}
                 style={customStyles}
             >
-                <TituloPequeno title={`Criar ${props.tipo}`} />
+                <TituloPequeno title={`Selecione o ${props.tipo}`} />
                 <form style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                    <InputPequeno label="Nome" />
+                    <SelectPequeno label={props.tipo} options={props.options} />
                     <BotaoMedio text="Cadastrar" type="submit" />
                 </form>
             </Modal>

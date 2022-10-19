@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Tabela from '../../../components/tabela/vendas/tabelaVendas'
+import Tabela from '../../../components/tabela/tabela'
 import TituloMedio from '../../../components/titulo/titulo-medio/tituloMedio'
 import BotaoVoltar from '../../../components/botao/botao-voltar/botaoVoltar'
 

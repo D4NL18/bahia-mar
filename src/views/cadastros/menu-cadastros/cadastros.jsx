@@ -22,8 +22,8 @@ function Cadastros() {
             style={{marginTop: 0}}
           />
           <BotaoGrande
-            text="Motorista"
-            path="/menu/cadastros/motorista"
+            text="Método de Pagamento"
+            path="/menu/cadastros/metodo"
           />
           <BotaoGrande
             text="Cliente"
