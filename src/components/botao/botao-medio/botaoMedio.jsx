@@ -9,12 +9,16 @@ function BotaoMedio(props) {
   const navigate = useNavigate();
 
   function handleClick() {
-    if (props.tipo === "Veiculo" || props.tipo === "Administrador" || props.tipo === "Motorista" || props.tipo === "Cliente") {
+    if (
+      props.tipo === "Veiculo" ||
+      props.tipo === "Administrador" ||
+      props.tipo === "Motorista" ||
+      props.tipo === "Cliente"
+    ) {
       navigate(`${props.path}`);
-    }else if(props.tipo === "Gerenciamento") {
+    } else if (props.tipo === "Gerenciamento") {
       navigate(`${props.path}`);
     }
-    
   }
 
   return (

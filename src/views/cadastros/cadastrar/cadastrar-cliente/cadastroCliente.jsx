@@ -93,7 +93,7 @@ function CadastroCliente() {
                 type: "tel",
                 required: true,
                 minLength: 10,
-                maxLength: 15,
+                maxLength: 11,
               }}
               state={telefone}
               setState={setTelefone}
@@ -103,8 +103,8 @@ function CadastroCliente() {
               inputProps={{
                 type: "text",
                 required: true,
-                minLength: 11,
-                maxLength: 14,
+                minLength: tipoPessoa === "Física" ? 11 : 14,
+                maxLength: tipoPessoa === "Física" ? 11 : 14,
               }}
               state={cpfCnpj}
               setState={setCpfCnpj}

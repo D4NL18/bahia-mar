@@ -14,7 +14,7 @@ function InputPequeno(props) {
         onChange={(event) => setState(event.target.value.trimStart())}
         className="input-pequeno"
         style={
-          inputProps.type === "date"
+          inputProps && inputProps.type === "date"
             ? { fontSize: "1.4rem", textAlign: "center", fontWeight: "600" }
             : {}
         }
