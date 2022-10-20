@@ -46,8 +46,8 @@ function App(props) {
             >
                 <TituloPequeno title={`Selecione o ${props.tipo}`} />
                 <form style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                    <SelectPequeno label={props.tipo} options={props.options} />
-                    <BotaoMedio text="Cadastrar" type="submit" />
+                    <SelectPequeno label={props.tipo} options={props.options}  />
+                    <BotaoMedio text={`${props.acao}`} type="submit" />
                 </form>
             </Modal>
         </div>

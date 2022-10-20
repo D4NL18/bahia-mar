@@ -10,7 +10,13 @@ function List(props) {
     <div>
       <SearchBar />
       {props.data.map((op, key) => (
-        <Item key={key} nome={op.nome} isPago={op.pago} cpf={op.cpf} />
+        <Item
+          key={key}
+          nome={op.nome}
+          isPago={op.pago}
+          cpf={op.cpf}
+          id={op.id}
+        />
       ))}
     </div>
   );

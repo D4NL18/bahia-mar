@@ -1,0 +1,47 @@
+.entire-page-perfilCliente {
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #003355 0%, rgba(0, 51, 85, 0.7) 100%);
+    justify-content: center;
+}
+
+.painel-cliente {
+    background-color: #eee;
+    border-radius: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 98%;
+    margin: 2% 0;
+}
+
+.section-infos-cliente {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+}
+
+.colunas-info-cliente {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.coluna-infos-cliente {
+    margin: 5%;
+}
+
+.section-grafico-cliente {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+}
+
+.titulo-grafico-cliente {
+    
+}

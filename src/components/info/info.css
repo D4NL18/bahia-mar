@@ -1,0 +1,13 @@
+.entire-info {
+    margin: 2rem 0;
+    height: 4.5rem;
+}
+
+.label-info {
+    word-wrap: break-word;
+    font-size: 1.5rem;
+}
+
+.desc-info {
+    font-size: 1.2rem;
+}

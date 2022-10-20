@@ -24,11 +24,25 @@ function App(props) {
   const [estahRegistrando, setEstahRegistrando] = useState(false);
 
   const [nome, setNome] = useState("");
+  const [preco, setPreco] = useState("");
 
   function afterOpenModal() {}
 
   function closeModal() {
     setModalOpen(false);
+  }
+
+  function retornaPreco() {
+    if (props.tipo === "Produto") {
+      return (
+        <InputPequeno
+          label="Preço"
+          inputProps={{ type: "text", required: true, maxLength: 50 }}
+          state={preco}
+          setState={setPreco}
+        />
+      );
+    }
   }
 
   function handleSubmit(event) {
@@ -92,12 +106,14 @@ function App(props) {
           onSubmit={handleSubmit}
         >
           <InputPequeno
+            label="Nome"
+            inputProps={{ type: "text", required: true, maxLength: 30 }}
             state={nome}
             setState={setNome}
-            label="Nome"
-            inputProps={{ required: true, maxLength: 30 }}
           />
-          <BotaoMedio text="Cadastrar" />
+          {retornaPreco()}
+
+          <BotaoMedio text="Cadastrar" type="submit" />
         </form>
       </Modal>
     </div>

@@ -5,7 +5,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import "./botaoVoltar.css";
 
-function BotaoGrande(props) {
+function BotaoVoltar(props) {
   const navigate = useNavigate();
 
   function handleClick() {
@@ -13,10 +13,12 @@ function BotaoGrande(props) {
   }
 
   return (
-    <button className="botao-voltar" onClick={handleClick}>
-      <ArrowBackIcon className="seta-bota-voltar" />
+    <button className="background-botao-voltar" onClick={handleClick}>
+      <div className="botao-voltar">
+        <ArrowBackIcon className="seta-bota-voltar" />
+      </div>
     </button>
   );
 }
 
-export default BotaoGrande;
+export default BotaoVoltar;

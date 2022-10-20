@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import InputPequeno from "../../../../../components/input/input-pequeno/inputPequeno";
 import TituloMedio from "../../../../../components/titulo/titulo-medio/tituloMedio";
@@ -11,6 +11,9 @@ import "./registrarVenda3.css";
 
 function RegistrarVenda() {
   const produtos = ['Produto 1', 'Produto 2', 'Produto 3']
+  const [desc, setDesc] = useState("")
+  const [pago, setPago] = useState("")
+
   return (
     <div className="entire-page-registrarVenda3">
       <header className="header-registrarVenda3">
@@ -19,11 +22,26 @@ function RegistrarVenda() {
       <body className="body-registrarVenda3">
         <section className="caixa-central-registrarVenda3">
           <form className="form-registrarVenda3">
-            <InputPequeno label="Desconto" />
-            <InputPequeno label="Quanto foi pago" />
+            <InputPequeno
+              label="Desconto"
+              inputProps={{ type: "text", required: true, maxLength: 50 }}
+              state={desc}
+              setState={setDesc}
+            />
+            <InputPequeno
+              label="Quanto foi pago"
+              inputProps={{ type: "text", required: true, maxLength: 50 }}
+              state={pago}
+              setState={setPago}
+            />
             {
-                produtos.map((prod, key) =>
-                    <InputPequeno key={key} label={prod}/>)
+              produtos.map((prod, key) =>
+                <InputPequeno
+                  key={key}
+                  label={prod}
+                  inputProps={{ type: "text", required: true, maxLength: 50 }}
+                />
+              )
             }
             <BotaoGrande text="Cadastrar Venda" path="/menu/cadastros/venda" />
           </form>

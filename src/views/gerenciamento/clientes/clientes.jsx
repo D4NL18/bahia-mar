@@ -8,11 +8,11 @@ import './clientes.css'
 function Clientes() {
 
     const data = [
-        {'nome': 'Daniel','cpf': '12345678910', 'pago': 'Sim'},
-        {'nome': 'Jose','cpf': '12345678910', 'pago': 'Nao'},
-        {'nome': 'Marina','cpf': '12345678910', 'pago': 'Sim'},
-        {'nome': 'Luan','cpf': '12345678910', 'pago': 'Sim'},
-        {'nome': 'Rafael','cpf': '12345678910', 'pago': 'Nao'}
+        {'id': '1', 'nome': 'Daniel','cpf': '12345678910', 'pago': 'Sim'},
+        {'id': '2', 'nome': 'Jose','cpf': '12345678910', 'pago': 'Nao'},
+        {'id': '3', 'nome': 'Marina','cpf': '12345678910', 'pago': 'Sim'},
+        {'id': '4', 'nome': 'Luan','cpf': '12345678910', 'pago': 'Sim'},
+        {'id': '5', 'nome': 'Rafael','cpf': '12345678910', 'pago': 'Nao'}
     ]
 
     return (
