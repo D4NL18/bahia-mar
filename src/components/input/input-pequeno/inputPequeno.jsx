@@ -10,8 +10,8 @@ function InputPequeno(props) {
       <label className="label-input-pequeno">{label}</label>
       <input
         {...inputProps}
-        value={state}
-        onChange={(event) => setState(event.target.value.trimStart())}
+        value={(state) ? state : null}
+        onChange={(setState) ? (event) => setState(event.target.value.trimStart()) : null}
         className="input-pequeno"
         style={
           inputProps.type === "date"

@@ -75,7 +75,7 @@ function Vendas() {
             <body className="painel-vendas" >
                 <section className="filtros-vendas">
                     <Select options={tipoTempo} />
-                    <InputPequeno type="date" />
+                    <InputPequeno inputProps={{type: "date"}} />
                 </section>
                 <section className="faturamento-venda">
                 <Linha chartData={faturamento} />

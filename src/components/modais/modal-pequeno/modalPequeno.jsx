@@ -22,6 +22,8 @@ const customStyles = {
 function App(props) {
 
     const [isModalOpen, setModalOpen] = useState(false)
+    const [nome, setNome] = useState("");
+    const [preco, setPreco] = useState("")
 
     function afterOpenModal() {
     }
@@ -30,11 +32,24 @@ function App(props) {
         setModalOpen(false)
     }
 
+    function retornaPreco() {
+        if (props.tipo === "Produto") {
+            return (
+                <InputPequeno
+                    label="Preço"
+                    inputProps={{ type: "text", required: true, maxLength: 50 }}
+                    state={preco}
+                    setState={setPreco}
+                />
+            )
+        }
+    }
+
     return (
         <div>
             <button
                 className="botao-medio"
-                onClick={() => {setModalOpen(true)}}
+                onClick={() => { setModalOpen(true) }}
             >
                 <p className="texto-botao-medio">{`Cadastrar ${props.tipo}`}</p>
             </button>
@@ -45,8 +60,15 @@ function App(props) {
                 style={customStyles}
             >
                 <TituloPequeno title={`Criar ${props.tipo}`} />
-                <form style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                    <InputPequeno label="Nome" />
+                <form style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <InputPequeno
+                        label="Nome"
+                        inputProps={{ type: "text", required: true, maxLength: 50 }}
+                        state={nome}
+                        setState={setNome}
+                    />
+                    {retornaPreco()}
+
                     <BotaoMedio text="Cadastrar" type="submit" />
                 </form>
             </Modal>

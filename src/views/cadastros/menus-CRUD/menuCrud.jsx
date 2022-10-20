@@ -4,7 +4,7 @@ import TituloMedio from "../../../components/titulo/titulo-medio/tituloMedio";
 import Subtitulo from "../../../components/titulo/subtitulo/subtitulo";
 import BotaoMedio from '../../../components/botao/botao-medio/botaoMedio'
 import BotaoVoltar from '../../../components/botao/botao-voltar/botaoVoltar'
-import ModalProduto from '../../../components/modais/modal-produto/modalProduto'
+import ModalPequeno from '../../../components/modais/modal-pequeno/modalPequeno'
 import ModalSelect from '../../../components/modais/modal-select/modalSelect'
 
 import "./menuCrud.css";
@@ -29,7 +29,7 @@ function App(props) {
         ? 
         <BotaoMedio text={`Cadastrar ${props.tipo}`} path={`cadastrar`} tipo={props.tipo} />
         :
-        <ModalProduto tipo={props.tipo} />
+        <ModalPequeno tipo={props.tipo} />
         }
         
       </section>

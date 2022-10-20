@@ -1,4 +1,4 @@
-import React, { useState }from 'react'
+import React from 'react'
 
 import Item from '../item/item';
 import SearchBar from '../../searchBar/searchBar'
@@ -12,7 +12,7 @@ function List(props) {
         <div>
             <SearchBar  />
             {props.data.map((op, key) =>
-                <Item key={key} nome={op.nome} isPago={op.pago} cpf={op.cpf} />)
+                <Item key={key} nome={op.nome} isPago={op.pago} cpf={op.cpf} id={op.id} />)
             }
         </div>
     )
