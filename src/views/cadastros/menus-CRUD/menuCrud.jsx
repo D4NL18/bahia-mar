@@ -1,5 +1,3 @@
-import React from "react";
-
 import TituloMedio from "../../../components/titulo/titulo-medio/tituloMedio";
 import Subtitulo from "../../../components/titulo/subtitulo/subtitulo";
 import BotaoMedio from "../../../components/botao/botao-medio/botaoMedio";
@@ -10,6 +8,7 @@ import ModalSelect from "../../../components/modais/modal-select/modalSelect";
 import "./menuCrud.css";
 
 function App(props) {
+  //temp
   const options = ["a", "b", "c", "d"];
 
   return (
