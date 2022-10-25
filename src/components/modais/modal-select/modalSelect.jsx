@@ -28,6 +28,12 @@ function App(props) {
     switch (props.tipo) {
       case "Cliente":
         return "obter-clientes";
+      case "Método de Pagamento":
+        return "obter-metodos-pagamento";
+      case "Administrador":
+        return "obter-adms";
+      case "Motorista":
+        return "obter-motoristas";
       default:
         return "";
     }
@@ -36,6 +42,11 @@ function App(props) {
     switch (props.tipo) {
       case "Cliente":
         return "remover-cliente";
+      case "Método de Pagamento":
+        return "remover-metodo-pagamento";
+      case "Administrador":
+      case "Motorista":
+        return "remover-funcionario";
       default:
         return "";
     }
@@ -48,6 +59,17 @@ function App(props) {
       case "Cliente":
         opcs = info.map(
           (cliente) => `${cliente["NOME"]} - ${cliente["CPF_CNPJ"]}`
+        );
+        break;
+      case "Método de Pagamento":
+        opcs = info.map((metodoPagamento) => metodoPagamento["NOME"]);
+        break;
+      case "Administrador":
+        opcs = info.map((adm) => `${adm["NOME"]} - ${adm["CPF"]}`);
+        break;
+      case "Motorista":
+        opcs = info.map(
+          (motorista) => `${motorista["NOME"]} - ${motorista["CPF"]}`
         );
         break;
       default:
@@ -84,33 +106,47 @@ function App(props) {
   function handleSubmit(event) {
     event.preventDefault();
 
+    let body;
     switch (props.tipo) {
       case "Cliente":
         const cpfCnpj = infoSelecionada.split(" - ")[1];
         const cliente = info.find((c) => c["CPF_CNPJ"] === cpfCnpj);
-        fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/${obterRotaDelete()}`, {
-          method: "DELETE",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: cliente["ID_CLIENTE"],
-          }),
-        }).then(async (res) => {
-          if (res.status !== 200) {
-            console.log((await res.json()).message); //mensagem de erro
-            // mostrar mensagem de erro...
-          } else {
-            // deu bom, proseguir...
-          }
+        body = JSON.stringify({
+          id: cliente["ID_CLIENTE"],
         });
-
+        break;
+      case "Método de Pagamento":
+        body = JSON.stringify({
+          name: infoSelecionada,
+        });
+        break;
+      case "Administrador":
+      case "Motorista":
+        body = JSON.stringify({
+          cpf: infoSelecionada.split(" - ")[1],
+        });
         break;
       default:
     }
+
+    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/${obterRotaDelete()}`, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body,
+    }).then(async (res) => {
+      if (res.status !== 200) {
+        console.log((await res.json()).message); //mensagem de erro
+        // mostrar mensagem de erro...
+      } else {
+        // deu bom, proseguir...
+      }
+    });
   }
 
+  console.log(props.tipo);
   return (
     <div>
       <button
