@@ -32,12 +32,23 @@ function App(props) {
     setModalOpen(false);
   }
 
+  function obterRota() {
+    switch (props.tipo) {
+      case "Produto":
+        return "inserir-produto";
+      case "Método de Pagamento":
+        return "inserir-metodo-pagamento";
+      default:
+        return "";
+    }
+  }
+
   function retornaPreco() {
     if (props.tipo === "Produto") {
       return (
         <InputPequeno
           label="Preço"
-          inputProps={{ type: "text", required: true, maxLength: 50 }}
+          inputProps={{ type: "text", required: true, maxLength: 8 }}
           state={preco}
           setState={setPreco}
         />
@@ -50,16 +61,21 @@ function App(props) {
     if (estahRegistrando) return;
 
     setEstahRegistrando(true);
-    // todo: mudar rota dependendo do que está inserindo
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/inserir-metodo-pagamento`, {
+    let body = { name: nome.trim() };
+    if (props.tipo === "Produto")
+      try {
+        body.value = Number(preco.replace(",", "."));
+      } catch {
+        throw new Error("Preço inválido");
+      }
+
+    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/${obterRota()}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: nome.trim().toLocaleLowerCase(),
-      }),
+      body: JSON.stringify(body),
     })
       .then(async (res) => {
         if (res.status !== 200) {
@@ -75,6 +91,7 @@ function App(props) {
       })
       .finally(() => {
         setNome("");
+        setPreco("");
         setEstahRegistrando(false);
         setModalOpen(false);
       });

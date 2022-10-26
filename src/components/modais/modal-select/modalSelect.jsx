@@ -34,6 +34,8 @@ function App(props) {
         return "obter-adms";
       case "Motorista":
         return "obter-motoristas";
+      case "Produto":
+        return "obter-produtos";
       default:
         return "";
     }
@@ -47,6 +49,8 @@ function App(props) {
       case "Administrador":
       case "Motorista":
         return "remover-funcionario";
+      case "Produto":
+        return "remover-produto";
       default:
         return "";
     }
@@ -62,15 +66,12 @@ function App(props) {
         );
         break;
       case "Método de Pagamento":
-        opcs = info.map((metodoPagamento) => metodoPagamento["NOME"]);
+      case "Produto":
+        opcs = info.map((i) => i["NOME"]);
         break;
       case "Administrador":
-        opcs = info.map((adm) => `${adm["NOME"]} - ${adm["CPF"]}`);
-        break;
       case "Motorista":
-        opcs = info.map(
-          (motorista) => `${motorista["NOME"]} - ${motorista["CPF"]}`
-        );
+        opcs = info.map((func) => `${func["NOME"]} - ${func["CPF"]}`);
         break;
       default:
         opcs = [];
@@ -95,7 +96,7 @@ function App(props) {
   }
 
   function afterOpenModal() {
-    obterInfo().then((info) => setInfo(info));
+    obterInfo().then((i) => setInfo(i));
   }
 
   function closeModal() {
@@ -116,6 +117,7 @@ function App(props) {
         });
         break;
       case "Método de Pagamento":
+      case "Produto":
         body = JSON.stringify({
           name: infoSelecionada,
         });
@@ -136,14 +138,20 @@ function App(props) {
         "Content-Type": "application/json",
       },
       body,
-    }).then(async (res) => {
-      if (res.status !== 200) {
-        console.log((await res.json()).message); //mensagem de erro
-        // mostrar mensagem de erro...
-      } else {
-        // deu bom, proseguir...
-      }
-    });
+    })
+      .then(async (res) => {
+        if (res.status !== 200) {
+          console.log((await res.json()).message); //mensagem de erro
+          // mostrar mensagem de erro...
+        } else {
+          // deu bom, proseguir...
+        }
+      })
+      .finally(() => {
+        setInfo(undefined);
+        setInfoSelecionada(undefined);
+        setModalOpen(false);
+      });
   }
 
   console.log(props.tipo);
