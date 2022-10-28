@@ -19,34 +19,28 @@ function Cadastros() {
           <BotaoGrande
             text="Funcionário"
             path="/menu/cadastros/funcionario"
-            style={{marginTop: 0}}
+            style={{ marginTop: 0 }}
           />
           <BotaoGrande
             text="Método de Pagamento"
             path="/menu/cadastros/metodo"
           />
-          <BotaoGrande
-            text="Cliente"
-            path="/menu/cadastros/cliente"
-          />
+          <BotaoGrande text="Cliente" path="/menu/cadastros/cliente" />
         </div>
         <div className="div-botoes-cadastros">
           <BotaoGrande
             text="Produto"
             path="/menu/cadastros/produto"
-            style={{marginTop: 0}}
+            style={{ marginTop: 0 }}
           />
-          <BotaoGrande
-            text="Veículo"
-            path="/menu/cadastros/veiculo"
-          />
-          <BotaoGrande
-            text="Venda"
-            path="/menu/cadastros/venda"
-          />
+          <BotaoGrande text="Veículo" path="/menu/cadastros/veiculo" />
+          <BotaoGrande text="Venda" path="/menu/cadastros/venda" />
         </div>
       </section>
-      <section className="title-section-cadastros" style={{ visibility: 'hidden' }}>
+      <section
+        className="title-section-cadastros"
+        style={{ visibility: "hidden" }}
+      >
         <TituloMedio title="Cadastros" />
         <Subtitulo subtitle="Selecione o que deseja cadastrar ou modificar" />
       </section>

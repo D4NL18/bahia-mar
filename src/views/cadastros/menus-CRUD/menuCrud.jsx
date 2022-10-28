@@ -24,11 +24,11 @@ function App(props) {
         <BotaoMedio text={`Editar ${props.tipo}`} /> */}
         {props.tipo === "Administrador" ||
         props.tipo === "Motorista" ||
-        props.tipo === "Veiculo" ||
+        props.tipo === "Veículo" ||
         props.tipo === "Cliente" ? (
           <BotaoMedio
             text={`Cadastrar ${props.tipo}`}
-            path={`cadastrar`}
+            path={"cadastrar"}
             tipo={props.tipo}
           />
         ) : (

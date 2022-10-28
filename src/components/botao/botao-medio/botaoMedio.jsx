@@ -10,7 +10,7 @@ function BotaoMedio(props) {
 
   function handleClick() {
     if (
-      props.tipo === "Veiculo" ||
+      props.tipo === "Veículo" ||
       props.tipo === "Administrador" ||
       props.tipo === "Motorista" ||
       props.tipo === "Cliente"

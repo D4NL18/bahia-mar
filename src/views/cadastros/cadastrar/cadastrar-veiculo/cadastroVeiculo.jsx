@@ -75,7 +75,12 @@ function CadastroMotorista() {
           />
           <InputGrande
             label="Placa"
-            inputProps={{ type: "text", required: true, maxLength: 50 }}
+            inputProps={{
+              type: "text",
+              required: true,
+              minLength: 7,
+              maxLength: 8,
+            }}
             state={placa}
             setState={setPlaca}
           />

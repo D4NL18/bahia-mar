@@ -22,7 +22,7 @@ const customStyles = {
 function App(props) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [info, setInfo] = useState();
-  const [infoSelecionada, setInfoSelecionada] = useState();
+  const [infoSelecionada, setInfoSelecionada] = useState("Selecionar");
 
   function obterRotaInfo() {
     switch (props.tipo) {
@@ -36,6 +36,8 @@ function App(props) {
         return "obter-motoristas";
       case "Produto":
         return "obter-produtos";
+      case "Veículo":
+        return "obter-veiculos";
       default:
         return "";
     }
@@ -51,12 +53,17 @@ function App(props) {
         return "remover-funcionario";
       case "Produto":
         return "remover-produto";
+      case "Veículo":
+        return "remover-veiculo";
       default:
         return "";
     }
   }
   function obterOpcsSelect() {
-    if (!info || info.length === 0) return [];
+    if (!info || info.length === 0) {
+      alert("Nenhuma cadastro encontrado");
+      return closeModal();
+    }
 
     let opcs;
     switch (props.tipo) {
@@ -73,11 +80,16 @@ function App(props) {
       case "Motorista":
         opcs = info.map((func) => `${func["NOME"]} - ${func["CPF"]}`);
         break;
+      case "Veículo":
+        opcs = info.map(
+          (veiculo) => `${veiculo["MARCA"]} - ${veiculo["PLACA"]}`
+        );
+        break;
       default:
         opcs = [];
     }
 
-    if (!infoSelecionada) setInfoSelecionada(opcs[0]);
+    opcs.unshift("Selecionar");
     return opcs;
   }
 
@@ -107,6 +119,9 @@ function App(props) {
   function handleSubmit(event) {
     event.preventDefault();
 
+    if (!infoSelecionada || infoSelecionada === "Selecionar")
+      return alert("Selecione uma opção");
+
     let body;
     switch (props.tipo) {
       case "Cliente":
@@ -128,6 +143,11 @@ function App(props) {
           cpf: infoSelecionada.split(" - ")[1],
         });
         break;
+      case "Veículo":
+        body = JSON.stringify({
+          licensePlate: infoSelecionada.split(" - ")[1],
+        });
+        break;
       default:
     }
 
@@ -140,7 +160,7 @@ function App(props) {
       body,
     })
       .then(async (res) => {
-        if (res.status !== 200) {
+        if (!res.ok) {
           console.log((await res.json()).message); //mensagem de erro
           // mostrar mensagem de erro...
         } else {
