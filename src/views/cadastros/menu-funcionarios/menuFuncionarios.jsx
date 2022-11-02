@@ -11,12 +11,12 @@ function Menu() {
   return (
     <div className="entire-page-menu">
       <section className="title-section-menu">
-        <TituloGrande title="Cadastrar Funcionário" />
+        <TituloGrande title="Cadastrar Usuário" />
         <Subtitulo subtitle="Selecione o que deseja cadastrar" />
       </section>
       <section className="caixa-central-section-menu">
         <BotaoGrande text="Administrador" path="/menu/cadastros/funcionario/administrador" />
-        <BotaoGrande text="Motorista" path="/menu/cadastros/funcionario/motorista" />
+        <BotaoGrande text="Colaborador" path="/menu/cadastros/funcionario/colaborador" />
       </section>
       <div className="title-section-menu" style={{visibility: 'hidden'}}>
       <TituloGrande title="a"  />

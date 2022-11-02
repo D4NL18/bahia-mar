@@ -15,41 +15,83 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     max-width: 96%;
+    padding: 2rem 0;
     
 }
 
 .filtros-vendas {
     width: 45%;
     height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     /* background-color: blueviolet; */
+}
+
+.titulo-grafico-vendas {
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .faturamento-venda {
     width: 45%;
     height: 400px;
-    /* background-color: aqua; */
+    background-color: #dedede;
+    padding: 2%;
+    padding-bottom: 5%;
+    border-radius: 5%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .faturamento-funcionarios-vendas {
     width: 45%;
     height: 400px;
-    /* background-color: chocolate; */
+    background-color: #dedede;
+    padding: 2%;
+    border-radius: 5%;
+    margin-top: 2rem;
+    text-align: center;
+    padding-bottom: 5%;
 }
 
 .produtos-faturamento-venda {
     width: 45%;
     height: 400px;
-    /* background-color: crimson; */
+    background-color: #dedede;
+    padding: 2%;
+    border-radius: 5%;
+    margin-top: 2rem;
+    text-align: center;
+    padding-bottom: 5%;
 }
 
 .produtos-quantidade-venda {
     width: 45%;
     height: 400px;
-    /* background-color: darkcyan; */
+    background-color: #dedede;
+    padding: 2%;
+    border-radius: 5%;
+    margin-top: 2rem;
+    text-align: center;
+    padding-bottom: 5%;
 }
 
 .tabela-vendas {
     width: 45%;
     height: 400px;
-    /* background-color: yellow; */
+    background-color: #dedede;
+    padding: 2%;
+    border-radius: 5%;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
 }

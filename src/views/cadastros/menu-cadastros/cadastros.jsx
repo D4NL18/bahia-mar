@@ -17,12 +17,12 @@ function Cadastros() {
       <section className="caixa-central-section-cadastros">
         <div className="div-botoes-cadastros">
           <BotaoGrande
-            text="Funcionário"
+            text="Colaborador"
             path="/menu/cadastros/funcionario"
             style={{ marginTop: 0 }}
           />
           <BotaoGrande
-            text="Método de Pagamento"
+            text="Opção de Pagamento"
             path="/menu/cadastros/metodo"
           />
           <BotaoGrande text="Cliente" path="/menu/cadastros/cliente" />

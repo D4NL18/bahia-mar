@@ -6,7 +6,11 @@ import Linha from '../../../components/grafico/linha/linha'
 import InputPequeno from '../../../components/input/input-pequeno/inputPequeno'
 import Select from '../../../components/input/select-pequeno/selectPequeno'
 import BotaoVoltar from '../../../components/botao/botao-voltar/botaoVoltar'
-
+import PersonIcon from '@mui/icons-material/Person';
+import PaidIcon from '@mui/icons-material/Paid';
+import LocalDrinkIcon from '@mui/icons-material/LocalDrink';
+import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
+import SellIcon from '@mui/icons-material/Sell';
 
 import './vendas.css'
 
@@ -36,6 +40,8 @@ function Vendas() {
             borderColor: 'black',
         }],
     })
+
+
     const [faturamentoFuncionario] = useState({
         labels: data.map((data) => data.year),
         datasets: [{
@@ -46,6 +52,7 @@ function Vendas() {
             borderWidth: 3,
         }]
     })
+
     const [faturamentoProduto] = useState({
         labels: data.map((data) => data.year),
         datasets: [{
@@ -56,6 +63,7 @@ function Vendas() {
             borderWidth: 3,
         }]
     })
+
     const [quantProduto] = useState({
         labels: data.map((data) => data.year),
         datasets: [{
@@ -75,21 +83,26 @@ function Vendas() {
             <body className="painel-vendas" >
                 <section className="filtros-vendas">
                     <Select options={tipoTempo} />
-                    <InputPequeno inputProps={{type: "date"}} />
+                    <InputPequeno inputProps={{ type: "date" }} />
                 </section>
                 <section className="faturamento-venda">
-                <Linha chartData={faturamento} />
+                    <h2 className='titulo-grafico-vendas'>Faturamento <PaidIcon fontSize='large'/></h2>
+                    <Linha chartData={faturamento} />
                 </section>
                 <section className="faturamento-funcionarios-vendas">
+                    <h2 className='titulo-grafico-vendas'>Faturamento por Funcionário <PersonIcon fontSize='large' /></h2>
                     <Barras chartData={faturamentoFuncionario} />
                 </section>
                 <section className="produtos-faturamento-venda">
+                    <h2 className='titulo-grafico-vendas'>Faturamento por Produto <LocalDrinkIcon fontSize='large' /></h2>
                     <Barras chartData={faturamentoProduto} />
                 </section>
                 <section className="produtos-quantidade-venda">
+                    <h2 className='titulo-grafico-vendas'>Vendas por Produto <SellIcon fontSize='large' /></h2>
                     <Barras chartData={quantProduto} />
                 </section>
                 <section className="tabela-vendas">
+                    <h2 className='titulo-grafico-vendas'>Tabela de Vendas <PointOfSaleIcon fontSize='large' /></h2>
                     <Tabela tableData={tableData} colunas={colunas} tipo="vendas" />
                 </section>
             </body>

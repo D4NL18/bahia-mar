@@ -4,12 +4,13 @@ import TituloMedio from "../../../components/titulo/titulo-medio/tituloMedio";
 import Subtitulo from "../../../components/titulo/subtitulo/subtitulo";
 import BotaoMedio from "../../../components/botao/botao-medio/botaoMedio";
 import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
+import PersonIcon from '@mui/icons-material/Person';
 
 function Estatisticas() {
   return (
     <div className="entire-page-estatisticas">
       <section className="title-section-estatisticas">
-        <TituloMedio title="Estatísticas" />
+        <TituloMedio title="Relatórios" />
         <Subtitulo subtitle="Selecione o que deseja visualizar" />
       </section>
       <section className="caixa-central-section-estatisticas">

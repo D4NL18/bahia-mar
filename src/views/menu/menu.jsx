@@ -15,7 +15,7 @@ function Menu() {
         <Subtitulo subtitle="Selecione o que deseja fazer" />
       </section>
       <section className="caixa-central-section-menu">
-        <BotaoGrande text="Gerenciamento" path="/menu/gerenciamento" />
+        <BotaoGrande text="Relatórios" path="/menu/gerenciamento" />
         <BotaoGrande text="Cadastros" path="/menu/cadastros" />
       </section>
       <div className="title-section-menu" style={{visibility: 'hidden'}}>

@@ -67,12 +67,12 @@ function Router() {
           />
           <Route
             exact
-            path="/menu/cadastros/funcionario/motorista"
-            element={<MenuCrud tipo="Motorista" />}
+            path="/menu/cadastros/funcionario/colaborador"
+            element={<MenuCrud tipo="Colaborador" />}
           />
           <Route
             exact
-            path="/menu/cadastros/funcionario/motorista/cadastrar"
+            path="/menu/cadastros/funcionario/colaborador/cadastrar"
             element={<CadastroMotorista />}
           />
           <Route
@@ -118,7 +118,7 @@ function Router() {
           <Route
             exact
             path="/menu/cadastros/metodo"
-            element={<MenuCrud tipo="Método de Pagamento" />}
+            element={<MenuCrud tipo="Opção de Pagamento" />}
           />
         </Routes>
       </BrowserRouter>
