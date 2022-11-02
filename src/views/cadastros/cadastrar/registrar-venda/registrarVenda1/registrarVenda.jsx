@@ -6,14 +6,16 @@ import BotaoVoltar from "../../../../../components/botao/botao-voltar/botaoVolta
 import BotaoGrande from "../../../../../components/botao/botao-grande/botaoGrande";
 
 import "./registrarVenda.css";
+import { useNavigate } from "react-router-dom";
 
 function RegistrarVenda() {
+  const navigate = useNavigate();
   const [info, setInfo] = useState();
 
   const [funcionario, setFuncionario] = useState("Selecionar");
   const [veiculo, setVeiculo] = useState("Selecionar");
   const [cliente, setCliente] = useState("Selecionar");
-  const [formaPagamento, setFormaPagamento] = useState("Selecionar");
+  const [metodoPagamento, setMetodoPagamento] = useState("Selecionar");
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/obter-info-cadastro-venda`, {
@@ -34,15 +36,43 @@ function RegistrarVenda() {
     });
   }, []);
 
+  function isNextButtonDisabled() {
+    return (
+      funcionario === "Selecionar" ||
+      veiculo === "Selecionar" ||
+      cliente === "Selecionar" ||
+      metodoPagamento === "Selecionar"
+    );
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (
+      funcionario !== "Selecionar" &&
+      veiculo !== "Selecionar" &&
+      cliente !== "Selecionar" &&
+      metodoPagamento !== "Selecionar"
+    )
+      navigate("/menu/cadastros/venda3", {
+        state: {
+          funcionario,
+          veiculo,
+          cliente,
+          metodoPagamento,
+          produtos: info.products,
+        },
+      });
+  }
+
   return (
     <div className="entire-page-registrarVenda">
       <header className="header-registrarVenda">
         <TituloMedio title={info ? "Cadastrar Venda" : "Obtendo dados"} />
       </header>
       {info && (
-        <body className="body-registrarVenda">
+        <div className="body-registrarVenda">
           <section className="caixa-central-registrarVenda">
-            <form className="form-registrarVenda">
+            <form onSubmit={handleSubmit} className="form-registrarVenda">
               <Select
                 state={funcionario}
                 setState={setFuncionario}
@@ -74,17 +104,23 @@ function RegistrarVenda() {
                 label="Cliente"
               />
               <Select
-                state={formaPagamento}
-                setState={setFormaPagamento}
+                state={metodoPagamento}
+                setState={setMetodoPagamento}
                 options={["Selecionar"].concat(
                   info.paymentMethods.map((i) => i["NOME"])
                 )}
                 label="Forma de Pagamento"
               />
-              <BotaoGrande text="Seguir" path="/menu/cadastros/venda2" />
+              <BotaoGrande
+                text="Seguir"
+                {
+                  ...{} /*path="/menu/cadastros/venda2"*/
+                }
+                disabled={isNextButtonDisabled()}
+              />
             </form>
           </section>
-        </body>
+        </div>
       )}
       <BotaoVoltar path="/menu/cadastros" />
     </div>
