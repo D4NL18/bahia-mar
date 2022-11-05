@@ -11,6 +11,7 @@ import PaidIcon from '@mui/icons-material/Paid';
 import LocalDrinkIcon from '@mui/icons-material/LocalDrink';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import SellIcon from '@mui/icons-material/Sell';
+import DadosVendas from '../../../components/dadosVendas/dadosVendas'
 
 import './vendas.css'
 
@@ -82,27 +83,29 @@ function Vendas() {
         <div className="entire-page-vendas">
             <body className="painel-vendas" >
                 <section className="filtros-vendas">
-                    <Select options={tipoTempo} />
+                    <Select options={tipoTempo}/>
                     <InputPequeno inputProps={{ type: "date" }} />
+                    <DadosVendas label="Faturamento" info={`R$ ${data[3].userGain}`} />
+                    <DadosVendas label="Vendas" info={"57"} />
                 </section>
                 <section className="faturamento-venda">
-                    <h2 className='titulo-grafico-vendas'>Faturamento <PaidIcon fontSize='large'/></h2>
+                    <h2 className='titulo-grafico-vendas'><PaidIcon fontSize='large' />Faturamento </h2>
                     <Linha chartData={faturamento} />
                 </section>
                 <section className="faturamento-funcionarios-vendas">
-                    <h2 className='titulo-grafico-vendas'>Faturamento por Funcionário <PersonIcon fontSize='large' /></h2>
+                    <h2 className='titulo-grafico-vendas'><PersonIcon fontSize='large' />Faturamento por Funcionário </h2>
                     <Barras chartData={faturamentoFuncionario} />
                 </section>
                 <section className="produtos-faturamento-venda">
-                    <h2 className='titulo-grafico-vendas'>Faturamento por Produto <LocalDrinkIcon fontSize='large' /></h2>
+                    <h2 className='titulo-grafico-vendas'><LocalDrinkIcon fontSize='large' />Faturamento por Produto </h2>
                     <Barras chartData={faturamentoProduto} />
                 </section>
                 <section className="produtos-quantidade-venda">
-                    <h2 className='titulo-grafico-vendas'>Vendas por Produto <SellIcon fontSize='large' /></h2>
+                    <h2 className='titulo-grafico-vendas'><SellIcon fontSize='large' />Vendas por Produto </h2>
                     <Barras chartData={quantProduto} />
                 </section>
                 <section className="tabela-vendas">
-                    <h2 className='titulo-grafico-vendas'>Tabela de Vendas <PointOfSaleIcon fontSize='large' /></h2>
+                    <h2 className='titulo-grafico-vendas'><PointOfSaleIcon fontSize='large' />Tabela de Vendas </h2>
                     <Tabela tableData={tableData} colunas={colunas} tipo="vendas" />
                 </section>
             </body>
