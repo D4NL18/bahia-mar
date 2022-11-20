@@ -42,6 +42,7 @@ function RegistrarVenda() {
 
     setEstahRegistrando(true);
 
+    console.log("passou");
     fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/inserir-venda`, {
       method: "POST",
       headers: {
@@ -49,7 +50,7 @@ function RegistrarVenda() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        employeeCpf: navigateProps.funcionario.split(" - ")[1],
+        employeeId: navigateProps.funcId,
         vehicleLicensePlate: navigateProps.veiculo.split(" - ")[1],
         clientCpfCnpj: navigateProps.cliente.split(" - ")[1],
         paymentMethod: navigateProps.metodoPagamento,

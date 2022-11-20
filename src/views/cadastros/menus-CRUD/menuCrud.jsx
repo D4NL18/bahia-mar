@@ -8,9 +8,7 @@ import ModalSelect from "../../../components/modais/modal-select/modalSelect";
 import "./menuCrud.css";
 
 function App(props) {
-  //temp
-  const options = ["a", "b", "c", "d"];
-
+  //console.log(props.tipo);
   return (
     <div className="entire-page-menuCrud">
       <section className="title-section-menuCrud">
@@ -18,12 +16,12 @@ function App(props) {
         <Subtitulo subtitle="Selecione o que deseja fazer" />
       </section>
       <section className="botoes-section-menuCrud">
-        <ModalSelect acao="Apagar" tipo={props.tipo} options={options} />
-        <ModalSelect acao="Editar" tipo={props.tipo} options={options} />
+        <ModalSelect acao="Apagar" tipo={props.tipo} />
+        <ModalSelect acao="Editar" tipo={props.tipo} />
         {/* <BotaoMedio text={`Apagar ${props.tipo}`} />
         <BotaoMedio text={`Editar ${props.tipo}`} /> */}
         {props.tipo === "Administrador" ||
-        props.tipo === "Motorista" ||
+        props.tipo === "Colaborador" ||
         props.tipo === "Veículo" ||
         props.tipo === "Cliente" ? (
           <BotaoMedio
@@ -44,7 +42,7 @@ function App(props) {
       </section>
       <BotaoVoltar
         path={
-          props.tipo !== "Administrador" && props.tipo !== "Motorista"
+          props.tipo !== "Administrador" && props.tipo !== "Colaborador"
             ? "/menu/cadastros"
             : "/menu/cadastros/funcionario"
         }

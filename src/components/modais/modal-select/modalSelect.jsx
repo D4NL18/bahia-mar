@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import SelectPequeno from "../../input/select-pequeno/selectPequeno";
 import BotaoMedio from "../../botao/botao-medio/botaoMedio";
 import TituloPequeno from "../../titulo/titulo-pequeno/tituloPequeno";
+import { useNavigate } from "react-router-dom";
 
 const customStyles = {
   content: {
@@ -20,6 +21,8 @@ const customStyles = {
 };
 
 function App(props) {
+  const navigate = useNavigate();
+
   const [isModalOpen, setModalOpen] = useState(false);
   const [info, setInfo] = useState();
   const [infoSelecionada, setInfoSelecionada] = useState("Selecionar");
@@ -32,7 +35,7 @@ function App(props) {
         return "obter-metodos-pagamento";
       case "Administrador":
         return "obter-adms";
-      case "Motorista":
+      case "Colaborador":
         return "obter-motoristas";
       case "Produto":
         return "obter-produtos";
@@ -49,7 +52,7 @@ function App(props) {
       case "Método de Pagamento":
         return "remover-metodo-pagamento";
       case "Administrador":
-      case "Motorista":
+      case "Colaborador":
         return "remover-funcionario";
       case "Produto":
         return "remover-produto";
@@ -77,7 +80,7 @@ function App(props) {
         opcs = info.map((i) => i["NOME"]);
         break;
       case "Administrador":
-      case "Motorista":
+      case "Colaborador":
         opcs = info.map((func) => `${func["NOME"]} - ${func["CPF"]}`);
         break;
       case "Veículo":
@@ -122,59 +125,78 @@ function App(props) {
     if (!infoSelecionada || infoSelecionada === "Selecionar")
       return alert("Selecione uma opção");
 
-    let body;
-    switch (props.tipo) {
-      case "Cliente":
-        const cpfCnpj = infoSelecionada.split(" - ")[1];
-        const cliente = info.find((c) => c["CPF_CNPJ"] === cpfCnpj);
-        body = JSON.stringify({
-          id: cliente["ID_CLIENTE"],
-        });
-        break;
-      case "Método de Pagamento":
-      case "Produto":
-        body = JSON.stringify({
-          name: infoSelecionada,
-        });
-        break;
-      case "Administrador":
-      case "Motorista":
-        body = JSON.stringify({
-          cpf: infoSelecionada.split(" - ")[1],
-        });
-        break;
-      case "Veículo":
-        body = JSON.stringify({
-          licensePlate: infoSelecionada.split(" - ")[1],
-        });
-        break;
-      default:
-    }
+    if (props.acao === "Apagar") {
+      let body;
+      switch (props.tipo) {
+        case "Cliente":
+          const cpfCnpj = infoSelecionada.split(" - ")[1];
+          const cliente = info.find((c) => c["CPF_CNPJ"] === cpfCnpj);
+          body = JSON.stringify({
+            id: cliente["ID_CLIENTE"],
+          });
+          break;
+        case "Método de Pagamento":
+        case "Produto":
+          body = JSON.stringify({
+            name: infoSelecionada,
+          });
+          break;
+        case "Administrador":
+        case "Colaborador":
+          body = JSON.stringify({
+            cpf: infoSelecionada.split(" - ")[1],
+          });
+          break;
+        case "Veículo":
+          body = JSON.stringify({
+            licensePlate: infoSelecionada.split(" - ")[1],
+          });
+          break;
+        default:
+      }
 
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/${obterRotaDelete()}`, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body,
-    })
-      .then(async (res) => {
-        if (!res.ok) {
-          console.log((await res.json()).message); //mensagem de erro
-          // mostrar mensagem de erro...
-        } else {
-          // deu bom, proseguir...
-        }
+      fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/${obterRotaDelete()}`, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body,
       })
-      .finally(() => {
-        setInfo(undefined);
-        setInfoSelecionada(undefined);
-        setModalOpen(false);
+        .then(async (res) => {
+          if (!res.ok) {
+            console.log((await res.json()).message); //mensagem de erro
+            // mostrar mensagem de erro...
+          } else {
+            // deu bom, proseguir...
+          }
+        })
+        .finally(() => {
+          setInfo(undefined);
+          setInfoSelecionada(undefined);
+          setModalOpen(false);
+        });
+    } else if (props.acao === "Editar") {
+      let stateInicial;
+      let path;
+      switch (props.tipo) {
+        case "Administrador":
+          path = "/menu/cadastros/funcionario/administrador/cadastrar";
+          const cpf = infoSelecionada.split(" - ")[1];
+          stateInicial = info.find((func) => func["CPF"] === cpf);
+          break;
+        default:
+      }
+
+      navigate(path, {
+        state: stateInicial,
       });
+    } else {
+      alert("Falha ao identificar ação escolhida");
+    }
   }
 
-  console.log(props.tipo);
+  //console.log(props.tipo);
   return (
     <div>
       <button

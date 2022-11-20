@@ -9,7 +9,6 @@ import "./cadastroMotorista.css";
 import { useState } from "react";
 
 function CadastroMotorista() {
-
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
@@ -54,7 +53,7 @@ function CadastroMotorista() {
   return (
     <div className="entire-page-cadastroMotorista">
       <header className="header-cadastroMotorista">
-        <TituloMedio title="Cadastrar Motorista" />
+        <TituloMedio title="Cadastrar Colaborador" />
       </header>
       <form onSubmit={handleSubmit} className="body-cadastroMotorista">
         <section className="coluna-inputs-cadastroMotorista">
@@ -97,7 +96,7 @@ function CadastroMotorista() {
           <BotaoGrande disabled={estahRegistrando} text="Cadastrar" />
         </section>
       </form>
-      <BotaoVoltar path="/menu/cadastros/funcionario/motorista" />
+      <BotaoVoltar path="/menu/cadastros/funcionario/colaborador" />
     </div>
   );
 }

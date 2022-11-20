@@ -1,9 +1,8 @@
 import React from "react";
 
-import TituloGrande from "../../components/titulo/titulo-grande/tituloGrande";
 import InputGrande from "../../components/input/input-grande/inputGrande";
 import BotaoGrande from "../../components/botao/botao-grande/botaoGrande";
-import Logo from "../../images/logo.png"
+import Logo from "../../images/logo.png";
 
 import "./login.css";
 
@@ -12,7 +11,12 @@ function App() {
     <div className="entire-page-login">
       <section className="title-section-login">
         {/* <TituloGrande title="Bahia Mar" /> */}
-        <img src={Logo} className="logo-login" />
+        <img
+          src={Logo}
+          className="logo-login"
+          alt="logo bahia mar"
+          draggable="false"
+        />
       </section>
       <section className="caixa-central-section-login">
         <InputGrande label="E-mail" type="text" />

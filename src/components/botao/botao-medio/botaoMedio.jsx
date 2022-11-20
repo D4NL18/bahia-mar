@@ -9,24 +9,21 @@ function BotaoMedio(props) {
   const navigate = useNavigate();
 
   function handleClick() {
-    if (
+    /*if (
       props.tipo === "Veículo" ||
       props.tipo === "Administrador" ||
-      props.tipo === "Motorista" ||
+      props.tipo === "Colaborador" ||
       props.tipo === "Cliente"
     ) {
       navigate(`${props.path}`);
     } else if (props.tipo === "Gerenciamento") {
       navigate(`${props.path}`);
-    }
+    }*/
+    if (props.path) navigate(props.path);
   }
 
   return (
-    <button
-      className="botao-medio"
-      onClick={handleClick}
-      style={style ? style : null}
-    >
+    <button className="botao-medio" onClick={handleClick} style={style || {}}>
       <p className="texto-botao-medio">{props.text}</p>
     </button>
   );

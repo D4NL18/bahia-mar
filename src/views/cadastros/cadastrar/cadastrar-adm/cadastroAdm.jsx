@@ -7,27 +7,40 @@ import TituloMedio from "../../../../components/titulo/titulo-medio/tituloMedio"
 
 import "./cadastroAdm.css";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 function CadastroAdm() {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [cpf, setCpf] = useState("");
+  const location = useLocation();
+  const estahRegistrando = !location.state;
+  console.log(location.state);
+
+  const [nome, setNome] = useState(
+    estahRegistrando ? "" : location.state["NOME"]
+  );
+  const [email, setEmail] = useState(
+    estahRegistrando ? "" : location.state["EMAIL"]
+  );
+  const [cpf, setCpf] = useState(estahRegistrando ? "" : location.state["CPF"]);
   const [senha, setSenha] = useState("");
 
-  const [estahRegistrando, setEstahRegistrando] = useState(false);
+  const [aguardandoAsync, setAguardandoAsync] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (estahRegistrando) return;
+    if (aguardandoAsync) return;
 
-    setEstahRegistrando(true);
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/inserir-funcionario`, {
+    setAguardandoAsync(true);
+    const path = estahRegistrando
+      ? "inserir-funcionario"
+      : "editar-funcionario";
+    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/${path}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        id: estahRegistrando ? undefined : location.state["ID_FUNCIONARIO"],
         name: nome,
         email,
         cpf,
@@ -47,7 +60,7 @@ function CadastroAdm() {
         // mostrar mensagem de erro...
         console.log(err);
       })
-      .finally(() => setEstahRegistrando(false));
+      .finally(() => setAguardandoAsync(false));
   }
 
   return (
@@ -84,7 +97,7 @@ function CadastroAdm() {
             label="Senha"
             inputProps={{
               type: "password",
-              required: true,
+              required: estahRegistrando,
               minLength: 5,
               maxLength: 15,
             }}
@@ -93,7 +106,7 @@ function CadastroAdm() {
           />
         </section>
         <section className="botao-cadastroAdm">
-          <BotaoGrande disabled={estahRegistrando} text="Cadastrar" />
+          <BotaoGrande disabled={aguardandoAsync} text="Cadastrar" />
         </section>
       </form>
       <BotaoVoltar path="/menu/cadastros/funcionario/administrador" />

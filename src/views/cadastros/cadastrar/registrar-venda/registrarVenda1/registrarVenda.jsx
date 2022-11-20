@@ -55,7 +55,9 @@ function RegistrarVenda() {
     )
       navigate("/menu/cadastros/venda3", {
         state: {
-          funcionario,
+          funcId: info.employees.find(
+            (emp) => emp["CPF"] === funcionario.split(" - ")[1]
+          )["ID_FUNCIONARIO"],
           veiculo,
           cliente,
           metodoPagamento,
