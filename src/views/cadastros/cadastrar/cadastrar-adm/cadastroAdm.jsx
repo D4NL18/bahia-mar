@@ -40,7 +40,7 @@ function CadastroAdm() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: estahRegistrando ? undefined : location.state["ID_FUNCIONARIO"],
+        id: estahRegistrando ? undefined : location.state["ID"],
         name: nome,
         email,
         cpf,
@@ -66,7 +66,9 @@ function CadastroAdm() {
   return (
     <div className="entire-page-cadastroAdm">
       <header className="header-cadastroAdm">
-        <TituloMedio title="Cadastrar Administrador" />
+        <TituloMedio
+          title={`${estahRegistrando ? "Cadastrar" : "Editar"} Administrador`}
+        />
       </header>
       <form onSubmit={handleSubmit} className="body-cadastroAdm">
         <section className="coluna-inputs-cadastroAdm">

@@ -57,7 +57,7 @@ function RegistrarVenda() {
         state: {
           funcId: info.employees.find(
             (emp) => emp["CPF"] === funcionario.split(" - ")[1]
-          )["ID_FUNCIONARIO"],
+          )["ID"],
           veiculo,
           cliente,
           metodoPagamento,

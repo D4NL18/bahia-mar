@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Modal from "react-modal";
+import { useNavigate } from "react-router-dom";
 
 import SelectPequeno from "../../input/select-pequeno/selectPequeno";
 import BotaoMedio from "../../botao/botao-medio/botaoMedio";
 import TituloPequeno from "../../titulo/titulo-pequeno/tituloPequeno";
-import { useNavigate } from "react-router-dom";
+import ModalPequeno from "../../../components/modais/modal-pequeno/modalPequeno";
 
 const customStyles = {
   content: {
@@ -31,7 +32,7 @@ function App(props) {
     switch (props.tipo) {
       case "Cliente":
         return "obter-clientes";
-      case "Método de Pagamento":
+      case "Opção de Pagamento":
         return "obter-metodos-pagamento";
       case "Administrador":
         return "obter-adms";
@@ -49,7 +50,7 @@ function App(props) {
     switch (props.tipo) {
       case "Cliente":
         return "remover-cliente";
-      case "Método de Pagamento":
+      case "Opção de Pagamento":
         return "remover-metodo-pagamento";
       case "Administrador":
       case "Colaborador":
@@ -69,13 +70,14 @@ function App(props) {
     }
 
     let opcs;
+    console.log(info);
     switch (props.tipo) {
       case "Cliente":
         opcs = info.map(
           (cliente) => `${cliente["NOME"]} - ${cliente["CPF_CNPJ"]}`
         );
         break;
-      case "Método de Pagamento":
+      case "Opção de Pagamento":
       case "Produto":
         opcs = info.map((i) => i["NOME"]);
         break;
@@ -132,10 +134,10 @@ function App(props) {
           const cpfCnpj = infoSelecionada.split(" - ")[1];
           const cliente = info.find((c) => c["CPF_CNPJ"] === cpfCnpj);
           body = JSON.stringify({
-            id: cliente["ID_CLIENTE"],
+            id: cliente["ID"],
           });
           break;
-        case "Método de Pagamento":
+        case "Opção de Pagamento":
         case "Produto":
           body = JSON.stringify({
             name: infoSelecionada,
@@ -178,11 +180,16 @@ function App(props) {
         });
     } else if (props.acao === "Editar") {
       let stateInicial;
-      let path;
+      let path, cpf;
       switch (props.tipo) {
         case "Administrador":
           path = "/menu/cadastros/funcionario/administrador/cadastrar";
-          const cpf = infoSelecionada.split(" - ")[1];
+          cpf = infoSelecionada.split(" - ")[1];
+          stateInicial = info.find((func) => func["CPF"] === cpf);
+          break;
+        case "Colaborador":
+          path = "/menu/cadastros/funcionario/colaborador/cadastrar";
+          cpf = infoSelecionada.split(" - ")[1];
           stateInicial = info.find((func) => func["CPF"] === cpf);
           break;
         default:
@@ -196,7 +203,7 @@ function App(props) {
     }
   }
 
-  //console.log(props.tipo);
+  console.log(props.acao);
   return (
     <div>
       <button
@@ -230,7 +237,15 @@ function App(props) {
                 label={props.tipo}
                 options={obterOpcsSelect()}
               />
-              <BotaoMedio text={`${props.acao}`} type="submit" />
+              {props.acao === "Apagar" ? (
+                <BotaoMedio text={`${props.acao}`} type="submit" />
+              ) : (
+                <ModalPequeno
+                  acao="Editar"
+                  tipo={props.tipo}
+                  editInfo={info.find((v) => v["NOME"] === infoSelecionada)}
+                />
+              )}
             </form>
           </>
         ) : (

@@ -20,11 +20,13 @@ const customStyles = {
 };
 
 function App(props) {
+  const estahRegistrando = !props.editInfo;
   const [isModalOpen, setModalOpen] = useState(false);
-  const [estahRegistrando, setEstahRegistrando] = useState(false);
+  const [aguardandoAsync, setAguardandoAsync] = useState(false);
 
   const [nome, setNome] = useState("");
   const [preco, setPreco] = useState("");
+  console.log(props.editInfo);
 
   function afterOpenModal() {}
 
@@ -35,33 +37,23 @@ function App(props) {
   function obterRota() {
     switch (props.tipo) {
       case "Produto":
-        return "inserir-produto";
-      case "Método de Pagamento":
-        return "inserir-metodo-pagamento";
+        return props.editInfo ? "editar-produto" : "inserir-produto";
+      case "Opção de Pagamento":
+        return props.editInfo
+          ? "editar-metodo-pagamento"
+          : "inserir-metodo-pagamento";
       default:
         return "";
     }
   }
 
-  function retornaPreco() {
-    if (props.tipo === "Produto") {
-      return (
-        <InputPequeno
-          label="Preço"
-          inputProps={{ type: "text", required: true, maxLength: 8 }}
-          state={preco}
-          setState={setPreco}
-        />
-      );
-    }
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
-    if (estahRegistrando) return;
+    if (aguardandoAsync) return;
 
-    setEstahRegistrando(true);
+    setAguardandoAsync(true);
     let body = { name: nome.trim() };
+    body.id = props.editInfo ? props.editInfo["ID"] : undefined;
     if (props.tipo === "Produto")
       try {
         body.value = Number(preco.replace(",", "."));
@@ -83,6 +75,7 @@ function App(props) {
           // mostrar mensagem de erro...
         } else {
           // deu bom, proseguir...
+          window.location.reload(false);
         }
       })
       .catch((err) => {
@@ -92,7 +85,7 @@ function App(props) {
       .finally(() => {
         setNome("");
         setPreco("");
-        setEstahRegistrando(false);
+        setAguardandoAsync(false);
         setModalOpen(false);
       });
   }
@@ -102,10 +95,18 @@ function App(props) {
       <button
         className="botao-medio"
         onClick={() => {
+          if (props.acao === "Editar" && !props.editInfo) return;
+
           setModalOpen(true);
+          setNome(estahRegistrando ? "" : props.editInfo["NOME"]);
+          setPreco(
+            estahRegistrando ? "" : props.editInfo["PRECO"].replace(".", ",")
+          );
         }}
       >
-        <p className="texto-botao-medio">{`Cadastrar ${props.tipo}`}</p>
+        <p className="texto-botao-medio">{`${props.acao || "Cadastrar"} ${
+          props.tipo
+        }`}</p>
       </button>
       <Modal
         isOpen={isModalOpen}
@@ -113,7 +114,7 @@ function App(props) {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <TituloPequeno title={`Criar ${props.tipo}`} />
+        <TituloPequeno title={`${props.acao || "Cadastrar"} ${props.tipo}`} />
         <form
           style={{
             display: "flex",
@@ -128,9 +129,16 @@ function App(props) {
             state={nome}
             setState={setNome}
           />
-          {retornaPreco()}
+          {props.tipo === "Produto" && (
+            <InputPequeno
+              label="Preço"
+              inputProps={{ type: "text", required: true, maxLength: 8 }}
+              state={preco}
+              setState={setPreco}
+            />
+          )}
 
-          <BotaoMedio text="Cadastrar" type="submit" />
+          <BotaoMedio text={`${props.acao || "Cadastrar"}`} type="submit" />
         </form>
       </Modal>
     </div>
