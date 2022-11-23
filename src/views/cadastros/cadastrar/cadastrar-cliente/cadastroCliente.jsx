@@ -7,28 +7,56 @@ import TituloMedio from "../../../../components/titulo/titulo-medio/tituloMedio"
 import SelectPequeno from "../../../../components/input/select-pequeno/selectPequeno";
 
 import "./cadastroCliente.css";
+import { useLocation } from "react-router-dom";
 
 function CadastroCliente() {
-  const [tipoPessoa, setTipoPessoa] = useState("Física");
-  const [nome, setNome] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [cpfCnpj, setCpfCnpj] = useState("");
-  const [cep, setCep] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [rua, setRua] = useState("");
-  const [numero, setNumero] = useState("");
-  const [complemento, setComplemento] = useState("");
+  const location = useLocation();
+  const estahRegistrando = !location.state;
+  console.log(location.state);
 
-  const [estahRegistrando, setEstahRegistrando] = useState(false);
+  const [tipoPessoa, setTipoPessoa] = useState(
+    estahRegistrando
+      ? "Física"
+      : location.state["EH_PESSOA_FISICA"] === 1
+      ? "Física"
+      : "Jurídica"
+  );
+  const [nome, setNome] = useState(
+    estahRegistrando ? "" : location.state["NOME"]
+  );
+  const [telefone, setTelefone] = useState(
+    estahRegistrando ? "" : location.state["TELEFONE"]
+  );
+  const [cpfCnpj, setCpfCnpj] = useState(
+    estahRegistrando ? "" : location.state["CPF_CNPJ"]
+  );
+  const [cep, setCep] = useState(estahRegistrando ? "" : location.state["CEP"]);
+  const [cidade, setCidade] = useState(
+    estahRegistrando ? "" : location.state["CIDADE"]
+  );
+  const [bairro, setBairro] = useState(
+    estahRegistrando ? "" : location.state["BAIRRO"]
+  );
+  const [rua, setRua] = useState(estahRegistrando ? "" : location.state["RUA"]);
+  const [numero, setNumero] = useState(
+    estahRegistrando ? "" : location.state["NUMERO"]
+  );
+  const [complemento, setComplemento] = useState(
+    estahRegistrando ? "" : location.state["COMPLEMENTO"]
+  );
+
+  const [aguardandoAsync, setAguardandoAsync] = useState(false);
   const options = ["Física", "Jurídica"];
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (estahRegistrando) return;
+    if (aguardandoAsync) return;
 
-    setEstahRegistrando(true);
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/inserir-cliente`, {
+    setAguardandoAsync(true);
+    const path = estahRegistrando
+      ? "inserir-cliente"
+      : "editar-cliente-e-endereco";
+    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/${path}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -36,6 +64,7 @@ function CadastroCliente() {
       },
       body: JSON.stringify({
         client: {
+          id: estahRegistrando ? undefined : location.state["ID"],
           isPhysicalPerson: tipoPessoa === "Física",
           name: nome,
           phone: telefone,
@@ -49,6 +78,7 @@ function CadastroCliente() {
           number: numero,
           complement: complemento,
           clientCpfCnpj: cpfCnpj,
+          clientId: estahRegistrando ? undefined : location.state["ID"],
         },
       }),
     })
@@ -64,13 +94,15 @@ function CadastroCliente() {
         // mostrar mensagem de erro...
         console.log(err);
       })
-      .finally(() => setEstahRegistrando(false));
+      .finally(() => setAguardandoAsync(false));
   }
 
   return (
     <div className="entire-page-cadastroCliente">
       <header className="header-cadastroCliente">
-        <TituloMedio title="Cadastrar Cliente" />
+        <TituloMedio
+          title={`${estahRegistrando ? "Cadastrar" : "Editar"} Cliente`}
+        />
       </header>
       <form onSubmit={handleSubmit} className="body-cadastroCliente">
         <div className="caixa-inputs-cadastroClientes">
@@ -155,7 +187,10 @@ function CadastroCliente() {
           </section>
         </div>
         <section className="botao-cadastroCliente">
-          <BotaoGrande disabled={estahRegistrando} text="Cadastrar" />
+          <BotaoGrande
+            disabled={aguardandoAsync}
+            text={`${estahRegistrando ? "Cadastrar" : "Editar"}`}
+          />
         </section>
       </form>
       <BotaoVoltar path="/menu/cadastros/cliente" />

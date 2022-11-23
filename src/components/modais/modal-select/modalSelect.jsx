@@ -31,7 +31,7 @@ function App(props) {
   function obterRotaInfo() {
     switch (props.tipo) {
       case "Cliente":
-        return "obter-clientes";
+        return "obter-clientes-com-endereco";
       case "Opção de Pagamento":
         return "obter-metodos-pagamento";
       case "Administrador":
@@ -179,25 +179,28 @@ function App(props) {
           setModalOpen(false);
         });
     } else if (props.acao === "Editar") {
-      let stateInicial;
-      let path, cpf;
+      let state;
+      let path, cpfCnpj;
       switch (props.tipo) {
         case "Administrador":
           path = "/menu/cadastros/funcionario/administrador/cadastrar";
-          cpf = infoSelecionada.split(" - ")[1];
-          stateInicial = info.find((func) => func["CPF"] === cpf);
+          cpfCnpj = infoSelecionada.split(" - ")[1];
+          state = info.find((func) => func["CPF"] === cpfCnpj);
           break;
         case "Colaborador":
           path = "/menu/cadastros/funcionario/colaborador/cadastrar";
-          cpf = infoSelecionada.split(" - ")[1];
-          stateInicial = info.find((func) => func["CPF"] === cpf);
+          cpfCnpj = infoSelecionada.split(" - ")[1];
+          state = info.find((func) => func["CPF"] === cpfCnpj);
+          break;
+        case "Cliente":
+          path = "/menu/cadastros/cliente/cadastrar";
+          cpfCnpj = infoSelecionada.split(" - ")[1];
+          state = info.find((cliente) => cliente["CPF_CNPJ"] === cpfCnpj);
           break;
         default:
       }
 
-      navigate(path, {
-        state: stateInicial,
-      });
+      navigate(path, { state });
     } else {
       alert("Falha ao identificar ação escolhida");
     }
