@@ -6,27 +6,42 @@ import BotaoVoltar from "../../../../components/botao/botao-voltar/botaoVoltar";
 import TituloMedio from "../../../../components/titulo/titulo-medio/tituloMedio";
 
 import "./cadastroVeiculo.css";
+import { useLocation } from "react-router-dom";
 
 function CadastroMotorista() {
-  const [tipo, setTipo] = useState("");
-  const [marca, setMarca] = useState("");
-  const [modelo, setModelo] = useState("");
-  const [placa, setPlaca] = useState("");
+  const location = useLocation();
+  const estahRegistrando = !location.state;
+  console.log(location.state);
 
-  const [estahRegistrando, setEstahRegistrando] = useState(false);
+  const [tipo, setTipo] = useState(
+    estahRegistrando ? "" : location.state["TIPO"]
+  );
+  const [marca, setMarca] = useState(
+    estahRegistrando ? "" : location.state["MARCA"]
+  );
+  const [modelo, setModelo] = useState(
+    estahRegistrando ? "" : location.state["MODELO"]
+  );
+  const [placa, setPlaca] = useState(
+    estahRegistrando ? "" : location.state["PLACA"]
+  );
+
+  const [aguardandoAsync, setAguardandoAsync] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (estahRegistrando) return;
+    if (aguardandoAsync) return;
 
-    setEstahRegistrando(true);
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/inserir-veiculo`, {
+    setAguardandoAsync(true);
+    const path = estahRegistrando ? "inserir-veiculo" : "editar-veiculo";
+    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/${path}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        id: estahRegistrando ? undefined : location.state["ID"],
         type: tipo,
         branch: marca,
         model: modelo,
@@ -45,13 +60,15 @@ function CadastroMotorista() {
         // mostrar mensagem de erro...
         console.log(err);
       })
-      .finally(() => setEstahRegistrando(false));
+      .finally(() => setAguardandoAsync(false));
   }
 
   return (
     <div className="entire-page-cadastroVeiculo">
       <header className="header-cadastroVeiculo">
-        <TituloMedio title="Cadastrar Veiculo" />
+        <TituloMedio
+          title={`${estahRegistrando ? "Cadastrar" : "Editar"} Veículo`}
+        />
       </header>
       <form onSubmit={handleSubmit} className="body-cadastroVeiculo">
         <section className="coluna-inputs-cadastroVeiculo">
@@ -86,7 +103,7 @@ function CadastroMotorista() {
           />
         </section>
         <section className="botao-cadastroVeiculo">
-          <BotaoGrande text="Cadastrar" />
+          <BotaoGrande text={`${estahRegistrando ? "Cadastrar" : "Editar"}`} />
         </section>
       </form>
       <BotaoVoltar path="/menu/cadastros/veiculo" />

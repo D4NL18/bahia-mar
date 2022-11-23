@@ -180,22 +180,27 @@ function App(props) {
         });
     } else if (props.acao === "Editar") {
       let state;
-      let path, cpfCnpj;
+      let path, aux;
       switch (props.tipo) {
         case "Administrador":
           path = "/menu/cadastros/funcionario/administrador/cadastrar";
-          cpfCnpj = infoSelecionada.split(" - ")[1];
-          state = info.find((func) => func["CPF"] === cpfCnpj);
+          aux = infoSelecionada.split(" - ")[1];
+          state = info.find((func) => func["CPF"] === aux);
           break;
         case "Colaborador":
           path = "/menu/cadastros/funcionario/colaborador/cadastrar";
-          cpfCnpj = infoSelecionada.split(" - ")[1];
-          state = info.find((func) => func["CPF"] === cpfCnpj);
+          aux = infoSelecionada.split(" - ")[1];
+          state = info.find((func) => func["CPF"] === aux);
           break;
         case "Cliente":
           path = "/menu/cadastros/cliente/cadastrar";
-          cpfCnpj = infoSelecionada.split(" - ")[1];
-          state = info.find((cliente) => cliente["CPF_CNPJ"] === cpfCnpj);
+          aux = infoSelecionada.split(" - ")[1];
+          state = info.find((cliente) => cliente["CPF_CNPJ"] === aux);
+          break;
+        case "Veículo":
+          path = "/menu/cadastros/veiculo/cadastrar";
+          aux = infoSelecionada.split(" - ")[1];
+          state = info.find((veiculo) => veiculo["PLACA"] === aux);
           break;
         default:
       }
