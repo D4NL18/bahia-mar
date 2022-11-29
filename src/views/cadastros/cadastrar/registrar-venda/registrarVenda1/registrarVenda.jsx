@@ -55,12 +55,20 @@ function RegistrarVenda() {
     )
       navigate("/menu/cadastros/venda3", {
         state: {
-          funcId: info.employees.find(
-            (emp) => emp["CPF"] === funcionario.split(" - ")[1]
-          )["ID"],
-          veiculo,
-          cliente,
-          metodoPagamento,
+          ids: {
+            employeeId: info.employees.find(
+              (emp) => emp["CPF"] === funcionario.split(" - ")[1]
+            )["ID"],
+            vehicleId: info.vehicles.find(
+              (veic) => veic["PLACA"] === veiculo.split(" - ")[1]
+            )["ID"],
+            clientId: info.clients.find(
+              (cli) => cli["CPF_CNPJ"] === cliente.split(" - ")[1]
+            )["ID"],
+            paymentMethodId: info.paymentMethods.find(
+              (paym) => paym["NOME"] === metodoPagamento
+            )["ID"],
+          },
           produtos: info.products,
         },
       });

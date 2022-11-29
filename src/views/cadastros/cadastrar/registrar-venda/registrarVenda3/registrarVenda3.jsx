@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import InputPequeno from "../../../../../components/input/input-pequeno/inputPequeno";
 import TituloMedio from "../../../../../components/titulo/titulo-medio/tituloMedio";
 import BotaoVoltar from "../../../../../components/botao/botao-voltar/botaoVoltar";
 import BotaoGrande from "../../../../../components/botao/botao-grande/botaoGrande";
-
 import "./registrarVenda3.css";
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
 
 function InputQuantProduto(props) {
   const { prod, quantProdStates, setQuantProdStates } = props;
@@ -16,10 +14,10 @@ function InputQuantProduto(props) {
     <InputPequeno
       label={`${prod["NOME"]} (R$${prod["PRECO"].replace(".", ",")})`}
       inputProps={{ type: "text", required: true, maxLength: 8 }}
-      state={quantProdStates[prod["ID_PRODUTO"]]}
+      state={quantProdStates[prod["ID"]]}
       setState={(value) => {
         const novoQuantProdStates = { ...quantProdStates };
-        novoQuantProdStates[prod["ID_PRODUTO"]] = value;
+        novoQuantProdStates[prod["ID"]] = value;
         setQuantProdStates(novoQuantProdStates);
       }}
     />
@@ -42,7 +40,6 @@ function RegistrarVenda() {
 
     setEstahRegistrando(true);
 
-    console.log("passou");
     fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/inserir-venda`, {
       method: "POST",
       headers: {
@@ -50,12 +47,12 @@ function RegistrarVenda() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        employeeId: navigateProps.funcId,
-        vehicleLicensePlate: navigateProps.veiculo.split(" - ")[1],
-        clientCpfCnpj: navigateProps.cliente.split(" - ")[1],
-        paymentMethod: navigateProps.metodoPagamento,
-        discount: Number(desc.replace(",", ".")),
-        amountPaid: Number(quantPago.replace(",", ".")),
+        sale: {
+          ...navigateProps.ids,
+          discount: Number(desc.replace(",", ".")),
+          amountPaid: Number(quantPago.replace(",", ".")),
+        },
+        products: quantProdStates,
       }),
     })
       .then(async (res) => {
@@ -76,12 +73,11 @@ function RegistrarVenda() {
   useEffect(() => {
     const novoQuantProdStates = {};
     for (const prod of navigateProps.produtos)
-      novoQuantProdStates[prod["ID_PRODUTO"]] = "0";
+      novoQuantProdStates[prod["ID"]] = "0";
 
     setQuantProdStates(novoQuantProdStates);
   }, [navigateProps.produtos]);
 
-  console.log(quantProdStates);
   return (
     <div className="entire-page-registrarVenda3">
       <header className="header-registrarVenda3">
@@ -104,7 +100,7 @@ function RegistrarVenda() {
             />
             {navigateProps.produtos.map((prod) => (
               <InputQuantProduto
-                key={prod["ID_PRODUTO"]}
+                key={prod["ID"]}
                 prod={prod}
                 quantProdStates={quantProdStates}
                 setQuantProdStates={setQuantProdStates}
