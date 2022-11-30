@@ -71,10 +71,14 @@ function PerfilCliente() {
                     </div>
                 </section>
                 <section className='section-grafico-cliente'>
-                    <h3 className='titulo-grafico-cliente'>Faturamento Anual</h3>
-                    <Linha chartData={faturamento} />
-                    <h3 className='titulo-grafico-cliente'>Pedidos Anuais</h3>
-                    <Linha chartData={pedidos} />
+                    <div className='caixa-grafico-cliente'>
+                        <h3 className='titulo-grafico-cliente'>Faturamento Anual</h3>
+                        <Linha chartData={faturamento} />
+                    </div>
+                    <div className='caixa-grafico-cliente' style={{marginBottom: '1rem'}}>
+                        <h3 className='titulo-grafico-cliente'>Pedidos Anuais</h3>
+                        <Linha chartData={pedidos} />
+                    </div>
                 </section>
             </body>
             <BotaoVoltar path="/menu/gerenciamento/clientes" />

@@ -37,9 +37,16 @@
 .section-grafico-cliente {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     width: 45%;
+}
+
+.caixa-grafico-cliente {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 35%;
 }
 
 .titulo-grafico-cliente {
