@@ -45,7 +45,7 @@ function CadastroMotorista() {
         email,
         cpf,
         password: senha,
-        isAdmin: true,
+        isAdmin: false,
       }),
     })
       .then(async (res) => {

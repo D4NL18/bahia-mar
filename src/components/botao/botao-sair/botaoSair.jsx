@@ -1,12 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../../services/api";
 
 import "./botaoSair.css";
 
-function BotaoSair(props) {
+function BotaoSair() {
   const navigate = useNavigate();
 
   function handleClick() {
+    logout();
     navigate("/");
   }
 

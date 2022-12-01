@@ -1,5 +1,6 @@
 import { Bar } from "react-chartjs-2";
-import { Chart as Chart } from 'chart.js/auto'
+// eslint-disable-next-line
+import { Chart as Chart } from "chart.js/auto"; // não mexer se não bicha o gráfico
 
 function Barras(props) {
   return (
