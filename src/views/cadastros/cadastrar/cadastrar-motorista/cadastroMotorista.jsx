@@ -67,7 +67,7 @@ function CadastroMotorista() {
     <div className="entire-page-cadastroMotorista">
       <header className="header-cadastroMotorista">
         <TituloMedio
-          title={`${estahRegistrando ? "Cadastrar" : "Editar"} Colaborador`}
+          title={`${estahRegistrando ? "Cadastrar" : "Editar"} Funcionário`}
         />
       </header>
       <form onSubmit={handleSubmit} className="body-cadastroMotorista">
@@ -111,7 +111,7 @@ function CadastroMotorista() {
           <BotaoGrande disabled={aguardandoAsync} text="Cadastrar" />
         </section>
       </form>
-      <BotaoVoltar path="/menu/cadastros/funcionario/colaborador" />
+      <BotaoVoltar path="/menu/cadastros/colaborador/funcionario" />
     </div>
   );
 }

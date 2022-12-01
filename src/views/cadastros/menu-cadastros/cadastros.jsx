@@ -18,7 +18,7 @@ function Cadastros() {
         <div className="div-botoes-cadastros">
           <BotaoGrande
             text="Colaborador"
-            path="/menu/cadastros/funcionario"
+            path="/menu/cadastros/colaborador"
             style={{ marginTop: 0 }}
           />
           <BotaoGrande

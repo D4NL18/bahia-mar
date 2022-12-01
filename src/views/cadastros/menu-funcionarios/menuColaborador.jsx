@@ -5,7 +5,7 @@ import Subtitulo from "../../../components/titulo/subtitulo/subtitulo";
 import BotaoGrande from "../../../components/botao/botao-grande/botaoGrande";
 import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
 
-import "./menuFuncionarios.css";
+import "./menuColaborador.css";
 
 function Menu() {
   return (
@@ -15,8 +15,8 @@ function Menu() {
         <Subtitulo subtitle="Selecione o que deseja cadastrar" />
       </section>
       <section className="caixa-central-section-menu">
-        <BotaoGrande text="Administrador" path="/menu/cadastros/funcionario/administrador" />
-        <BotaoGrande text="Colaborador" path="/menu/cadastros/funcionario/colaborador" />
+        <BotaoGrande text="Administrador" path="/menu/cadastros/colaborador/administrador" />
+        <BotaoGrande text="Funcionário" path="/menu/cadastros/colaborador/funcionario" />
       </section>
       <div className="title-section-menu" style={{visibility: 'hidden'}}>
       <TituloGrande title="a"  />

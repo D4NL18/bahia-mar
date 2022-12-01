@@ -21,7 +21,7 @@ function App(props) {
         {/* <BotaoMedio text={`Apagar ${props.tipo}`} />
         <BotaoMedio text={`Editar ${props.tipo}`} /> */}
         {props.tipo === "Administrador" ||
-        props.tipo === "Colaborador" ||
+        props.tipo === "Funcionário" ||
         props.tipo === "Veículo" ||
         props.tipo === "Cliente" ? (
           <BotaoMedio
@@ -44,7 +44,7 @@ function App(props) {
         path={
           props.tipo !== "Administrador" && props.tipo !== "Colaborador"
             ? "/menu/cadastros"
-            : "/menu/cadastros/funcionario"
+            : "/menu/cadastros/colaborador"
         }
       />
     </div>

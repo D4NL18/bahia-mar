@@ -12,7 +12,7 @@ import Estoque from "./views/gerenciamento/estoque/estoque";
 import Precos from "./views/gerenciamento/precos/precos";
 import Cadastros from "./views/cadastros/menu-cadastros/cadastros";
 import MenuCrud from "./views/cadastros/menus-CRUD/menuCrud";
-import MenuFuncionarios from "./views/cadastros/menu-funcionarios/menuFuncionarios";
+import MenuFuncionarios from "./views/cadastros/menu-funcionarios/menuColaborador";
 import CadastroAdm from "./views/cadastros/cadastrar/cadastrar-adm/cadastroAdm";
 import CadastroCliente from "./views/cadastros/cadastrar/cadastrar-cliente/cadastroCliente";
 import CadastroMotorista from "./views/cadastros/cadastrar/cadastrar-motorista/cadastroMotorista";
@@ -52,27 +52,27 @@ function Router() {
           <Route exact path="/menu/cadastros" element={<Cadastros />} />
           <Route
             exact
-            path="/menu/cadastros/funcionario"
+            path="/menu/cadastros/colaborador"
             element={<MenuFuncionarios />}
           />
           <Route
             exact
-            path="/menu/cadastros/funcionario/administrador"
+            path="/menu/cadastros/colaborador/administrador"
             element={<MenuCrud tipo="Administrador" />}
           />
           <Route
             exact
-            path="/menu/cadastros/funcionario/administrador/cadastrar"
+            path="/menu/cadastros/colaborador/administrador/cadastrar"
             element={<CadastroAdm />}
           />
           <Route
             exact
-            path="/menu/cadastros/funcionario/colaborador"
-            element={<MenuCrud tipo="Colaborador" />}
+            path="/menu/cadastros/colaborador/funcionario"
+            element={<MenuCrud tipo="Funcionário" />}
           />
           <Route
             exact
-            path="/menu/cadastros/funcionario/colaborador/cadastrar"
+            path="/menu/cadastros/colaborador/funcionario/cadastrar"
             element={<CadastroMotorista />}
           />
           <Route

@@ -111,7 +111,7 @@ function CadastroAdm() {
           <BotaoGrande disabled={aguardandoAsync} text="Cadastrar" />
         </section>
       </form>
-      <BotaoVoltar path="/menu/cadastros/funcionario/administrador" />
+      <BotaoVoltar path="/menu/cadastros/colaborador/administrador" />
     </div>
   );
 }

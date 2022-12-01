@@ -4,7 +4,7 @@ import InputPequeno from "../../../../components/input/input-pequeno/inputPequen
 import BotaoGrande from "../../../../components/botao/botao-grande/botaoGrande";
 import BotaoVoltar from "../../../../components/botao/botao-voltar/botaoVoltar";
 import TituloMedio from "../../../../components/titulo/titulo-medio/tituloMedio";
-import SelectPequeno from "../../../../components/input/select-pequeno/selectPequeno";
+import SelectPequeno from "../../../../components/input/select-medio/selectMedio";
 
 import "./cadastroCliente.css";
 import { useLocation } from "react-router-dom";
