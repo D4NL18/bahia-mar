@@ -36,7 +36,7 @@ function App(props) {
         return "obter-metodos-pagamento";
       case "Administrador":
         return "obter-adms";
-      case "Colaborador":
+      case "Funcionário":
         return "obter-motoristas";
       case "Produto":
         return "obter-produtos";
@@ -53,7 +53,7 @@ function App(props) {
       case "Opção de Pagamento":
         return "remover-metodo-pagamento";
       case "Administrador":
-      case "Colaborador":
+      case "Funcionário":
         return "remover-funcionario";
       case "Produto":
         return "remover-produto";
@@ -82,7 +82,7 @@ function App(props) {
         opcs = info.map((i) => i["NOME"]);
         break;
       case "Administrador":
-      case "Colaborador":
+      case "Funcionário":
         opcs = info.map((func) => `${func["NOME"]} - ${func["CPF"]}`);
         break;
       case "Veículo":
@@ -144,7 +144,7 @@ function App(props) {
           });
           break;
         case "Administrador":
-        case "Colaborador":
+        case "Funcionário":
           body = JSON.stringify({
             cpf: infoSelecionada.split(" - ")[1],
           });
@@ -187,8 +187,8 @@ function App(props) {
           aux = infoSelecionada.split(" - ")[1];
           state = info.find((func) => func["CPF"] === aux);
           break;
-        case "Colaborador":
-          path = "/menu/cadastros/funcionario/colaborador/cadastrar";
+        case "Funcionário":
+          path = "/menu/cadastros/funcionario/Funcionário/cadastrar";
           aux = infoSelecionada.split(" - ")[1];
           state = info.find((func) => func["CPF"] === aux);
           break;
