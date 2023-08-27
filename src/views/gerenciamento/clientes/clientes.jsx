@@ -1,31 +1,54 @@
-import React from 'react'
+import React from "react";
 
-import TituloMedio from '../../../components/titulo/titulo-medio/tituloMedio';
-import ClientList from '../../../components/clientList/list/list';
-import BotaoVoltar from '../../../components/botao/botao-voltar/botaoVoltar'
-import './clientes.css'
+import TituloMedio from "../../../components/titulo/titulo-medio/tituloMedio";
+import ClientList from "../../../components/clientList/list/list";
+import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
+import "./clientes.css";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function Clientes() {
+  const [clientes, setClientes] = useState(undefined);
 
-    const data = [
-        {'id': '1', 'nome': 'Daniel','cpf': '12345678910', 'pago': 'Sim'},
-        {'id': '2', 'nome': 'Jose','cpf': '12345678910', 'pago': 'Nao'},
-        {'id': '3', 'nome': 'Marina','cpf': '12345678910', 'pago': 'Sim'},
-        {'id': '4', 'nome': 'Luan','cpf': '12345678910', 'pago': 'Sim'},
-        {'id': '5', 'nome': 'Rafael','cpf': '12345678910', 'pago': 'Nao'}
-    ]
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/obter-clientes`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then(async (res) => {
+        const { status } = res;
+        res = await res.json();
+        if (status !== 200) {
+          console.log(res.message); //mensagem de erro
+          // mostrar mensagem de erro...
+        } else {
+          // deu bom, proseguir...
+          setClientes(res);
+        }
+      })
+      .catch((err) => {
+        // mostrar mensagem de erro...
+        console.log(err);
+      });
+  }, []);
 
-    return (
-        <div className='entire-page-clientes'>
-            <header className='header-clientes'>
-                <TituloMedio title="Clientes" />
-            </header>
-            <body className='body-clientes'>
-                <ClientList data={data} />
-            </body>
-            <BotaoVoltar path="/menu/gerenciamento" />
-        </div>
-    )
+  if (!clientes) return <></>;
+
+  console.log(clientes);
+  return (
+    <div className="entire-page-clientes">
+      <header className="header-clientes">
+        <TituloMedio title="Clientes" />
+      </header>
+      <div className="body-clientes">
+        <ClientList data={clientes} />
+      </div>
+      <BotaoVoltar path="/menu/gerenciamento" />
+    </div>
+  );
 }
 
 export default Clientes;

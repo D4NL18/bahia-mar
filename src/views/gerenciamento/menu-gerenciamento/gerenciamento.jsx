@@ -4,8 +4,40 @@ import TituloMedio from "../../../components/titulo/titulo-medio/tituloMedio";
 import Subtitulo from "../../../components/titulo/subtitulo/subtitulo";
 import BotaoMedio from "../../../components/botao/botao-medio/botaoMedio";
 import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
+import { useEffect, useState } from "react";
+
+export const salesDats = undefined;
 
 function Estatisticas() {
+  const [aguardandoAsync, setAguardandoAsync] = useState(false);
+
+  useEffect(() => {
+    setAguardandoAsync(true);
+    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/obter-vendas`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then(async (res) => {
+        if (res.status !== 200) {
+          console.log((await res.json()).message); //mensagem de erro
+          // mostrar mensagem de erro...
+        } else {
+          // deu bom, proseguir...
+          console.log(await res.json());
+        }
+      })
+      .catch((err) => {
+        // mostrar mensagem de erro...
+        console.log(err);
+      })
+      .finally(() => setAguardandoAsync(false));
+  }, []);
+
+  if (aguardandoAsync) return <></>;
+
   return (
     <div className="entire-page-estatisticas">
       <section className="title-section-estatisticas">
@@ -37,9 +69,8 @@ function Estatisticas() {
             tipo="Gerenciamento"
           />
         </section>
-        
       </section>
-      
+
       <BotaoVoltar path="/menu" />
     </div>
   );

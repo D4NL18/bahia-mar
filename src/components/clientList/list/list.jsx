@@ -12,10 +12,10 @@ function List(props) {
       {props.data.map((op, key) => (
         <Item
           key={key}
-          nome={op.nome}
-          isPago={op.pago}
-          cpf={op.cpf}
-          id={op.id}
+          nome={op["NOME"]}
+          isPago={true}
+          cpf={op["CPF_CNPJ"]}
+          id={op["ID"]}
         />
       ))}
     </div>
