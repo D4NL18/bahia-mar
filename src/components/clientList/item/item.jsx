@@ -6,7 +6,7 @@ import "./item.css";
 function Item(props) {
   const navigate = useNavigate();
   function handleClick() {
-    navigate(`/cliente/${props.id}`);
+    navigate(`/cliente?id=${props.id}`);
   }
 
   return (

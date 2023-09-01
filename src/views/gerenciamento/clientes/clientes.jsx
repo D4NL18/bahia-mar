@@ -11,7 +11,7 @@ function Clientes() {
   const [clientes, setClientes] = useState(undefined);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/obter-clientes`, {
+    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/obter-clientes?status=true`, {
       method: "GET",
       headers: {
         Accept: "application/json",

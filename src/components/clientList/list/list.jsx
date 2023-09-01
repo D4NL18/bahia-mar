@@ -13,7 +13,7 @@ function List(props) {
         <Item
           key={key}
           nome={op["NOME"]}
-          isPago={true}
+          isPago={op["STATUS"]}
           cpf={op["CPF_CNPJ"]}
           id={op["ID"]}
         />

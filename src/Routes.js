@@ -48,7 +48,7 @@ function Router() {
             path="/menu/gerenciamento/clientes"
             element={<Clientes />}
           />
-          <Route exact path="/cliente/:id" element={<PerfilCliente />} />
+          <Route exact path="/cliente" element={<PerfilCliente />} />
           <Route exact path="/menu/cadastros" element={<Cadastros />} />
           <Route
             exact

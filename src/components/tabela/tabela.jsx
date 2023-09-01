@@ -77,11 +77,11 @@ export default function App(props) {
               <tr key={data["ID"]}>
                 <td>{data["ID"]}</td>
                 <td>{data["NOME"]}</td>
-                <td>{preco.toFixed(2)}</td>
-                <td>{(preco * 0.95).toFixed(2)}</td>
-                <td>{(preco * 0.9).toFixed(2)}</td>
-                <td>{(preco * 0.85).toFixed(2)}</td>
-                <td>{(preco * 0.8).toFixed(2)}</td>
+                <td>{preco.toFixed(2).replace(".", ",")}</td>
+                <td>{(preco * 0.95).toFixed(2).replace(".", ",")}</td>
+                <td>{(preco * 0.9).toFixed(2).replace(".", ",")}</td>
+                <td>{(preco * 0.85).toFixed(2).replace(".", ",")}</td>
+                <td>{(preco * 0.8).toFixed(2).replace(".", ",")}</td>
               </tr>
             );
           })
@@ -91,11 +91,11 @@ export default function App(props) {
               <tr key={data["ID"]}>
                 <td>{data["ID"]}</td>
                 <td>{data["NOME"]}</td>
-                <td>{preco.toFixed(2)}</td>
-                <td>{(preco * 0.95).toFixed(2)}</td>
-                <td>{(preco * 0.9).toFixed(2)}</td>
-                <td>{(preco * 0.85).toFixed(2)}</td>
-                <td>{(preco * 0.8).toFixed(2)}</td>
+                <td>{preco.toFixed(2).replace(".", ",")}</td>
+                <td>{(preco * 0.95).toFixed(2).replace(".", ",")}</td>
+                <td>{(preco * 0.9).toFixed(2).replace(".", ",")}</td>
+                <td>{(preco * 0.85).toFixed(2).replace(".", ",")}</td>
+                <td>{(preco * 0.8).toFixed(2).replace(".", ",")}</td>
               </tr>
             );
           });

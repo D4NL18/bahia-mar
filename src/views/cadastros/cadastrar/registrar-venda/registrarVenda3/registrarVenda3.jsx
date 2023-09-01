@@ -40,6 +40,14 @@ function RegistrarVenda() {
 
     setEstahRegistrando(true);
 
+    let total = 0;
+    for (const [id, quant] of Object.entries(quantProdStates)) {
+      const prod = navigateProps.produtos.find(
+        (prod) => prod["ID"] === Number(id)
+      );
+      total += Number(prod["PRECO"]) * quant;
+    }
+
     fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/inserir-venda`, {
       method: "POST",
       headers: {
@@ -51,6 +59,7 @@ function RegistrarVenda() {
           ...navigateProps.ids,
           discount: Number(desc.replace(",", ".")),
           amountPaid: Number(quantPago.replace(",", ".")),
+          total,
         },
         products: quantProdStates,
       }),
