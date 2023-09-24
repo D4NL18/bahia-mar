@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import "./botaoGrande.css";
 
 function BotaoGrande(props) {
-  const { style, text, disabled, path } = props;
+  const { style, text, disabled, path, handleClick } = props;
 
   const navigate = useNavigate();
 
-  function handleClick() {
+  function _handleClick() {
     if (path) navigate(path);
   }
 
@@ -16,7 +16,7 @@ function BotaoGrande(props) {
     <button
       disabled={disabled}
       className="botao-grande"
-      onClick={handleClick}
+      onClick={handleClick || _handleClick}
       style={style}
     >
       <p className="texto-botao-grande">{text}</p>
