@@ -53,11 +53,7 @@ function App() {
           state={email}
           setState={setEmail}
         />
-        <BotaoGrande
-          text="Enviar E-mail"
-          path="/redefinir-senha/nova-senha"
-          handleClick={handleClick}
-        />
+        <BotaoGrande text="Enviar E-mail" handleClick={handleClick} />
         <p className="texto-alerta-redefinirSenha">
           Atenção! Entre no endereço de email informado para prosseguir com a
           redefinição de senha

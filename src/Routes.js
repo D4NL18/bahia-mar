@@ -30,7 +30,7 @@ function Router() {
           <Route exact path="/redefinir-senha" element={<RedefinirSenha />} />
           <Route
             exact
-            path="/redefinir-senha/nova-senha"
+            path="/redefinir-senha/nova-senha/:token"
             element={<RedefinirSenha2 />}
           />
 
