@@ -12,7 +12,7 @@ function Estatisticas() {
   const [aguardandoAsync, setAguardandoAsync] = useState(false);
 
   useEffect(() => {
-    setAguardandoAsync(true);
+    /*setAguardandoAsync(true);
     fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/obter-vendas`, {
       method: "GET",
       headers: {
@@ -33,7 +33,8 @@ function Estatisticas() {
         // mostrar mensagem de erro...
         console.log(err);
       })
-      .finally(() => setAguardandoAsync(false));
+      .finally(() => setAguardandoAsync(false));*/
+    setAguardandoAsync(false);
   }, []);
 
   if (aguardandoAsync) return <></>;
