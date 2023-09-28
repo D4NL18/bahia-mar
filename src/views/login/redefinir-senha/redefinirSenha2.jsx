@@ -7,13 +7,13 @@ import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
 
 import "./redefinirSenha2.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { testarLogin, tokenEhValido } from "../../../services/api";
+import { testarLogin } from "../../../services/api";
 
 function App() {
-  const token = useRef(useParams().token);
+  const tokenRedefinirSenha = useRef(useParams().token);
   const navigate = useNavigate();
 
-  const [isValidatingToken, setIsValidatingToken] = useState(true);
+  const [isValidandoToken, setIsValidandoToken] = useState(true);
   const [senha, setSenha] = useState("");
   const [confSenha, setConfSenha] = useState("");
 
@@ -22,28 +22,43 @@ function App() {
 
     if (senha < 8 || senha > 15) return alert("Senha inválida");
     if (senha !== confSenha) return alert("As senhas não batem");
+
+    fetch(
+      `${process.env.REACT_APP_BACKEND_ROUTE}/redefinir-senha/${tokenRedefinirSenha.current}`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          newPassword: senha,
+        }),
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          alert(res.error);
+        } else {
+          alert("Senha alterada com sucesso");
+          navigate("/");
+        }
+      });
   }
 
   useEffect(() => {
     testarLogin(navigate, false).then(async (ficouNaPagina) => {
-      if (!ficouNaPagina) return;
-
-      const ehValido = await tokenEhValido(
-        token.current,
-        "validar-jwt-redefinir-senha"
-      );
-      if (!ehValido) {
-        alert("Token expirou ou não existe");
-        return navigate("/");
+      if (ficouNaPagina) {
+        if (!tokenRedefinirSenha.current) navigate("/");
+        else setIsValidandoToken(false);
       }
-
-      setIsValidatingToken(false);
     });
   }, [navigate]);
 
-  if (isValidatingToken) return <></>;
+  if (isValidandoToken) return <></>;
 
-  console.log(token);
+  console.log(tokenRedefinirSenha.current);
   return (
     <div className="entire-page-redefinirSenha2">
       <section className="title-section-redefinirSenha2">
@@ -54,16 +69,14 @@ function App() {
         onSubmit={handleSubmit}
       >
         <InputGrande
-          inputProps={{ minLength: 8, maxLength: 15 }}
+          inputProps={{ minLength: 8, maxLength: 15, type: "password" }}
           label="Nova Senha"
-          type="password"
           state={senha}
           setState={setSenha}
         />
         <InputGrande
-          inputProps={{ minLength: 8, maxLength: 15 }}
+          inputProps={{ minLength: 8, maxLength: 15, type: "password" }}
           label="Confirmar nova senha"
-          type="password"
           state={confSenha}
           setState={setConfSenha}
         />
