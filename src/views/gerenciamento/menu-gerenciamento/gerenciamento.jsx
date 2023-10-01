@@ -57,11 +57,16 @@ function Estatisticas() {
             path="/menu/gerenciamento/estoque"
             tipo="Gerenciamento"
           />
-        </section>
-        <section className="coluna-estatisticas">
           <BotaoMedio
             text="Tabela de Preços"
             path="/menu/gerenciamento/precos"
+            tipo="Gerenciamento"
+          />
+        </section>
+        <section className="coluna-estatisticas">
+          <BotaoMedio
+            text="Funcionários"
+            path="/menu/gerenciamento/funcionarios"
             tipo="Gerenciamento"
           />
           <BotaoMedio
@@ -70,7 +75,9 @@ function Estatisticas() {
             tipo="Gerenciamento"
           />
         </section>
+
       </section>
+
 
       <BotaoVoltar path="/menu" />
     </div>

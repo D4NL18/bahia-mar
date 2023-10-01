@@ -8,6 +8,8 @@ import Gerenciamento from "./views/gerenciamento/menu-gerenciamento/gerenciament
 import Vendas from "./views/gerenciamento/vendas/vendas";
 import Clientes from "./views/gerenciamento/clientes/clientes";
 import PerfilCliente from "./views/gerenciamento/clientes/perfilCliente/perfilCliente";
+import PerfilFuncionario from "./views/gerenciamento/funcionarios/perfilFuncionario";
+import Funcionario from "./views/gerenciamento/funcionarios/funcionarios";
 import Estoque from "./views/gerenciamento/estoque/estoque";
 import Precos from "./views/gerenciamento/precos/precos";
 import Cadastros from "./views/cadastros/menu-cadastros/cadastros";
@@ -33,7 +35,16 @@ function Router() {
             path="/redefinir-senha/nova-senha/:token"
             element={<RedefinirSenha2 />}
           />
-
+          <Route
+            exact
+            path="/menu/gerenciamento/funcionarios"
+            element={<Funcionario />}
+          />
+          <Route
+            exact
+            path="/menu/gerenciamento/funcionarios/funcionario"
+            element={<PerfilFuncionario />}
+          />
           <Route exact path="/menu" element={<Menu />} />
           <Route exact path="/menu/gerenciamento" element={<Gerenciamento />} />
           <Route exact path="/menu/gerenciamento/vendas" element={<Vendas />} />
@@ -48,6 +59,7 @@ function Router() {
             path="/menu/gerenciamento/clientes"
             element={<Clientes />}
           />
+
           <Route exact path="/cliente" element={<PerfilCliente />} />
           <Route exact path="/menu/cadastros" element={<Cadastros />} />
           <Route

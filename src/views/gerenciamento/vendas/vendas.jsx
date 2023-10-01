@@ -102,12 +102,7 @@ function Vendas() {
         <div className="entire-page-vendas">
             <body className="painel-vendas" >
                 <section className="filtros-vendas">
-                    <div className="infos-filtros-vendas">
-                        <Select options={tipoTempo} />
-                        <InputVendas inputProps={{ type: "date" }} />
-                        <DadosVendas label="Faturamento" info={`R$ ${data[3].userGain}`} />
-                        <DadosVendas label="Vendas" info={"57"} />
-                    </div>
+
                     <div className='meta-vendas'>
                         <img src={Logo} className="logo-vendas" alt="logo" />
                         <InputVendas
@@ -121,6 +116,13 @@ function Vendas() {
                         </div>
 
                     </div>
+                    <div className="infos-filtros-vendas">
+                        <Select options={tipoTempo} />
+                        <InputVendas inputProps={{ type: "date" }} />
+                        <DadosVendas label="Faturamento" info={`R$ ${data[3].userGain}`} />
+                        <DadosVendas label="Vendas" info={"57"} />
+                    </div>
+
                 </section>
                 <section className="faturamento-venda">
                     <h2 className='titulo-grafico-vendas'><PaidIcon fontSize='large' />Faturamento </h2>

@@ -6,7 +6,11 @@ import "./item.css";
 function Item(props) {
   const navigate = useNavigate();
   function handleClick() {
-    navigate(`/cliente?id=${props.id}`);
+    (props.tipo == "clientes") ? 
+    navigate(`/cliente?id=${props.id}`)
+    :
+    // navigate(`/menu/gerenciamento/funcionarios/funcionario?id=${props.id}`)
+    navigate(`/menu/gerenciamento/funcionarios/funcionario`)
   }
 
   return (

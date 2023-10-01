@@ -19,7 +19,6 @@
 .texto-item {
   margin: 0;
   font-size: 1.5rem;
-  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -35,4 +34,18 @@
 .cor-pago-item {
   width: 50%;
   height: 50%;
+}
+
+@media only screen and (max-width: 1023px) {
+  .entire-item {
+    height: 8rem;
+  }
+  .div-nome-item {
+    flex-direction: column;
+  }
+  .texto-item {
+    font-size: 1rem;
+    white-space: wrap;
+
+  }
 }

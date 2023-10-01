@@ -28,10 +28,7 @@
 }
 
 @media only screen and (max-width: 425px) {
-  .botao-voltar {
-    width: 4rem;
-    height: 3rem;
-  }
+
   .seta-bota-voltar {
     color: white;
     transform: scale(1.3);
@@ -39,10 +36,6 @@
 }
 
 @media only screen and (max-height: 425px) {
-  .botao-voltar {
-    width: 4rem;
-    height: 3rem;
-  }
   .seta-bota-voltar {
     color: white;
     transform: scale(1.3);

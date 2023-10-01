@@ -16,6 +16,7 @@ function List(props) {
           isPago={op["STATUS"]}
           cpf={op["CPF_CNPJ"]}
           id={op["ID"]}
+          tipo={props.tipo}
         />
       ))}
     </div>

@@ -1,14 +1,14 @@
 import React from "react";
 
 import TituloMedio from "../../../components/titulo/titulo-medio/tituloMedio";
-import ClientList from "../../../components/clientList/list/list";
+import EmployeList from "../../../components/clientList/list/list";
 import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
-import "./clientes.css";
+import "./funcionarios.css";
 import { useState } from "react";
 import { useEffect } from "react";
 
-function Clientes() {
-  const [clientes, setClientes] = useState(undefined);
+function Funcionarios() {
+  const [funcionarios, setFuncionarios] = useState(undefined);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/obter-clientes?status=true`, {
@@ -26,7 +26,7 @@ function Clientes() {
           // mostrar mensagem de erro...
         } else {
           // deu bom, proseguir...
-          setClientes(res);
+          setFuncionarios(res);
         }
       })
       .catch((err) => {
@@ -35,20 +35,20 @@ function Clientes() {
       });
   }, []);
 
-  if (!clientes) return <></>;
+  if (!funcionarios) return <></>;
 
-  console.log(clientes);
+  console.log(funcionarios);
   return (
-    <div className="entire-page-clientes">
-      <header className="header-clientes">
-        <TituloMedio title="Clientes" />
+    <div className="entire-page-funcionarios">
+      <header className="header-funcionarios">
+        <TituloMedio title="Funcionarios" />
       </header>
-      <div className="body-clientes">
-        <ClientList data={clientes} tipo="clientes" />
+      <div className="body-funcionarios">
+        <EmployeList data={funcionarios} tipo="funcionarios" />
       </div>
       <BotaoVoltar path="/menu/gerenciamento" />
     </div>
   );
 }
 
-export default Clientes;
+export default Funcionarios;

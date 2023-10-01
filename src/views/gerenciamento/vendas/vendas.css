@@ -21,7 +21,7 @@
 
 .filtros-vendas {
     width: 45%;
-    height: 400px;
+    height: 30rem;
     display: flex;
     justify-content: space-between;
     /* background-color: blueviolet; */
@@ -70,7 +70,7 @@
 
 .faturamento-venda {
     width: 45%;
-    height: 400px;
+    height: 30rem;
     background-color: #dedede;
     padding: 2%;
     padding-bottom: 5%;
@@ -83,7 +83,7 @@
 
 .faturamento-funcionarios-vendas {
     width: 45%;
-    height: 400px;
+    height: 30rem;
     background-color: #dedede;
     padding: 2%;
     border-radius: 5%;
@@ -95,7 +95,7 @@
 
 .produtos-faturamento-venda {
     width: 45%;
-    height: 400px;
+    height: 30rem;
     background-color: #dedede;
     padding: 2%;
     border-radius: 5%;
@@ -107,7 +107,7 @@
 
 .produtos-quantidade-venda {
     width: 45%;
-    height: 400px;
+    height: 30rem;
     background-color: #dedede;
     padding: 2%;
     border-radius: 5%;
@@ -119,7 +119,7 @@
 
 .tabela-vendas {
     width: 45%;
-    height: 400px;
+    height: 30rem;
     background-color: #dedede;
     padding: 2%;
     border-radius: 5%;
@@ -130,4 +130,50 @@
     flex-direction: column;
     text-align: center;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+@media only screen and (max-width: 1300px) {
+    .filtros-vendas {
+        width: 90%;
+        height: auto;
+        margin: 2rem 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .infos-filtros-vendas {
+        width: 95%;
+    }
+    .meta-vendas {
+        width: 95%;
+    }
+    .faturamento-venda {
+        width: 90%;
+        margin: 2rem 0;
+        padding: 1rem 1rem 5rem 1rem;
+    }
+    .produtos-faturamento-venda {
+        width: 90%;
+        margin: 2rem 0;
+        padding: 1rem 1rem 5rem 1rem;
+    }
+    .faturamento-funcionarios-vendas {
+        width: 90%;
+        margin: 2rem 0;
+        padding: 1rem 1rem 5rem 1rem;
+    }
+    .produtos-quantidade-venda {
+        width: 90%;
+        margin: 2rem 0;
+        padding: 1rem 1rem 5rem 1rem;
+    }
+    .tabela-vendas {
+        width: 90%;
+        margin: 2rem 0;
+    }
+}
+
+
+@media only screen and (max-width: 640px) {
+
 }

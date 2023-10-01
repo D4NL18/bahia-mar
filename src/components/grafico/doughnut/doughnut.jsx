@@ -1,6 +1,6 @@
 import { Doughnut } from "react-chartjs-2";
 
-function Barras(props) {
+function Donut(props) {
     return (
         <Doughnut
             width={10}
@@ -18,4 +18,4 @@ function Barras(props) {
     );
 }
 
-export default Barras;
+export default Donut;
