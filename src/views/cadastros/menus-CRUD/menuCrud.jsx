@@ -6,8 +6,17 @@ import ModalProduto from "../../../components/modais/modal-pequeno/modalPequeno"
 import ModalSelect from "../../../components/modais/modal-select/modalSelect";
 
 import "./menuCrud.css";
+import { useEffect } from "react";
+import { testarEhAdmin, testarLogin } from "../../../services/api";
+import { useNavigate } from "react-router-dom";
 
 function App(props) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!testarLogin(navigate)) return;
+    testarEhAdmin(navigate);
+  }, [navigate]);
+
   //console.log(props.tipo);
   return (
     <div className="entire-page-menuCrud">

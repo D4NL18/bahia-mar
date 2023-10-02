@@ -6,26 +6,38 @@ import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
 import "./clientes.css";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  getTokenSessao,
+  logout,
+  testarEhAdmin,
+  testarLogin,
+} from "../../../services/api";
 
 function Clientes() {
+  const navigate = useNavigate();
   const [clientes, setClientes] = useState(undefined);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/obter-clientes?status=true`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `${
+        process.env.REACT_APP_BACKEND_ROUTE
+      }/obter-clientes/${getTokenSessao()}?status=true`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
       .then(async (res) => {
-        const { status } = res;
-        res = await res.json();
-        if (status !== 200) {
-          console.log(res.message); //mensagem de erro
-          // mostrar mensagem de erro...
+        if (res.error) {
+          alert(res.error);
+          logout();
+          navigate("/");
         } else {
-          // deu bom, proseguir...
           setClientes(res);
         }
       })
@@ -33,7 +45,12 @@ function Clientes() {
         // mostrar mensagem de erro...
         console.log(err);
       });
-  }, []);
+  }, [navigate]);
+
+  useEffect(() => {
+    if (!testarLogin(navigate)) return;
+    testarEhAdmin(navigate);
+  }, [navigate]);
 
   if (!clientes) return <></>;
 

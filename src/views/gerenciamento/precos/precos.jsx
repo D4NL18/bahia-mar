@@ -7,26 +7,41 @@ import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
 import "./precos.css";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  getTokenSessao,
+  logout,
+  testarEhAdmin,
+  testarLogin,
+} from "../../../services/api";
 
 function Precos() {
+  const navigate = useNavigate();
+
+  const colunas = ["ID", "Produto", "Preço", "5%", "10%", "15%", "20%"];
+
   const [produtos, setProdutos] = useState(undefined);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/obter-produtos`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then(async (res) => {
-        const { status } = res;
-        res = await res.json();
-        if (status !== 200) {
-          console.log(res.message); //mensagem de erro
-          // mostrar mensagem de erro...
+    fetch(
+      `${
+        process.env.REACT_APP_BACKEND_ROUTE
+      }/obter-produtos/${getTokenSessao()}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          alert(res.error);
+          logout();
+          navigate("/");
         } else {
-          // deu bom, proseguir...
           setProdutos(res);
         }
       })
@@ -34,9 +49,12 @@ function Precos() {
         // mostrar mensagem de erro...
         console.log(err);
       });
-  }, []);
+  }, [navigate]);
 
-  const colunas = ["ID", "Produto", "Preço", "5%", "10%", "15%", "20%"];
+  useEffect(() => {
+    if (!testarLogin(navigate)) return;
+    testarEhAdmin(navigate);
+  }, [navigate]);
 
   if (!produtos) return <></>;
 

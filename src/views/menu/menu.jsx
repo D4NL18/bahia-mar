@@ -7,10 +7,12 @@ import BotaoGrande from "../../components/botao/botao-grande/botaoGrande";
 import BotaoSair from "../../components/botao/botao-sair/botaoSair";
 
 import "./menu.css";
-import { testarLogin } from "../../services/api";
+import { getEhAdmin, testarLogin } from "../../services/api";
 
 function Menu() {
   const navigate = useNavigate();
+  const ehAdmin = getEhAdmin();
+
   useEffect(() => {
     testarLogin(navigate);
   }, [navigate]);
@@ -22,8 +24,18 @@ function Menu() {
         <Subtitulo subtitle="Selecione o que deseja fazer" />
       </section>
       <section className="caixa-central-section-menu">
-        <BotaoGrande text="Relatórios" path="/menu/gerenciamento" />
-        <BotaoGrande text="Cadastros" path="/menu/cadastros" />
+        <BotaoGrande
+          handleClick={() => {
+            if (!ehAdmin) alert("Apenas Admins podem visualizar os relatórios");
+            else navigate("/menu/gerenciamento");
+          }}
+          text="Relatórios"
+          path="/menu/gerenciamento"
+        />
+        <BotaoGrande
+          text={ehAdmin ? "Cadastros" : "Cadastrar venda"}
+          path={`/menu/cadastros${ehAdmin ? "" : "/venda"}`}
+        />
       </section>
       <div className="title-section-menu" style={{ visibility: "hidden" }}>
         <TituloGrande title="a" />

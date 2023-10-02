@@ -4,12 +4,14 @@ import TituloMedio from "../../../components/titulo/titulo-medio/tituloMedio";
 import Subtitulo from "../../../components/titulo/subtitulo/subtitulo";
 import BotaoMedio from "../../../components/botao/botao-medio/botaoMedio";
 import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { testarEhAdmin, testarLogin } from "../../../services/api";
 
 export const salesDats = undefined;
 
 function Estatisticas() {
-  const [aguardandoAsync, setAguardandoAsync] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     /*setAguardandoAsync(true);
@@ -34,10 +36,10 @@ function Estatisticas() {
         console.log(err);
       })
       .finally(() => setAguardandoAsync(false));*/
-    setAguardandoAsync(false);
-  }, []);
 
-  if (aguardandoAsync) return <></>;
+    if (!testarLogin(navigate)) return;
+    testarEhAdmin(navigate);
+  }, [navigate]);
 
   return (
     <div className="entire-page-estatisticas">
@@ -75,9 +77,7 @@ function Estatisticas() {
             tipo="Gerenciamento"
           />
         </section>
-
       </section>
-
 
       <BotaoVoltar path="/menu" />
     </div>

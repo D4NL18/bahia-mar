@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import InputGrande from "../../../../components/input/input-grande/inputGrande";
 import BotaoGrande from "../../../../components/botao/botao-grande/botaoGrande";
@@ -7,9 +7,12 @@ import TituloMedio from "../../../../components/titulo/titulo-medio/tituloMedio"
 
 import "./cadastroMotorista.css";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { testarEhAdmin, testarLogin } from "../../../../services/api";
 
 function CadastroMotorista() {
+  const navigate = useNavigate();
+
   const location = useLocation();
   const estahRegistrando = !location.state;
   console.log(location.state);
@@ -62,6 +65,11 @@ function CadastroMotorista() {
       })
       .finally(() => setAguardandoAsync(false));
   }
+
+  useEffect(() => {
+    if (!testarLogin(navigate)) return;
+    testarEhAdmin(navigate);
+  }, [navigate]);
 
   return (
     <div className="entire-page-cadastroMotorista">

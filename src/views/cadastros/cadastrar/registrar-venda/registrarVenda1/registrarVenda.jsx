@@ -7,8 +7,16 @@ import BotaoGrande from "../../../../../components/botao/botao-grande/botaoGrand
 
 import "./registrarVenda.css";
 import { useNavigate } from "react-router-dom";
+import {
+  getEhAdmin,
+  getTokenSessao,
+  logout,
+  testarLogin,
+} from "../../../../../services/api";
 
 function RegistrarVenda() {
+  const ehAdmin = getEhAdmin();
+
   const navigate = useNavigate();
   const [info, setInfo] = useState();
 
@@ -18,23 +26,31 @@ function RegistrarVenda() {
   const [metodoPagamento, setMetodoPagamento] = useState("Selecionar");
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/obter-info-cadastro-venda`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    }).then(async (res) => {
+    if (!testarLogin(navigate)) return;
+
+    fetch(
+      `${
+        process.env.REACT_APP_BACKEND_ROUTE
+      }/obter-info-cadastro-venda/${getTokenSessao()}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    ).then(async (res) => {
       const jsonRes = await res.json();
-      if (!res.ok) {
-        console.log(jsonRes.message); //mensagem de erro
-        // mostrar mensagem de erro...
+      if (jsonRes.error) {
+        alert(jsonRes.error);
+        logout();
+        navigate("/");
       } else {
         console.log(jsonRes);
         setInfo(jsonRes);
       }
     });
-  }, []);
+  }, [navigate]);
 
   function isNextButtonDisabled() {
     return (
@@ -132,7 +148,7 @@ function RegistrarVenda() {
           </section>
         </div>
       )}
-      <BotaoVoltar path="/menu/cadastros" />
+      <BotaoVoltar path={ehAdmin ? "/menu/cadastros" : "/menu"} />
     </div>
   );
 }

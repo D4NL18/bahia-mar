@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import InputPequeno from "../../../../../components/input/input-pequeno/inputPequeno";
 import TituloMedio from "../../../../../components/titulo/titulo-medio/tituloMedio";
 import BotaoVoltar from "../../../../../components/botao/botao-voltar/botaoVoltar";
 import BotaoGrande from "../../../../../components/botao/botao-grande/botaoGrande";
 import "./registrarVenda3.css";
+import { getTokenSessao } from "../../../../../services/api";
 
 function InputQuantProduto(props) {
   const { prod, quantProdStates, setQuantProdStates } = props;
@@ -25,6 +26,7 @@ function InputQuantProduto(props) {
 }
 
 function RegistrarVenda() {
+  const navigate = useNavigate();
   const [estahRegistrando, setEstahRegistrando] = useState(false);
   const location = useLocation();
   const navigateProps = location.state;
@@ -48,28 +50,34 @@ function RegistrarVenda() {
       total += Number(prod["PRECO"]) * quant;
     }
 
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/inserir-venda`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        sale: {
-          ...navigateProps.ids,
-          discount: Number(desc.replace(",", ".")),
-          amountPaid: Number(quantPago.replace(",", ".")),
-          total,
+    fetch(
+      `${
+        process.env.REACT_APP_BACKEND_ROUTE
+      }/inserir-venda/${getTokenSessao()}`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        products: quantProdStates,
-      }),
-    })
+        body: JSON.stringify({
+          sale: {
+            ...navigateProps.ids,
+            discount: Number(desc.replace(",", ".")),
+            amountPaid: Number(quantPago.replace(",", ".")),
+            total,
+          },
+          products: quantProdStates,
+        }),
+      }
+    )
+      .then((res) => res.json)
       .then(async (res) => {
-        if (res.status !== 200) {
-          console.log((await res.json()).message); //mensagem de erro
-          // mostrar mensagem de erro...
+        if (res.error) {
+          alert(res.error);
         } else {
-          // deu bom, proseguir...
+          alert("Venda cadastrada");
+          navigate("/menu");
         }
       })
       .catch((err) => {
