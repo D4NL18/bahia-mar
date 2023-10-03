@@ -7,12 +7,13 @@ import TituloMedio from "../../../../components/titulo/titulo-medio/tituloMedio"
 import SelectPequeno from "../../../../components/input/select-medio/selectMedio";
 
 import "./cadastroCliente.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getTokenSessao, handleErrorBackend } from "../../../../services/api";
 
 function CadastroCliente() {
+  const navigate = useNavigate();
   const location = useLocation();
   const estahRegistrando = !location.state;
-  console.log(location.state);
 
   const [tipoPessoa, setTipoPessoa] = useState(
     estahRegistrando
@@ -53,41 +54,45 @@ function CadastroCliente() {
     if (aguardandoAsync) return;
 
     setAguardandoAsync(true);
-    const path = estahRegistrando
-      ? "inserir-cliente"
-      : "editar-cliente-e-endereco";
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/${path}`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        client: {
-          id: estahRegistrando ? undefined : location.state["ID"],
-          isPhysicalPerson: tipoPessoa === "Física",
-          name: nome,
-          phone: telefone,
-          cpfCnpj,
+    const path = estahRegistrando ? "inserir" : "editar";
+    fetch(
+      `${
+        process.env.REACT_APP_BACKEND_ROUTE
+      }/clientes/${path}/${getTokenSessao()}`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        address: {
-          cep,
-          city: cidade,
-          neighborhood: bairro,
-          street: rua,
-          number: numero,
-          complement: complemento,
-          clientCpfCnpj: cpfCnpj,
-          clientId: estahRegistrando ? undefined : location.state["ID"],
-        },
-      }),
-    })
-      .then(async (res) => {
-        if (res.status !== 200) {
-          console.log((await res.json()).message); //mensagem de erro
-          // mostrar mensagem de erro...
+        body: JSON.stringify({
+          client: {
+            id: estahRegistrando ? undefined : location.state["ID"],
+            isPhysicalPerson: tipoPessoa === "Física",
+            name: nome,
+            phone: telefone,
+            cpfCnpj,
+          },
+          address: {
+            cep,
+            city: cidade,
+            neighborhood: bairro,
+            street: rua,
+            number: numero,
+            complement: complemento,
+            clientCpfCnpj: cpfCnpj,
+            clientId: estahRegistrando ? undefined : location.state["ID"],
+          },
+        }),
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          handleErrorBackend(navigate, res.error);
         } else {
-          // deu bom, proseguir...
+          alert(`Cliente ${estahRegistrando ? "registrado" : "editado"}`);
+          navigate("/menu/cadastros/cliente");
         }
       })
       .catch((err) => {

@@ -22,7 +22,7 @@ function Clientes() {
     fetch(
       `${
         process.env.REACT_APP_BACKEND_ROUTE
-      }/obter-clientes/${getTokenSessao()}?status=true`,
+      }/clientes/obter-clientes/${getTokenSessao()}?status=true`,
       {
         method: "GET",
         headers: {

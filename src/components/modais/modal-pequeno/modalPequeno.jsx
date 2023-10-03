@@ -4,6 +4,8 @@ import Modal from "react-modal";
 import InputPequeno from "../../input/input-pequeno/inputPequeno";
 import BotaoMedio from "../../botao/botao-medio/botaoMedio";
 import TituloPequeno from "../../titulo/titulo-pequeno/tituloPequeno";
+import { getTokenSessao, handleErrorBackend } from "../../../services/api";
+import { useNavigate } from "react-router-dom";
 
 const customStyles = {
   content: {
@@ -20,6 +22,7 @@ const customStyles = {
 };
 
 function App(props) {
+  const navigate = useNavigate();
   const estahRegistrando = !props.editInfo;
   const [isModalOpen, setModalOpen] = useState(false);
   const [aguardandoAsync, setAguardandoAsync] = useState(false);
@@ -34,19 +37,6 @@ function App(props) {
     setModalOpen(false);
   }
 
-  function obterRota() {
-    switch (props.tipo) {
-      case "Produto":
-        return props.editInfo ? "editar-produto" : "inserir-produto";
-      case "Opção de Pagamento":
-        return props.editInfo
-          ? "editar-metodo-pagamento"
-          : "inserir-metodo-pagamento";
-      default:
-        return "";
-    }
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
     if (aguardandoAsync) return;
@@ -54,27 +44,33 @@ function App(props) {
     setAguardandoAsync(true);
     let body = { name: nome.trim() };
     body.id = props.editInfo ? props.editInfo["ID"] : undefined;
-    if (props.tipo === "Produto")
+    if (props.tipo === "produtos")
       try {
         body.value = Number(preco.replace(",", "."));
       } catch {
-        throw new Error("Preço inválido");
+        alert("Preço inválido");
+        return;
       }
 
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/${obterRota()}`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-      .then(async (res) => {
-        if (res.status !== 200) {
-          console.log((await res.json()).message); //mensagem de erro
-          // mostrar mensagem de erro...
+    fetch(
+      `${process.env.REACT_APP_BACKEND_ROUTE}/${props.tipo}/${
+        estahRegistrando ? "inserir" : "editar"
+      }/${getTokenSessao()}`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          handleErrorBackend(navigate, res.error);
         } else {
-          // deu bom, proseguir...
+          alert("Sucesso");
           window.location.reload(false);
         }
       })
@@ -90,6 +86,7 @@ function App(props) {
       });
   }
 
+  console.log(props);
   return (
     <div>
       <button
@@ -100,12 +97,12 @@ function App(props) {
           setModalOpen(true);
           setNome(estahRegistrando ? "" : props.editInfo["NOME"]);
           setPreco(
-            estahRegistrando ? "" : props.editInfo["PRECO"].replace(".", ",")
+            estahRegistrando ? "" : props.editInfo["PRECO"]?.replace(".", ",")
           );
         }}
       >
         <p className="texto-botao-medio">{`${props.acao || "Cadastrar"} ${
-          props.tipo
+          props.rotulo
         }`}</p>
       </button>
       <Modal
@@ -114,7 +111,7 @@ function App(props) {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <TituloPequeno title={`${props.acao || "Cadastrar"} ${props.tipo}`} />
+        <TituloPequeno title={`${props.acao || "Cadastrar"} ${props.rotulo}`} />
         <form
           style={{
             display: "flex",
@@ -129,7 +126,7 @@ function App(props) {
             state={nome}
             setState={setNome}
           />
-          {props.tipo === "Produto" && (
+          {props.tipo === "produtos" && (
             <InputPequeno
               label="Preço"
               inputProps={{ type: "text", required: true, maxLength: 8 }}

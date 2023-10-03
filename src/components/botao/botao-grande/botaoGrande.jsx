@@ -15,6 +15,7 @@ function BotaoGrande(props) {
   return (
     <button
       disabled={disabled}
+      type="submit"
       className="botao-grande"
       onClick={handleClick || _handleClick}
       style={style}

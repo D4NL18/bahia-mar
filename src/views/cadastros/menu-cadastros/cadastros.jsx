@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import TituloMedio from "../../../components/titulo/titulo-medio/tituloMedio";
 import Subtitulo from "../../../components/titulo/subtitulo/subtitulo";
@@ -6,8 +6,17 @@ import BotaoGrande from "../../../components/botao/botao-grande/botaoGrande";
 import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
 
 import "./cadastros.css";
+import { useNavigate } from "react-router-dom";
+import { testarEhAdmin, testarLogin } from "../../../services/api";
 
 function Cadastros() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    testarLogin(navigate);
+    testarEhAdmin(navigate);
+  }, [navigate]);
+
   return (
     <div className="entire-page-cadastros">
       <section className="title-section-cadastros">

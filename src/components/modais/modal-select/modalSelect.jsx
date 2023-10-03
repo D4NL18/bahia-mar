@@ -6,6 +6,7 @@ import SelectPequeno from "../../input/select-pequeno/selectPequeno";
 import BotaoMedio from "../../botao/botao-medio/botaoMedio";
 import TituloPequeno from "../../titulo/titulo-pequeno/tituloPequeno";
 import ModalPequeno from "../../../components/modais/modal-pequeno/modalPequeno";
+import { getTokenSessao, handleErrorBackend } from "../../../services/api";
 
 const customStyles = {
   content: {
@@ -28,41 +29,6 @@ function App(props) {
   const [info, setInfo] = useState();
   const [infoSelecionada, setInfoSelecionada] = useState("Selecionar");
 
-  function obterRotaInfo() {
-    switch (props.tipo) {
-      case "Cliente":
-        return "obter-clientes-com-endereco";
-      case "Opção de Pagamento":
-        return "obter-metodos-pagamento";
-      case "Administrador":
-        return "obter-adms";
-      case "Funcionário":
-        return "obter-motoristas";
-      case "Produto":
-        return "obter-produtos";
-      case "Veículo":
-        return "obter-veiculos";
-      default:
-        return "";
-    }
-  }
-  function obterRotaDelete() {
-    switch (props.tipo) {
-      case "Cliente":
-        return "remover-cliente";
-      case "Opção de Pagamento":
-        return "remover-metodo-pagamento";
-      case "Administrador":
-      case "Funcionário":
-        return "remover-funcionario";
-      case "Produto":
-        return "remover-produto";
-      case "Veículo":
-        return "remover-veiculo";
-      default:
-        return "";
-    }
-  }
   function obterOpcsSelect() {
     if (!info || info.length === 0) {
       alert("Nenhuma cadastro encontrado");
@@ -72,20 +38,20 @@ function App(props) {
     let opcs;
     console.log(info);
     switch (props.tipo) {
-      case "Cliente":
+      case "clientes":
         opcs = info.map(
           (cliente) => `${cliente["NOME"]} - ${cliente["CPF_CNPJ"]}`
         );
         break;
-      case "Opção de Pagamento":
-      case "Produto":
+      case "opcoes-pag":
+      case "produtos":
         opcs = info.map((i) => i["NOME"]);
         break;
-      case "Administrador":
-      case "Funcionário":
+      //case "Administrador":
+      case "funcionarios":
         opcs = info.map((func) => `${func["NOME"]} - ${func["CPF"]}`);
         break;
-      case "Veículo":
+      case "veiculos":
         opcs = info.map(
           (veiculo) => `${veiculo["MARCA"]} - ${veiculo["PLACA"]}`
         );
@@ -99,8 +65,14 @@ function App(props) {
   }
 
   async function obterInfo() {
+    let funcsSubPath = "";
+    if (props.titulo === "Administradores") funcsSubPath = "-adms";
+    else if (props.titulo === "Funcionários") funcsSubPath = "-motoristas";
+
     const res = await fetch(
-      `${process.env.REACT_APP_BACKEND_ROUTE}/${obterRotaInfo()}`,
+      `${process.env.REACT_APP_BACKEND_ROUTE}/${
+        props.tipo
+      }/obter${funcsSubPath}/${getTokenSessao()}`,
       {
         method: "GET",
         headers: {
@@ -109,7 +81,10 @@ function App(props) {
         },
       }
     );
-    return await res.json();
+    const jsonRes = await res.json();
+    if (jsonRes.error) {
+      handleErrorBackend(navigate, jsonRes.error);
+    } else return jsonRes;
   }
 
   function afterOpenModal() {
@@ -130,26 +105,25 @@ function App(props) {
     if (props.acao === "Apagar") {
       let body;
       switch (props.tipo) {
-        case "Cliente":
+        case "clientes":
           const cpfCnpj = infoSelecionada.split(" - ")[1];
           const cliente = info.find((c) => c["CPF_CNPJ"] === cpfCnpj);
           body = JSON.stringify({
             id: cliente["ID"],
           });
           break;
-        case "Opção de Pagamento":
-        case "Produto":
+        case "opcoes-pag":
+        case "produtos":
           body = JSON.stringify({
             name: infoSelecionada,
           });
           break;
-        case "Administrador":
-        case "Funcionário":
+        case "funcionarios":
           body = JSON.stringify({
             cpf: infoSelecionada.split(" - ")[1],
           });
           break;
-        case "Veículo":
+        case "veiculos":
           body = JSON.stringify({
             licensePlate: infoSelecionada.split(" - ")[1],
           });
@@ -157,33 +131,38 @@ function App(props) {
         default:
       }
 
-      fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/${obterRotaDelete()}`, {
-        method: "DELETE",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body,
-      })
-        .then(async (res) => {
-          if (!res.ok) {
-            console.log((await res.json()).message); //mensagem de erro
-            // mostrar mensagem de erro...
+      fetch(
+        `${process.env.REACT_APP_BACKEND_ROUTE}/${
+          props.tipo
+        }/remover/${getTokenSessao()}`,
+        {
+          method: "DELETE",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body,
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.error) {
+            handleErrorBackend(navigate, res.error);
           } else {
-            // deu bom, proseguir...
+            alert("Remoção concluída");
+            setInfo(undefined);
+            setInfoSelecionada(undefined);
+            setModalOpen(false);
           }
-        })
-        .finally(() => {
-          setInfo(undefined);
-          setInfoSelecionada(undefined);
-          setModalOpen(false);
         });
     } else if (props.acao === "Editar") {
       let state;
       let path, aux;
       switch (props.tipo) {
-        case "Administrador":
-          path = "/menu/cadastros/funcionario/administrador/cadastrar";
+        case "funcionarios":
+          path = `/menu/cadastros/colaborador/${
+            props.titulo === "Administradores" ? "administrador" : "funcionario"
+          }/cadastrar`;
           aux = infoSelecionada.split(" - ")[1];
           state = info.find((func) => func["CPF"] === aux);
           break;
@@ -192,12 +171,12 @@ function App(props) {
           aux = infoSelecionada.split(" - ")[1];
           state = info.find((func) => func["CPF"] === aux);
           break;
-        case "Cliente":
+        case "clientes":
           path = "/menu/cadastros/cliente/cadastrar";
           aux = infoSelecionada.split(" - ")[1];
           state = info.find((cliente) => cliente["CPF_CNPJ"] === aux);
           break;
-        case "Veículo":
+        case "veiculos":
           path = "/menu/cadastros/veiculo/cadastrar";
           aux = infoSelecionada.split(" - ")[1];
           state = info.find((veiculo) => veiculo["PLACA"] === aux);
@@ -205,9 +184,9 @@ function App(props) {
         default:
       }
 
-      navigate(path, { state });
+      if (path) navigate(path, { state });
     } else {
-      alert("Falha ao identificar ação escolhida");
+      alert("Falha ao tentar identificar ação escolhida");
     }
   }
 
@@ -220,7 +199,7 @@ function App(props) {
           setModalOpen(true);
         }}
       >
-        <p className="texto-botao-medio">{`${props.acao} ${props.tipo}`}</p>
+        <p className="texto-botao-medio">{`${props.acao} ${props.rotulo}`}</p>
       </button>
       <Modal
         isOpen={isModalOpen}
@@ -230,7 +209,7 @@ function App(props) {
       >
         {info ? (
           <>
-            <TituloPequeno title={`Selecione o ${props.tipo}`} />
+            <TituloPequeno title={`Selecione o(a) ${props.rotulo}`} />
             <form
               style={{
                 display: "flex",
@@ -242,7 +221,6 @@ function App(props) {
               <SelectPequeno
                 state={infoSelecionada}
                 setState={setInfoSelecionada}
-                label={props.tipo}
                 options={obterOpcsSelect()}
               />
               {props.acao === "Apagar" ? (
@@ -250,7 +228,7 @@ function App(props) {
               ) : (
                 <ModalPequeno
                   acao="Editar"
-                  tipo={props.tipo}
+                  {...props}
                   editInfo={info.find((v) => v["NOME"] === infoSelecionada)}
                 />
               )}

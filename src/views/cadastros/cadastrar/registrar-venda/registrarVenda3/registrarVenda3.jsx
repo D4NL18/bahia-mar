@@ -6,7 +6,10 @@ import TituloMedio from "../../../../../components/titulo/titulo-medio/tituloMed
 import BotaoVoltar from "../../../../../components/botao/botao-voltar/botaoVoltar";
 import BotaoGrande from "../../../../../components/botao/botao-grande/botaoGrande";
 import "./registrarVenda3.css";
-import { getTokenSessao } from "../../../../../services/api";
+import {
+  getTokenSessao,
+  handleErrorBackend,
+} from "../../../../../services/api";
 
 function InputQuantProduto(props) {
   const { prod, quantProdStates, setQuantProdStates } = props;
@@ -53,7 +56,7 @@ function RegistrarVenda() {
     fetch(
       `${
         process.env.REACT_APP_BACKEND_ROUTE
-      }/inserir-venda/${getTokenSessao()}`,
+      }/vendas/inserir/${getTokenSessao()}`,
       {
         method: "POST",
         headers: {
@@ -71,13 +74,13 @@ function RegistrarVenda() {
         }),
       }
     )
-      .then((res) => res.json)
-      .then(async (res) => {
+      .then((res) => res.json())
+      .then((res) => {
         if (res.error) {
-          alert(res.error);
+          handleErrorBackend(navigate, res.error);
         } else {
           alert("Venda cadastrada");
-          navigate("/menu");
+          navigate("/menu/cadastros");
         }
       })
       .catch((err) => {

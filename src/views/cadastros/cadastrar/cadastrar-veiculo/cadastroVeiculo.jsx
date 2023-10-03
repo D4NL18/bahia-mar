@@ -6,9 +6,11 @@ import BotaoVoltar from "../../../../components/botao/botao-voltar/botaoVoltar";
 import TituloMedio from "../../../../components/titulo/titulo-medio/tituloMedio";
 
 import "./cadastroVeiculo.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getTokenSessao, handleErrorBackend } from "../../../../services/api";
 
 function CadastroMotorista() {
+  const navigate = useNavigate();
   const location = useLocation();
   const estahRegistrando = !location.state;
   console.log(location.state);
@@ -33,27 +35,33 @@ function CadastroMotorista() {
     if (aguardandoAsync) return;
 
     setAguardandoAsync(true);
-    const path = estahRegistrando ? "inserir-veiculo" : "editar-veiculo";
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/${path}`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: estahRegistrando ? undefined : location.state["ID"],
-        type: tipo,
-        branch: marca,
-        model: modelo,
-        licensePlate: placa,
-      }),
-    })
-      .then(async (res) => {
-        if (res.status !== 200) {
-          console.log((await res.json()).message); //mensagem de erro
-          // mostrar mensagem de erro...
+    const path = estahRegistrando ? "inserir" : "editar";
+    fetch(
+      `${
+        process.env.REACT_APP_BACKEND_ROUTE
+      }/veiculos/${path}/${getTokenSessao()}`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: estahRegistrando ? undefined : location.state["ID"],
+          type: tipo,
+          branch: marca,
+          model: modelo,
+          licensePlate: placa,
+        }),
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          handleErrorBackend(navigate, res.error);
         } else {
-          // deu bom, proseguir...
+          alert(`Veículo ${estahRegistrando ? "Registrado" : "Editado"}`);
+          navigate("/menu/cadastros/veiculo");
         }
       })
       .catch((err) => {

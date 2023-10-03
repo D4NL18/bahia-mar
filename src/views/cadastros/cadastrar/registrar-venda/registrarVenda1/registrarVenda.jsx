@@ -31,7 +31,7 @@ function RegistrarVenda() {
     fetch(
       `${
         process.env.REACT_APP_BACKEND_ROUTE
-      }/obter-info-cadastro-venda/${getTokenSessao()}`,
+      }/vendas/obter-info-cadastro-venda/${getTokenSessao()}`,
       {
         method: "GET",
         headers: {

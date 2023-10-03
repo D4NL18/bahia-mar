@@ -75,6 +75,20 @@ export function testarEhAdmin(navigate) {
   }
 }
 
+export function handleErrorBackend(navigate, error) {
+  alert(error.message);
+  switch (error.type) {
+    case "SessionTokenErr":
+      logout();
+      navigate("/");
+      break;
+    case "PermissionErr":
+      navigate("/menu");
+      break;
+    default:
+  }
+}
+
 export function getEhAdmin() {
   const val = localStorage.getItem(EH_ADMIN);
   return val ? val === "true" : false;

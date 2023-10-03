@@ -8,7 +8,12 @@ import TituloMedio from "../../../../components/titulo/titulo-medio/tituloMedio"
 import "./cadastroAdm.css";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { testarEhAdmin, testarLogin } from "../../../../services/api";
+import {
+  getTokenSessao,
+  handleErrorBackend,
+  testarEhAdmin,
+  testarLogin,
+} from "../../../../services/api";
 
 function CadastroAdm() {
   const navigate = useNavigate();
@@ -33,30 +38,34 @@ function CadastroAdm() {
     if (aguardandoAsync) return;
 
     setAguardandoAsync(true);
-    const path = estahRegistrando
-      ? "inserir-funcionario"
-      : "editar-funcionario";
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/${path}`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: estahRegistrando ? undefined : location.state["ID"],
-        name: nome,
-        email,
-        cpf,
-        password: senha,
-        isAdmin: true,
-      }),
-    })
-      .then(async (res) => {
-        if (res.status !== 200) {
-          console.log((await res.json()).message); //mensagem de erro
-          // mostrar mensagem de erro...
+    const path = estahRegistrando ? "inserir" : "editar";
+    fetch(
+      `${
+        process.env.REACT_APP_BACKEND_ROUTE
+      }/funcionarios/${path}/${getTokenSessao()}`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: estahRegistrando ? undefined : location.state["ID"],
+          name: nome,
+          email,
+          cpf,
+          password: senha,
+          isAdmin: true,
+        }),
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          handleErrorBackend(navigate, res.error);
         } else {
-          // deu bom, proseguir...
+          alert(`Administrador ${estahRegistrando ? "Cadastrado" : "Editado"}`);
+          navigate("/menu/cadastros/colaborador/administrador");
         }
       })
       .catch((err) => {
@@ -116,7 +125,10 @@ function CadastroAdm() {
           />
         </section>
         <section className="botao-cadastroAdm">
-          <BotaoGrande disabled={aguardandoAsync} text="Cadastrar" />
+          <BotaoGrande
+            disabled={aguardandoAsync}
+            text={estahRegistrando ? "Cadastrar" : "Editar"}
+          />
         </section>
       </form>
       <BotaoVoltar path="/menu/cadastros/colaborador/administrador" />

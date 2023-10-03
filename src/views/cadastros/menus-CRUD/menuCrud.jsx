@@ -21,25 +21,24 @@ function App(props) {
   return (
     <div className="entire-page-menuCrud">
       <section className="title-section-menuCrud">
-        <TituloMedio title={props.tipo} />
+        <TituloMedio title={props.titulo} />
         <Subtitulo subtitle="Selecione o que deseja fazer" />
       </section>
       <section className="botoes-section-menuCrud">
-        <ModalSelect acao="Apagar" tipo={props.tipo} />
-        <ModalSelect acao="Editar" tipo={props.tipo} />
+        <ModalSelect acao="Apagar" {...props} />
+        <ModalSelect acao="Editar" {...props} />
         {/* <BotaoMedio text={`Apagar ${props.tipo}`} />
         <BotaoMedio text={`Editar ${props.tipo}`} /> */}
-        {props.tipo === "Administrador" ||
-        props.tipo === "Funcionário" ||
-        props.tipo === "Veículo" ||
-        props.tipo === "Cliente" ? (
+        {props.tipo === "funcionarios" ||
+        props.tipo === "veiculos" ||
+        props.tipo === "clientes" ? (
           <BotaoMedio
-            text={`Cadastrar ${props.tipo}`}
+            text={`Cadastrar ${props.rotulo}`}
             path={"cadastrar"}
-            tipo={props.tipo}
+            {...props}
           />
         ) : (
-          <ModalProduto tipo={props.tipo} />
+          <ModalProduto {...props} />
         )}
       </section>
       <section

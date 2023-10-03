@@ -70,7 +70,13 @@ function Router() {
           <Route
             exact
             path="/menu/cadastros/colaborador/administrador"
-            element={<MenuCrud tipo="Administrador" />}
+            element={
+              <MenuCrud
+                tipo="funcionarios"
+                titulo="Administradores"
+                rotulo="Administrador"
+              />
+            }
           />
           <Route
             exact
@@ -80,7 +86,13 @@ function Router() {
           <Route
             exact
             path="/menu/cadastros/colaborador/funcionario"
-            element={<MenuCrud tipo="Funcionário" />}
+            element={
+              <MenuCrud
+                tipo="funcionarios"
+                titulo="Funcionários"
+                rotulo="Funcionário"
+              />
+            }
           />
           <Route
             exact
@@ -90,7 +102,9 @@ function Router() {
           <Route
             exact
             path="/menu/cadastros/veiculo"
-            element={<MenuCrud tipo="Veículo" />}
+            element={
+              <MenuCrud tipo="veiculos" titulo="Veículos" rotulo="Veículo" />
+            }
           />
           <Route
             exact
@@ -100,7 +114,9 @@ function Router() {
           <Route
             exact
             path="/menu/cadastros/cliente"
-            element={<MenuCrud tipo="Cliente" />}
+            element={
+              <MenuCrud tipo="clientes" titulo="Clientes" rotulo="Cliente" />
+            }
           />
           <Route
             exact
@@ -125,12 +141,20 @@ function Router() {
           <Route
             exact
             path="/menu/cadastros/produto"
-            element={<MenuCrud tipo="Produto" />}
+            element={
+              <MenuCrud tipo="produtos" titulo="Produtos" rotulo="Produto" />
+            }
           />
           <Route
             exact
             path="/menu/cadastros/metodo"
-            element={<MenuCrud tipo="Opção de Pagamento" />}
+            element={
+              <MenuCrud
+                tipo="opcoes-pag"
+                titulo="Opções de Pagamento"
+                rotulo="Opção de Pagamento"
+              />
+            }
           />
         </Routes>
       </BrowserRouter>
