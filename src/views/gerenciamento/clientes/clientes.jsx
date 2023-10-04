@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   getTokenSessao,
-  logout,
+  handleErrorBackend,
   testarEhAdmin,
   testarLogin,
 } from "../../../services/api";
@@ -22,7 +22,7 @@ function Clientes() {
     fetch(
       `${
         process.env.REACT_APP_BACKEND_ROUTE
-      }/clientes/obter-clientes/${getTokenSessao()}?status=true`,
+      }/clientes/obter-com-status/${getTokenSessao()}`,
       {
         method: "GET",
         headers: {
@@ -34,9 +34,7 @@ function Clientes() {
       .then((res) => res.json())
       .then(async (res) => {
         if (res.error) {
-          alert(res.error);
-          logout();
-          navigate("/");
+          handleErrorBackend(res.error);
         } else {
           setClientes(res);
         }

@@ -42,7 +42,7 @@ function Router() {
           />
           <Route
             exact
-            path="/menu/gerenciamento/funcionarios/funcionario"
+            path="/menu/gerenciamento/funcionarios/:id"
             element={<PerfilFuncionario />}
           />
           <Route exact path="/menu" element={<Menu />} />
@@ -60,7 +60,11 @@ function Router() {
             element={<Clientes />}
           />
 
-          <Route exact path="/cliente" element={<PerfilCliente />} />
+          <Route
+            exact
+            path="/menu/gerenciamento/clientes/:id"
+            element={<PerfilCliente />}
+          />
           <Route exact path="/menu/cadastros" element={<Cadastros />} />
           <Route
             exact

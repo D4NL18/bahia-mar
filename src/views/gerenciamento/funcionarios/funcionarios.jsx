@@ -6,26 +6,31 @@ import BotaoVoltar from "../../../components/botao/botao-voltar/botaoVoltar";
 import "./funcionarios.css";
 import { useState } from "react";
 import { useEffect } from "react";
+import { getTokenSessao, handleErrorBackend } from "../../../services/api";
+import { useNavigate } from "react-router-dom";
 
 function Funcionarios() {
+  const navigate = useNavigate();
   const [funcionarios, setFuncionarios] = useState(undefined);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_ROUTE}/obter-clientes?status=true`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then(async (res) => {
-        const { status } = res;
-        res = await res.json();
-        if (status !== 200) {
-          console.log(res.message); //mensagem de erro
-          // mostrar mensagem de erro...
+    fetch(
+      `${
+        process.env.REACT_APP_BACKEND_ROUTE
+      }/funcionarios/obter/${getTokenSessao()}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          handleErrorBackend(navigate, res.error);
         } else {
-          // deu bom, proseguir...
           setFuncionarios(res);
         }
       })
@@ -33,7 +38,7 @@ function Funcionarios() {
         // mostrar mensagem de erro...
         console.log(err);
       });
-  }, []);
+  }, [navigate]);
 
   if (!funcionarios) return <></>;
 

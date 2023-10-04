@@ -7,7 +7,7 @@ import BotaoGrande from "../../components/botao/botao-grande/botaoGrande";
 import BotaoSair from "../../components/botao/botao-sair/botaoSair";
 
 import "./menu.css";
-import { getEhAdmin, testarEhAdmin, testarLogin } from "../../services/api";
+import { getEhAdmin, testarLogin } from "../../services/api";
 
 function Menu() {
   const navigate = useNavigate();

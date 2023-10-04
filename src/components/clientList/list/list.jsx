@@ -13,8 +13,10 @@ function List(props) {
         <Item
           key={key}
           nome={op["NOME"]}
-          isPago={op["STATUS"]}
-          cpf={op["CPF_CNPJ"]}
+          isVerde={
+            props.tipo === "clientes" ? op["STATUS"] : op["EH_ADMIN"] === 1
+          }
+          cpf={op["CPF_CNPJ"] || op["CPF"]}
           id={op["ID"]}
           tipo={props.tipo}
         />

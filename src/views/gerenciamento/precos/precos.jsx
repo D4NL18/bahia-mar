@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   getTokenSessao,
-  logout,
+  handleErrorBackend,
   testarEhAdmin,
   testarLogin,
 } from "../../../services/api";
@@ -26,7 +26,7 @@ function Precos() {
     fetch(
       `${
         process.env.REACT_APP_BACKEND_ROUTE
-      }/obter-produtos/${getTokenSessao()}`,
+      }/produtos/obter/${getTokenSessao()}`,
       {
         method: "GET",
         headers: {
@@ -38,9 +38,7 @@ function Precos() {
       .then((res) => res.json())
       .then((res) => {
         if (res.error) {
-          alert(res.error);
-          logout();
-          navigate("/");
+          handleErrorBackend(navigate, res.error);
         } else {
           setProdutos(res);
         }

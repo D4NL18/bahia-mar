@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import TituloPequeno from "../../../../components/titulo/titulo-pequeno/tituloPequeno";
 import Info from "../../../../components/info/info";
@@ -6,16 +6,18 @@ import Linha from "../../../../components/grafico/linha/linha";
 import BotaoVoltar from "../../../../components/botao/botao-voltar/botaoVoltar";
 
 import "./perfilCliente.css";
+import { useParams } from "react-router-dom";
+import { getTokenSessao } from "../../../../services/api";
 
 function PerfilCliente() {
-  const [info, setInfo] = useState(undefined);
+  const [info, setInfo] = useState();
+  const id = useRef(useParams().id);
 
   useEffect(() => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const idCliente = urlParams.get("id");
     fetch(
-      `${process.env.REACT_APP_BACKEND_ROUTE}/relatorio-cliente?id=${idCliente}`,
+      `${
+        process.env.REACT_APP_BACKEND_ROUTE
+      }/clientes/relatorio-cliente/${getTokenSessao()}?id=${id.current}`,
       {
         method: "GET",
         headers: {
@@ -147,7 +149,7 @@ function PerfilCliente() {
           </div>
         </section>
       </div>
-      <BotaoVoltar path="/menu/gerenciamento/clientes" />
+      <BotaoVoltar path="/menu/gerenciamento" />
     </div>
   );
 }
