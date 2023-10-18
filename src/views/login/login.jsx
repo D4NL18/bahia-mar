@@ -5,7 +5,7 @@ import BotaoGrande from "../../components/botao/botao-grande/botaoGrande";
 import Logo from "../../images/logo.png";
 
 import "./login.css";
-import { login, testarLogin } from "../../services/api";
+import { handleErrorBackend, login, testarLogin } from "../../services/api";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -31,14 +31,13 @@ function App() {
         },
       }
     )
-      .then(async (res) => {
-        const resObj = await res.json();
-        if (res.status !== 200) {
-          console.log(resObj.message); //mensagem de erro
-          // mostrar mensagem de erro...
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          handleErrorBackend(navigate, res.error);
         } else {
           // deu bom, proseguir...
-          login(resObj);
+          login(res);
           navigate("/menu");
         }
       })
