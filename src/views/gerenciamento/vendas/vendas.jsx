@@ -34,45 +34,6 @@ function Vendas() {
 
   const dataMeta = [10000, 8800];
 
-  const [faturamentoFuncionario] = useState({
-    labels: data.map((data) => data.year),
-    datasets: [
-      {
-        label: "Faturamento por Funcionario",
-        data: data.map((data) => data.userGain),
-        backgroundColor: ["red", "blue", "yellow", "green", "orange", "pink"],
-        borderColor: "black",
-        borderWidth: 3,
-      },
-    ],
-  });
-
-  const [faturamentoProduto] = useState({
-    labels: data.map((data) => data.year),
-    datasets: [
-      {
-        label: "Faturamento por Produto",
-        data: data.map((data) => data.userGain),
-        backgroundColor: ["red", "blue", "yellow", "green", "orange", "pink"],
-        borderColor: "black",
-        borderWidth: 3,
-      },
-    ],
-  });
-
-  const [quantProduto] = useState({
-    labels: data.map((data) => data.year),
-    datasets: [
-      {
-        label: "Quantidade por Produto",
-        data: data.map((data) => data.userGain),
-        backgroundColor: ["red", "blue", "yellow", "green", "orange", "pink"],
-        borderColor: "black",
-        borderWidth: 3,
-      },
-    ],
-  });
-
   const [meta] = useState({
     labels: ["Concluido", "Restante"],
     datasets: [
@@ -127,11 +88,31 @@ function Vendas() {
   if (!sales) return <></>;
 
   let faturamentoData = {};
+  const faturamentoFuncionarioData = {};
+  const produtoData = {};
   for (const venda of Object.values(sales)) {
     const ano = venda["HORARIO_VENDA"].split("-")[0];
+    const idFunc = venda["FUNCIONARIO"]["ID"];
     if (!(ano in faturamentoData)) faturamentoData[ano] = 0;
+    if (!(idFunc in faturamentoFuncionarioData))
+      faturamentoFuncionarioData[idFunc] = {
+        label: `${venda["FUNCIONARIO"]["NOME"]} - ${venda["FUNCIONARIO"]["CPF"]}`,
+        earning: 0,
+      };
 
-    faturamentoData[ano] += Number(venda["QUANT_PAGO"]);
+    faturamentoData[ano] += venda["QUANT_PAGO"];
+    faturamentoFuncionarioData[idFunc].earning += venda["QUANT_PAGO"];
+    for (const produto of venda["PRODUTOS"]) {
+      const idProd = produto["ID"];
+      if (!(idProd in produtoData))
+        produtoData[idProd] = {
+          label: produto["NOME"],
+          price: produto["PRECO"],
+          quantity: 0,
+        };
+
+      produtoData[idProd].quantity += produto["QUANTIDADE"];
+    }
   }
   // Ordena os dados em ordem crescente de ano
   faturamentoData = Object.keys(faturamentoData)
@@ -151,13 +132,47 @@ function Vendas() {
     ],
   };
 
-  /*const tableData = [
-    { id: 1, vendedor: "Daniel", cliente: "Marinho", faturamento: "600,00" },
-    { id: 2, vendedor: "Jose", cliente: "Auto", faturamento: "200,00" },
-    { id: 3, vendedor: "Marina", cliente: "Calheira", faturamento: "300,00" },
-    { id: 4, vendedor: "Luan", cliente: "Machado", faturamento: "400,00" },
-    { id: 5, vendedor: "Rafael", cliente: "Santos", faturamento: "100,00" },
-  ]; */
+  const faturamentoFuncionario = {
+    labels: Object.values(faturamentoFuncionarioData).map((func) => func.label),
+    datasets: [
+      {
+        label: "Faturamento por Funcionário",
+        data: Object.values(faturamentoFuncionarioData).map(
+          (func) => func.earning
+        ),
+        backgroundColor: ["red", "blue", "yellow", "green", "orange", "pink"],
+        borderColor: "black",
+      },
+    ],
+  };
+
+  const faturamentoProduto = {
+    labels: Object.values(produtoData).map((prod) => prod.label),
+    datasets: [
+      {
+        label: "Faturamento por Produto",
+        data: Object.values(produtoData).map(
+          (prod) => prod.quantity * prod.price
+        ),
+        backgroundColor: ["red", "blue", "yellow", "green", "orange", "pink"],
+        borderColor: "black",
+        borderWidth: 3,
+      },
+    ],
+  };
+  const quantProduto = {
+    labels: Object.values(produtoData).map((prod) => prod.label),
+    datasets: [
+      {
+        label: "Quantidade por Produto",
+        data: Object.values(produtoData).map((prod) => prod.quantity),
+        backgroundColor: ["red", "blue", "yellow", "green", "orange", "pink"],
+        borderColor: "black",
+        borderWidth: 3,
+      },
+    ],
+  };
+
   const tabelaVendas = Object.entries(sales).map(([id, sale]) => ({
     id,
     vendedor: sale["FUNCIONARIO"]["NOME"],
