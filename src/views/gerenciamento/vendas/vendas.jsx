@@ -96,7 +96,7 @@ function Vendas() {
     if (!(ano in faturamentoData)) faturamentoData[ano] = 0;
     if (!(idFunc in faturamentoFuncionarioData))
       faturamentoFuncionarioData[idFunc] = {
-        label: `${venda["FUNCIONARIO"]["NOME"]} - ${venda["FUNCIONARIO"]["CPF"]}`,
+        label: `${venda["FUNCIONARIO"]["NOME"]}`,
         earning: 0,
       };
 
