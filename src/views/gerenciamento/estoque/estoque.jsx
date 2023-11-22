@@ -8,7 +8,7 @@ import './estoque.css'
 
 function Estoque() {
 
-    const colunas = ["ID", "Nome", "Ultima Compra", "Disponível", "Faturamento"]
+    const colunas = ["ID", "Nome", "Última Compra", "Disponível", "Faturamento"]
 
     const tableData = [
         { id: 1, nome: 'Galão 20L', ultimaCompra: '50', disponivel: '34', faturamento: '600,00' },

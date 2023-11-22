@@ -99,15 +99,16 @@ function PerfilFuncionario() {
           <TituloMedio title="Nome" />
           <div className="infos-perfilFuncionario">
             <div className="linha-infos-perfilFuncionario">
-              <DadosVendas
-                label="Faturamento"
-                info={`R$ ${faturamentoTotal.toString().replace(".", ",")}`}
-              />
+            <DadosVendas label="CPF" info={info["CPF"]} />
+              
               <DadosVendas label="Email" info={info["EMAIL"]} />
             </div>
             <div className="linha-infos-perfilFuncionario">
               <DadosVendas label="Vendas" info={values.length} />
-              <DadosVendas label="CPF" info={info["CPF"]} />
+              <DadosVendas
+                label="Faturamento"
+                info={`R$ ${faturamentoTotal.toString().replace(".", ",")}`}
+              />
             </div>
             {/*<section className="grafico-perfilFuncionario">
               <h2 className="titulo-grafico-perfilFuncionario">

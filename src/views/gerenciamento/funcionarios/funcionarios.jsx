@@ -46,7 +46,7 @@ function Funcionarios() {
   return (
     <div className="entire-page-funcionarios">
       <header className="header-funcionarios">
-        <TituloMedio title="Funcionarios" />
+        <TituloMedio title="Funcionários" />
       </header>
       <div className="body-funcionarios">
         <EmployeList data={funcionarios} tipo="funcionarios" />
