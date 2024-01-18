@@ -1,0 +1,112 @@
+.entire-page-perfilFuncionario {
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #003355 0%, rgba(0, 51, 85, 0.7) 100%);
+    justify-content: center;
+    align-items: center;
+}
+
+.div-box-perfilFuncionario {
+    background-color: #eee;
+    border-radius: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 98%;
+    height: 99%;
+}
+
+.section-infos-perfilFuncionario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+}
+
+.section-graficos-perfilFuncionario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+}
+
+.infos-perfilFuncionario {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+    flex-direction: column;
+
+}
+
+.linha-infos-perfilFuncionario {
+    display: flex;
+    justify-content: space-around;
+    align-items: space-around;
+}
+
+.titulo-grafico-perfilFuncionario {
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.grafico-perfilFuncionario {
+    width: 90%;
+    height: 25rem;
+    background-color: #dedede;
+    padding: 1rem 1rem 5rem 1rem;
+    border-radius: 5%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+    margin: 1rem 0;
+}
+
+@media only screen and (max-width: 1023px) {
+    .div-box-perfilFuncionario {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .section-infos-perfilFuncionario {
+        width: 90%;
+    }
+
+    .infos-perfilFuncionario {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+    
+    }
+
+    .section-graficos-perfilFuncionario {
+        width: 90%;
+    }
+
+  }
+
+
+  @media only screen and (max-width: 640px) {
+    .linha-infos-perfilFuncionario {
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .grafico-perfilFuncionario {
+        width: 100%;
+    }
+  }

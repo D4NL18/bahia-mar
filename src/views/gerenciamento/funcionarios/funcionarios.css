@@ -1,0 +1,18 @@
+.entire-page-funcionarios {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-funcionarios {
+}
+
+.body-funcionarios {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: 3rem 0;
+}

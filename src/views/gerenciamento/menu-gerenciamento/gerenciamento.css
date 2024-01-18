@@ -1,0 +1,53 @@
+.entire-page-estatisticas {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-section-estatisticas {
+  margin: 2% 0;
+}
+
+.caixa-central-section-estatisticas {
+  display: flex;
+  width: 70%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 10%;
+}
+
+.coluna-estatisticas {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+}
+
+@media only screen and (min-width: 425px) and (max-width: 767px) {
+  .caixa-central-section-estatisticas {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .caixa-central-section-estatisticas {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-height: 425px) {
+  .caixa-central-section-estatisticas {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .caixa-central-section-estatisticas {
+    
+  }
+}

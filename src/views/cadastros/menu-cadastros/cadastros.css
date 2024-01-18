@@ -1,0 +1,58 @@
+.entire-page-cadastros {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 5% 0;
+}
+
+.caixa-central-section-cadastros {
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.botoes-caixa-central-section-cadastros {
+
+}
+
+.div-botoes-cadastros {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .entire-page-cadastros {
+    padding: 10% 0;
+  }
+
+}
+
+@media only screen and (min-width: 425px) and (max-width: 767px) {
+  .entire-page-cadastros {
+    padding: 15% 0;
+  }
+
+  .caixa-central-section-cadastros {
+    flex-direction: column;
+  }
+
+}
+
+@media only screen and (max-width: 425px) {
+  .entire-page-cadastros {
+    padding: 15% 0;
+  }
+  .caixa-central-section-cadastros {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-height: 425px) {
+  .entire-page-cadastros {
+    padding: 5% 0;
+  }
+}

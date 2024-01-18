@@ -1,0 +1,35 @@
+.entire-page-menuCrud {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 5% 0;
+  }
+  
+  
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .entire-page-menuCrud {
+      padding: 15% 0;
+    }
+  }
+  
+  @media only screen and (min-width: 425px) and (max-width: 767px) {
+    .entire-page-menuCrud {
+      padding: 20% 0;
+    }
+  }
+  
+  @media only screen and (max-width: 425px) {
+    .entire-page-menuCrud {
+      padding: 30% 0;
+    }
+  }
+  
+  @media only screen and (max-height: 425px) {
+    .entire-page-menuCrud {
+      padding: 5% 0;
+    }
+  }
+  

@@ -1,0 +1,26 @@
+.tituloGrande {
+  font-size: 5rem;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem 1rem;
+  padding: 0;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+}
+
+@media only screen and (min-width: 425px) and (max-width: 767px) {
+  .tituloGrande {
+    font-size: 4rem;
+    margin: 2rem 1rem;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .tituloGrande {
+    font-size: 3rem;
+    margin: 1rem 1rem;
+  }
+}
